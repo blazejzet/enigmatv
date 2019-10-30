@@ -1,0 +1,123 @@
+//
+//  EPGButton.swift
+//  EnigmaTV
+//
+//  Created by Blazej Zyglarski on 16.01.2018.
+//  Copyright © 2018 Blazej Zyglarski. All rights reserved.
+//
+
+import UIKit
+
+class EPGButton: UIButton {
+    var event:EpgEventCache?
+    var type: UIButtonType = UIButtonType.system
+    var row:Int?
+    var oframe :CGRect?
+    var background :UIImageView?
+    weak var delegate:EPGListViewController?
+    
+    
+    func setRecorded(){
+        var r="🔴 ";
+        self.setTitle("\(r)\(self.event!.tilte!.uppercased())", for: .normal)
+    }
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        //EPGButton* b = (EPGButton*)context.nextFocusedItem;
+        //[self.delegate selected:b At:b.frame.origin onRow:b.row];
+        let b = context.nextFocusedItem as? EPGButton
+    
+        if let b = b{
+            self.delegate?.selected(b.event!, at: b.frame.origin, inRow:b.row!)
+            UIView.animate(withDuration: 0.1){
+                if (b==self){
+                    
+                    print("eventid: \(b.event?.id), \(b.event?.sref), \(b.event?.sname)");
+                    self.oframe=self.background?.frame
+                      self.background?.frame = CGRect(x: (self.oframe?.origin.x)!-10, y: (self.oframe?.origin.y)!-10, width: (self.oframe?.size.width)!+20, height: (self.oframe?.size.height)!+20)
+                    self.background?.image = #imageLiteral(resourceName: "blueEPGButton")
+                    self.background?.alpha = 1.0
+                    self.superview?.bringSubview(toFront: self)
+                }else{
+                    self.background?.frame =  self.oframe!
+                    self.background?.image = #imageLiteral(resourceName: "grayEPGButton")
+                    self.background?.alpha = 0.1
+                    
+                    
+                }
+            }
+        }
+        
+    }
+    class func newButton(with event:EpgEventCache, andService service:EpgService) -> EPGButton {
+        let b =  EPGButton()
+        b.event = event
+        b.row = Int(service.row)
+        b.frame = .zero
+        
+        
+        b.background = UIImageView(frame: CGRect(origin: .zero, size: b.frame.size))
+        b.background?.alpha = 0.1
+        b.addSubview(b.background!)
+        var r = ""
+        if (event.timer != nil){r="🔴 ";}
+        b.setTitle("\(r)\(event.tilte!.uppercased())", for: .normal)
+        b.titleLabel?.font = UIFont.systemFont(ofSize: 32);
+        b.bringSubview(toFront: b.titleLabel!)
+        b.contentHorizontalAlignment = .left
+        b.titleEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+        
+        b.background?.image = #imageLiteral(resourceName: "grayEPGButton");
+        b.background?.clipsToBounds=true
+        b.addTarget(b, action: #selector(EPGButton.pressed), for: .primaryActionTriggered)
+        return b
+    }
+    
+    @objc func pressed(_ sender: UIGestureRecognizer){
+        delegate?.pressed(self.event!, atButton: self)
+    }
+    
+    init() {
+        super.init(frame: .zero)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func position(){
+        
+        if let row = self.row {
+            var effectiveRow = row
+            if row > EPGListViewController.activeRow {
+                effectiveRow = row + 3
+            }
+            effectiveRow = effectiveRow - EPGListViewController.offsetY
+            
+            let width = CGFloat(self.event!.dudation_sec)/CGFloat(EPGListViewController.density)-CGFloat(EPGListViewController.spacing)
+            let start = CGFloat(self.event!.begin_timestamp)/CGFloat(EPGListViewController.density)-CGFloat(EPGListViewController.offsetX)
+            let top = CGFloat(effectiveRow)*CGFloat(EPGListViewController.height+EPGListViewController.spacing)
+            let height = CGFloat(EPGListViewController.height)
+            
+            self.frame = CGRect(x: start, y: top, width: width, height: height)
+            self.background?.frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
+            
+            if(start<0){
+                self.titleEdgeInsets = .init(top: 0, left: (-start)+10, bottom: 0, right: 0)
+            }else{
+                 self.titleEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+            }
+        }
+    }
+    
+    
+    
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+
+}

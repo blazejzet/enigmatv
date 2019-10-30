@@ -1,0 +1,233 @@
+//
+//  EPGHelper.swift
+//  EnigmaTV
+//
+//  Created by Blazej Zyglarski on 09/05/2019.
+//  Copyright © 2019 Blazej Zyglarski. All rights reserved.
+//
+
+import UIKit
+
+class EPGHelper {
+    static var epgHelperInstance: EPGHelper?
+    var isFetching = false
+    var serialPrefetchQueue:DispatchQueue?
+    //var asyncDataQueue:DispatchQueue?
+    
+    class func getInstance() -> EPGHelper?{
+        if EPGHelper.epgHelperInstance == nil {
+            EPGHelper.epgHelperInstance = EPGHelper()
+            
+        }
+        return EPGHelper.epgHelperInstance
+    }
+    
+    init() {
+        self.serialPrefetchQueue = DispatchQueue(label: "pl.asuri.enigma.prefetch")
+        //self.asyncDataQueue = DispatchQueue(label: "pl.asuri.enigma.data", qos: .userInitiated, attributes: .concurrent, autoreleaseFrequency: .workItem, target: nil)
+    }
+    
+    class func getBouquets(cb:@escaping (([EpgBouquet])->Void)){
+//        EPGHelper.getInstance()?.asyncDataQueue?.async {
+        
+            DataProvider.def().getBouquetsSerial { bouquets in
+                print("---------------test")
+                print(bouquets)
+                print("---------------test")
+                DispatchQueue.main.async {
+                    cb(bouquets)
+                }
+            }
+        
+    }
+    
+    
+    
+    class func showAll(text:String?){
+        print("Show ALL in \(text)\n")
+        print("----------")
+            EPGHelper.getInstance()?.displayall(text: text)
+        
+    }
+    
+    
+    func testClear(){
+        DataProvider.def().clearSavedBouquets()
+    }
+    
+    class func preloadingEPG() {
+        print("EPGHELPER: Preparing  prefetching")
+        
+        EPGHelper.getInstance()?.preload()
+        
+        
+    }
+    
+    func displayall(text: String?)  {
+       
+            
+        
+        print("----------------------------displayAll \(text!)--------------------")
+        print("----------------------------displayAll in queue \(OperationQueue.current?.underlyingQueue?.description)--------------------")
+        DataProvider.def().getBouquetsSerial{
+            list in
+           // print("----------------------------displayAll in queue \(OperationQueue.current?.underlyingQueue?.description)--------------------")
+            for l in list {
+                //print("----------------------------displayAll in queue \(OperationQueue.current?.underlyingQueue?.description)--------------------")
+                print("displayAll in \(text) - N: \(l.sname!) R: \(l.sref!)")
+            }
+        }
+            
+    }
+    
+    func preload()
+    {
+        if(!self.isFetching ){
+//            self.isFetching = true
+            //displayall(text: "EPGHelper")
+
+            ///downloading bouquets
+            self.serialPrefetchQueue?.async {
+
+                print("#############EPGHELPER v2: starting new prefetch")
+//                print("-----------------------------A-----------------------------")
+
+                var start  = UInt64(Date().timeIntervalSince1970)
+                var end = start+60*60*72 // NA 3 DNI.
+
+                STBAPI.common()?.getServices(cb: {(sl:Servicelist) in
+                    if let services = sl.services {
+//                        self.serialPrefetchQueue?.sync {
+                        self.serialPrefetchQueue?.async {
+                            for bouquet in services{
+                                print("EPGHELPER: prefetching 'st bouquet \(bouquet.servicename)")
+//                                print("-----------------------------BB-----------------------------")
+
+                                DataProvider.def().getBouquetSerial(bref: bouquet.servicereference!){ b in
+                                    print("-----------------getBouquetSerial--------\(b?.sname)")
+                                    if let b  = b{
+                                        print("EPGHELPER:  bouquet \(b.sname) already exists in database")
+//                                        print("-----------------------------BB1-----------------------------")
+                                    }else{
+                                        DispatchQueue.main.async{
+                                        var x = EpgBouquet(context: DataProvider.def().context)
+                                        x.sname = bouquet.servicename
+                                        x.sref = bouquet.servicereference
+                                        print("EPGHELPER: adding bouquet \(bouquet.servicename) to database")
+//                                        print("-----------------------------BB2-----------------------------")
+//                                        DataProvider.def().saveContextSerial()
+                                         DataProvider.def().saveContext()
+                                        }
+                                    }
+                                    //TODO: deleting bouquets that dont exist in database
+
+                                }
+                                self.serialPrefetchQueue?.async {
+                                    STBAPI.common()?.getServices(for: bouquet, cb: {list in
+                                        if let services = list.services{
+                                            print("EPGHELPER: prefetching \(services.count) in bouquet \(bouquet)")
+//                                            print("-----------------------------C-----------------------------")
+
+                                            for service in services {
+                                                print("EPGHELPER: prefetching \(service.servicename) in bouquet \(bouquet)")
+//                                                print("-----------------------------CC--------------0---------------")
+
+                                                DataProvider.def().getServiceSerial(bref: bouquet.servicereference!, sref: service.servicereference!){ b in
+                                                    
+                                                    if let b = b{
+                                                        print("EPGHELPER:  service \(bouquet.servicename)/\(service.servicename) already exists in database")
+//                                                        print("-----------------------------CC1-----------------------------")
+                                                    }else{
+                                                        DispatchQueue.main.async{
+                                                        var x = EpgService(context: DataProvider.def().context)
+                                                        x.sname = service.servicename
+                                                        x.sref = service.servicereference
+                                                        x.bref = bouquet.servicereference
+                                                        print("EPGHELPER: adding service \(bouquet.servicename)/\(service.servicename) to database")
+//                                                        print("-----------------------------CC2-----------------------------")
+//                                                        DataProvider.def().saveContextSerial()
+                                                        DataProvider.def().saveContext()
+                                                        }
+                                                    }
+                                                }
+
+
+                                                print("EPGHELPER: prefetching \(service.servicename) bouquet")
+                                                //todo: compute dates.
+
+                                                DataProvider.def().getLastEpgForServiceSerial(sref: service.servicereference!){ start in
+                                                    var end = start+60*60*72
+                                                    print("EPGHELPER: prefetching \(service.servicename) bouquet [\(start) -- \(end)]")
+//                                                    print("-----------------------------D-----------------------------")
+
+
+                                                    ///Get program list
+                                                    STBAPI.common()?.getEPG(for:service, from:UInt64(start), to:UInt64(end)){ (events:[EpgEvent],service:Service) in
+
+//                                                                                                        self.serialPrefetchQueue?.async{
+                                                        self.serialPrefetchQueue?.async {
+                                                            //todo: check if EPGDataFetchInfo exists in database
+                                                            DispatchQueue.main.async{
+                                                            var x = EPGDataFetchInfo(context: DataProvider.def().context)
+                                                            x.lasttimestamp =  Int64(end)
+                                                            x.serviceid = service.servicereference
+//                                                            DataProvider.def().saveContextSerial()
+                                                             DataProvider.def().saveContext()
+                                                            }
+                                                            print("EPGHELPER \(events.count) in \(service)")
+//                                                            print("-----------------------------DD-----------------------------")
+
+                                                            for event in events{
+                                                                print("EPGHELPER: EVENT \(event) in \(service)")
+//                                                                print("-----------------------------DDD-----------------------------")
+
+                                                                    DispatchQueue.main.async{
+                                                                var e = EpgEventCache(context: DataProvider.def().context)
+                                                                if let t = event.begin_timestamp{
+                                                                    e.begin_timestamp = Int64(event.begin_timestamp!)
+                                                                    e.end_timestamp = Int64(event.begin_timestamp!+event.duration_sec!)
+                                                                    e.dudation_sec = Int64(event.duration_sec!)
+
+                                                                }
+                                                                e.tilte = event.title
+                                                                e.longdesc = event.longdesc
+                                                                if let id = event.id{
+                                                                    e.id = Int64(id)
+                                                                }
+                                                                e.sname = event.sname
+                                                                e.sref = event.sref
+                                                                e.shortdesc = event.shortdesc
+                                                                if let t = event.now_timestamp{
+                                                                    e.now_timestamp =  Int64(t)
+                                                                }
+//                                                                DataProvider.def().saveContextSerial()
+                                                                 DataProvider.def().saveContext()
+                                                                }
+                                                            }
+                                                        }
+                                                        print("EPGHELPER: left \(self.isFetching) bouquets for prefetching")
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }, fail: {
+                                        print("EPGHelper: Failed to preload data")
+                                        self.isFetching = false
+                                    })
+                                }
+                            }
+                        }
+                        self.serialPrefetchQueue?.async {
+                            //                                                    self.isFetching = false;
+                            print("-----------------------------!E!-----------------------------")
+                        }
+
+                    }
+                }, fail: {
+                    print("EPGHelper: Failed to preload data")
+                    self.isFetching = false
+                })
+            }
+        }
+    }
+}

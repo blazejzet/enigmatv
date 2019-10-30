@@ -1,0 +1,1484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "2DDF2C66-3934-4593-B2F3-02A973B6F056"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9DC67CC4-3214-4781-82A7-30A83884CA5B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewController.swift"
+            timestampString = "537945499.440183"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3AE7641-399C-49CD-82BD-984437FAED06"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGViewController.swift"
+            timestampString = "537945499.44043"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "470AC8E8-4A7F-4331-B26F-9028A981F2FF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGListViewController.swift"
+            timestampString = "537945499.440609"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "show(_:for:activeRow:onList:atBeginning:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF472033-002C-4578-A456-7A722BC67F0F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/StreamView.swift"
+            timestampString = "537945499.440758"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "playLastStream()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1521859-539B-42B6-A3E7-A0FB3BD4C473"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGListViewController.swift"
+            timestampString = "537945499.440886"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "selected(_:at:inRow:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "706F0B47-FC8E-47A3-9B83-91E3740CA3F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGListViewController.swift"
+            timestampString = "537945499.441058"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "organizeData(for:from:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9E89FE3-DACF-42D0-9F72-6CD4157F2439"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGViewController.swift"
+            timestampString = "537945499.441188"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "watchMovie(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F2611030-B185-4FFF-BA7B-6CA65800744F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/MoviesViewController.swift"
+            timestampString = "537945499.441361"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "57"
+            endingLineNumber = "57"
+            landmarkName = "tableView(_:didSelectRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "89D32D4D-09DC-4B96-AD80-960538ED26E0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048524"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "309"
+            endingLineNumber = "309"
+            landmarkName = "showInfo(for:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F738C6C2-DB25-473F-A52C-3231A329398A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.8389111"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "546"
+            endingLineNumber = "546"
+            landmarkName = "movieDelete(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D30A88FA-E4EC-450C-8FAC-43303AEAD8B6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.838966"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
+            landmarkName = "turnOff()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ADF57767-153A-4C4B-81AA-79A426566116"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.839013"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "585"
+            endingLineNumber = "585"
+            landmarkName = "STBAPI"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "ADF57767-153A-4C4B-81AA-79A426566116 - fddbba1b0945cbf2"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnigmaTV.STBAPI.(filter in _AB0778723BA89C45C6B32C50D6C45B5E)(events: Swift.Array&lt;EnigmaTV.Event&gt;, from: Swift.UInt64, to: Swift.UInt64) -&gt; Swift.Array&lt;EnigmaTV.Event&gt;"
+                  moduleName = "EnigmaTV"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blazejzyglarski/Projekty/IOS/EnigmaTV/EnigmaTV/STBAPI.swift"
+                  timestampString = "537985045.306034"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "178"
+                  endingLineNumber = "178"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "ADF57767-153A-4C4B-81AA-79A426566116 - ec8793269dcee83d"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (EnigmaTV.Event) -&gt; Swift.Bool in EnigmaTV.STBAPI.(filter in _AB0778723BA89C45C6B32C50D6C45B5E)(events: Swift.Array&lt;EnigmaTV.Event&gt;, from: Swift.UInt64, to: Swift.UInt64) -&gt; Swift.Array&lt;EnigmaTV.Event&gt;"
+                  moduleName = "EnigmaTV"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blazejzyglarski/Projekty/IOS/EnigmaTV/EnigmaTV/STBAPI.swift"
+                  timestampString = "537985045.307654"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "179"
+                  endingLineNumber = "179"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B7B5604-398B-4916-8293-6E9C4BE1F4A9"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.839059"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "598"
+            endingLineNumber = "598"
+            landmarkName = "getEPG(for:from:to:cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8925671B-4B09-484F-83E0-156E4AD92C1C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.0486211"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "start()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "90DC0B24-D0F0-4B5C-80BA-9FCDDEC299E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.839156"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
+            landmarkName = "prepareStream(ref:saveLast:full:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "981D06CC-5D5C-493B-841A-725B9D594CAE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.839201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "599"
+            endingLineNumber = "599"
+            landmarkName = "getEPG(for:from:to:cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "50CDC9A8-C31B-407A-832D-C7546EC30454"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.839244"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
+            landmarkName = "getEPG(for:from:to:cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "049FC644-03FE-4328-8A53-29115E663EBE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.83929"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "229"
+            endingLineNumber = "229"
+            landmarkName = "play(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4246FF5B-C914-4277-8E5B-3D2D31C7725F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048705"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "333"
+            endingLineNumber = "333"
+            landmarkName = "tapLeft(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D7338066-E756-4916-B784-47596BF53AD6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048746"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "332"
+            endingLineNumber = "332"
+            landmarkName = "tapLeft(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BDC762C3-25E1-4001-BDB6-F61C559FA311"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048784"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "watch(_:inBouquet:dir:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E83209A-3B14-4730-AE52-EBBF634AD83E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048821"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "watch(_:inBouquet:dir:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E2831DDE-E79D-48AD-8B44-DBEBE77461DA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.8395669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "203"
+            endingLineNumber = "203"
+            landmarkName = "play(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D69830A5-5173-4449-A559-B422369EBC04"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.83961"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
+            landmarkName = "switchToTimeshift()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AA71DAB1-68D2-4184-9E26-30D6CB0851F2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048883"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "249"
+            endingLineNumber = "249"
+            landmarkName = "watch(_:inBouquet:dir:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6D376C61-5DD2-4F7E-9158-712A254DE8D4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/TimeShiftRecorder.swift"
+            timestampString = "579562671.839747"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "record(from:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8B3B8027-9163-4FA5-B1C4-EC44ECDF2F82"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/Connection.swift"
+            timestampString = "538442947.351606"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "record(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5D6CFDE8-146B-481B-96B9-F18B740B6973"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/Connection.swift"
+            timestampString = "538442947.351645"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "record(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BEEB081B-FB24-41EF-927C-7FE30AB8CBF6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/Connection.swift"
+            timestampString = "538442947.351681"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "connect(stream:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7E558176-B24C-4FDC-A144-BDB707460233"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/Connection.swift"
+            timestampString = "538442947.351715"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "record(to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B2A36C48-1FEE-4C76-9BB6-DC9EE2DF4385"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.839861"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
+            landmarkName = "play(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3960A3EB-BF43-4EA6-AB63-0CA7583EC694"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.048986"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "prepare(for:sender:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/InfoView/TimeshiftDataProvider.swift"
+            timestampString = "579562671.839955"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "jumpTo(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562 - 9710de5d17467f6a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnigmaTV.TimeshiftDataProvider.jumpTo(Swift.UInt64) -&gt; ()"
+                  moduleName = "EnigmaTV"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blazejzyglarski/Projekty/IOS/EnigmaTV/EnigmaTV/ViewControllers/InfoView/TimeshiftDataProvider.swift"
+                  timestampString = "538951544.507302"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "1524">
+               </Location>
+               <Location
+                  uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562 - 9710de5d17467f6a"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "EnigmaTV.TimeshiftDataProvider.jumpTo(Swift.UInt64) -&gt; ()"
+                  moduleName = "EnigmaTV"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blazejzyglarski/Projekty/IOS/EnigmaTV/EnigmaTV/ViewControllers/InfoView/TimeshiftDataProvider.swift"
+                  timestampString = "538951544.5096771"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "91"
+                  endingLineNumber = "91"
+                  offsetFromSymbolStart = "5980">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CE8FA155-944E-499B-9006-46B66932F8EA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.8399971"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "StreamView"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "084B7DCE-93C2-4EDB-B1A7-807BBC075786"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.84004"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "showMe()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "54E7F6B9-937F-433B-8667-DA10AE2218FE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.049058"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
+            landmarkName = "continueMovie(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E1D4DD1D-3EE0-4376-B7D9-B44DD6689412"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.840127"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "149"
+            endingLineNumber = "149"
+            landmarkName = "stplay()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A3F34C1C-61B8-43B2-B3B9-A285C5080D3B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.840169"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
+            landmarkName = "play(_:inBouquet:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C10DF075-EDB2-4263-A630-227C4227BD9B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.840211"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "play(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CC08049-D7FA-450D-A48F-8AE92C528A57"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.840252"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "stop()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B0B4CA84-0002-4955-8FDE-7E941A1121F3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.049137"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "386"
+            endingLineNumber = "386"
+            landmarkName = "playPausePressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "691FBFB6-B56D-4A01-9D37-9C645C8138F1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/InfoView/TimeshiftDataProvider.swift"
+            timestampString = "579562671.840475"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC28E3A0-DD6C-440B-8713-1B418B182AF2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/InfoView/TimeshiftDataProvider.swift"
+            timestampString = "579562671.840515"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E51E12F-E86E-4E31-8D08-7F63EDFECE24"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/InfoView/TimeshiftDataProvider.swift"
+            timestampString = "579562671.840555"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "refresh()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "462AC63F-813C-44A1-B0AE-C9AA80EDA03E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/MoviesList/MoviesViewController.swift"
+            timestampString = "551053820.999302"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "findCK(movie:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "60B25818-AA83-419E-B498-FC00F8215B57"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/MoviesList/MoviesViewController.swift"
+            timestampString = "551053820.999549"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "findCK(movie:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5657789F-37E0-4E55-A104-342E613BFF68"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/MoviesList/MoviesViewController.swift"
+            timestampString = "551053820.999818"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "findCK(movie:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C7539A64-657C-4445-B018-0DEAA3775013"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/MoviesList/MoviesViewController.swift"
+            timestampString = "551053821.0000269"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "findCK(movie:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59A6C8C9-CEAE-4586-827A-C78B020F5391"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
+            timestampString = "579562671.840665"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
+            landmarkName = "play(_:inBouquet:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1050847D-2B1F-4C73-9475-84880B438C7C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/MoviesList/Movies2ViewController.swift"
+            timestampString = "548712762.6277699"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FB5389C6-5A3D-43FC-94AC-B17A00B0F6E3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208584"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "91"
+            endingLineNumber = "91"
+            landmarkName = "didReceiveMemoryWarning()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E13599C0-5741-4544-9FBA-2DF0B6FF306B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208663"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "90"
+            endingLineNumber = "90"
+            landmarkName = "didReceiveMemoryWarning()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "716D21DA-C90D-457E-BB4B-CF9193133DDC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208716"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BFCA207-6CD7-45B7-AC7B-B7D3F558F0A4"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208762"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "332CF4D2-A294-405E-9FA9-2AC4E9B32589"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208807"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BCC1C84C-3C3A-4CCF-8191-1276F61F8F57"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208851"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "tableView(_:numberOfRowsInSection:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "560EB13F-6D69-41A7-973B-50B1612F9F9E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208894"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "numberOfSections(in:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "77187298-CC8E-4027-866E-4C80B95F19C8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208936"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC53D81C-2A4F-46C2-8AD0-8EA2DB758A93"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.208977"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BF5793CA-90B1-4D04-B9A8-5ABFE1204262"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            timestampString = "580294124.20902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "collectionView(_:cellForItemAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E5E5863-4EA6-4DE0-8984-B13B4A8DF463"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.841194"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "getServices(cb:fail:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DDEDBE1F-6B4B-472C-AEE7-C4AF4965FAD1"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/SettingsViewController.swift"
+            timestampString = "550498476.502739"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4BDE5161-A27E-4B78-B1CA-2A137DB5F8E0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.04968"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "viewDidAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E95127E2-0F9A-450B-850A-8ED8877030D8"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            timestampString = "580077295.049719"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "checkSettings()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5A1143E-C432-4A05-9762-F386A222E8FD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/URLConnection.swift"
+            timestampString = "578866646.558122"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "urlSession(_:dataTask:didReceive:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E0026548-24AB-4B73-9311-A34A3E583146"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/DataModel/Decoders/APIDecoder.swift"
+            timestampString = "578869646.757913"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "decode(_:from:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "754A86AA-4154-4FDE-AB67-55295030F985"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.841432"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
+            landmarkName = "getContent(of:cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "15E6F2D1-49F0-4703-98F3-7EF4FD46E688"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.841483"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "getContent(of:cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5057F992-D0BB-4DC7-8EDC-E019A34A0546"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/STBAPI.swift"
+            timestampString = "579562671.841527"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
+            landmarkName = "getContent(of:cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C231944F-E537-493B-80D0-F0232445E19A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/DataModel/EPGHelper.swift"
+            timestampString = "580077295.0498101"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "preload()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B5D434E3-28AD-4774-9F1B-2EFE1469365E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/DataModel/DataProvider.swift"
+            timestampString = "581254669.667303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "unknown"
+            landmarkType = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/EPGList/EPGListViewController.swift"
+            timestampString = "579648258.770409"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
+            landmarkName = "organizeData(for:from:to:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50 - 8094acc05db499d7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;EnigmaTV.EpgEventCache&gt;) -&gt; () in EnigmaTV.EPGListViewController.organizeData(for: EnigmaTV.EpgService, from: Swift.UInt64, to: Swift.UInt64) -&gt; ()"
+                  moduleName = "EnigmaTV"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blazejzyglarski/Projekty/ASURI-IOS/E4/enigmatv2/EnigmaTV/ViewControllers/EPGList/EPGListViewController.swift"
+                  timestampString = "579647155.4902821"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "156"
+                  endingLineNumber = "156"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50 - 8feedd7c3d15de5"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in closure #1 (Swift.Array&lt;EnigmaTV.EpgEventCache&gt;) -&gt; () in EnigmaTV.EPGListViewController.organizeData(for: EnigmaTV.EpgService, from: Swift.UInt64, to: Swift.UInt64) -&gt; ()"
+                  moduleName = "EnigmaTV"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/blazejzyglarski/Projekty/ASURI-IOS/E4/enigmatv2/EnigmaTV/ViewControllers/EPGList/EPGListViewController.swift"
+                  timestampString = "579647155.492993"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "158"
+                  endingLineNumber = "158"
+                  offsetFromSymbolStart = "264">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "989892D2-9DEC-4126-B8BE-23E5EEC56876"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/EPGList/EPGListViewController.swift"
+            timestampString = "579648258.770825"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "organizeData(for:from:to:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED203A85-2F68-43F9-9A9D-2853F9C1F207"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/EPGList/EPGListViewController.swift"
+            timestampString = "579648258.771099"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
+            landmarkName = "selected(_:at:inRow:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6087E918-5C56-43FF-925E-6F7A4611D650"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/EPGList/EPGListViewController.swift"
+            timestampString = "579648258.7713619"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "selected(_:at:inRow:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "899C9B76-4B7E-4183-B6D3-CB882081838A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/DataModel/EPGHelper.swift"
+            timestampString = "580077295.049902"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "displayall()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F334E8EC-39CF-446A-B1F8-A0024BCF497A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGHelper.swift"
+            timestampString = "581254669.667686"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getBouquets(cb:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "31C02FA8-2099-4D49-8348-6CE254209924"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGHelper.swift"
+            timestampString = "581254669.667981"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "displayall(text:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "BA5DDC4A-8DE7-475A-91E7-8A0F9E0FCDBD"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/EPGHelper.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
+            landmarkName = "preload()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CF4C9A15-F1D2-4B52-9EEA-30857EE4FF89"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "84CC811C-1C13-4816-91E2-54B230E39489"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/EPGViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "reloadBouquetsList()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
