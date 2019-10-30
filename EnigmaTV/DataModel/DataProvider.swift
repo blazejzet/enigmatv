@@ -44,11 +44,12 @@ class DataProvider: NSObject {
     
     func clearSavedBouquets(){
         //  EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-        context.performAndWait {
+        self.context.perform {
             do{
                 let frc = self.fetchedResultsControllerEPG
                 frc.fetchRequest.predicate = NSPredicate(format: "end_timestamp > %d", 1)
                 try frc.performFetch()
+                
             }catch{
                 
             }
@@ -68,7 +69,7 @@ class DataProvider: NSObject {
         let context = self.persistentContainer.viewContext
         if context.hasChanges {
             //                            EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-            context.performAndWait {
+            self.context.perform {
                 do {
                     try context.save()
                     print("DataProvider: Context saved")
@@ -105,14 +106,18 @@ class DataProvider: NSObject {
     
     func getEpgForService(sref:String,begin:Int64,end:Int64,cb:@escaping ([EpgEventCache])->Void){
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-        context.performAndWait {
-            do{
-                let frc = self.fetchedResultsControllerEPG
-                frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %d && end_timestamp < %d", sref,begin,end)
-                try frc.performFetch()
-            }catch{
-                
+        self.context.perform {
+            
+            let frc = self.fetchedResultsControllerEPG
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %d && end_timestamp < %d", sref,begin,end)
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                }catch{
+                    
+                }
             }
+            
             print("fetched \(self.fetchedResultsControllerEPG.fetchedObjects?.count) objects")
             if let obj = self.fetchedResultsControllerEPG.fetchedObjects{
                 //    EPGHelper.getInstance()?.serialPrefetchQueue?.async {
@@ -124,53 +129,61 @@ class DataProvider: NSObject {
     }
     
     func getLastEpgForService(sref:String,cb:@escaping (Int64)->Void){
-        context.performAndWait {
+        self.context.perform {
             // EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-            do{
-                let frc = self.fetchedResultsControllerEPG
-                frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ ", sref)
-                frc.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "end_timestamp", ascending: false)]
-                try frc.performFetch()
-                if let e = frc.fetchedObjects {
-                    //  EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    if let f = e.first{
-                        cb(f.begin_timestamp+f.dudation_sec)
-                    }else{
-                        cb(Int64(Date().timeIntervalSince1970))
-                    }
+            
+            let frc = self.fetchedResultsControllerEPG
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ ", sref)
+            frc.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "end_timestamp", ascending: false)]
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                }catch{
                     
-                    //  }
                 }
-            }catch{
-                
             }
+            if let e = frc.fetchedObjects {
+                //  EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                if let f = e.first{
+                    cb(f.begin_timestamp+f.dudation_sec)
+                }else{
+                    cb(Int64(Date().timeIntervalSince1970))
+                }
+                
+                //  }
+            }
+            
         }
         
     }
     
     func getLastEpgForServiceSerial(sref:String,cb:@escaping (Int64)->Void){
-        context.performAndWait {
+        self.context.perform {
             // EPGHelper.getInstance()?.serialPrefetchQueue?.async {
             
             //        EPGHelper.getInstance()?.serialPrefetchQueue?.async?.async {
-            do{
-                let frc = self.fetchedResultsControllerEPG
-                frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ ", sref)
-                frc.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "end_timestamp", ascending: false)]
-                try frc.performFetch()
-                if let e = frc.fetchedObjects {
-                    //                     context.performAndWait {
-                    if let f = e.first{
-                        cb(f.begin_timestamp+f.dudation_sec)
-                    }else{
-                        cb(Int64(Date().timeIntervalSince1970))
-                    }
+            
+            let frc = self.fetchedResultsControllerEPG
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ ", sref)
+            frc.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "end_timestamp", ascending: false)]
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                }catch{
+                    
                 }
-                //                    }
-                
-            }catch{
-                
             }
+            if let e = frc.fetchedObjects {
+                //                     self.context.perform {
+                if let f = e.first{
+                    cb(f.begin_timestamp+f.dudation_sec)
+                }else{
+                    cb(Int64(Date().timeIntervalSince1970))
+                }
+            }
+            //                    }
+            
+            
             // }
         }
     }
@@ -179,13 +192,16 @@ class DataProvider: NSObject {
     
     func getEpgForService(sref:String,begin:Int64,end:Int64){
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-        context.performAndWait {
-            do{
-                let frc = self.fetchedResultsControllerEPG
-                frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
-                try frc.performFetch()
-            }catch{
-                
+        self.context.perform {
+            
+            let frc = self.fetchedResultsControllerEPG
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                }catch{
+                    
+                }
             }
             print("fetched \(self.fetchedResultsControllerEPG.fetchedObjects?.count) objects")
             if let obj = self.fetchedResultsControllerEPG.fetchedObjects{
@@ -200,80 +216,100 @@ class DataProvider: NSObject {
     
     func getBouquets( cb:@escaping ([EpgBouquet])->Void){
         // EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-        context.performAndWait {
-            do{
-                let frc = self.fetchedResultsControllerBouquets
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects {
-                    //   EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj)
-                    // }
+        self.context.perform {
+            
+            let frc = self.getFetchedResultsControllerBouquets()
+            self.context.perform {
+                do{
+                     try frc.performFetch()
+                    self.fetchedResultsControllerBouquetsDelegate.cb={
+                                           if let obj = frc.fetchedObjects{
+                                               //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                                               cb(obj)
+                                               //}
+                                           }
+                                       }
+                   
+                }catch{
+                    
                 }
-            }catch{
-                //  }
             }
+            
+            
         }
     }
     
     func getBouquetsSerial( cb:@escaping ([EpgBouquet])->Void){
-        context.performAndWait {
-            
-            
-            // EPGHelper.getInstance()?.serialPrefetchQueue?.async{
-            //            EPGHelper.getInstance()?.serialPrefetchQueue?.async?.async {
-            do{
-                let frc = self.fetchedResultsControllerBouquets
-                
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects {
-                    print("-----------dataprovider/getbouquets-----------\(obj.count)")
-                    //   EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj)
-                    //  }
+       
+        self.context.perform{
+            let frc = self.getFetchedResultsControllerBouquets()
+                do{
+                    try frc.performFetch()
+                    self.fetchedResultsControllerBouquetsDelegate.cb={
+                                           if let obj = frc.fetchedObjects{
+                                               //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                                               cb(obj)
+                                               //}
+                                           }
+                                       }
+                    
+                }catch{
+                    print ("Context error")
                 }
-            }catch{
-                //  }
-            }
-        }
+    }
     }
     
     
     
     func getBouquet(bref:String, cb:@escaping ((EpgBouquet?)->Void)){
-        context.performAndWait {
-            do{
-                let frc = self.fetchedResultsControllerBouquets
-                frc.fetchRequest.predicate = NSPredicate(format: "sref = %@", bref)
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects{
-                    //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj.first)
-                    //}
+        self.context.perform {
+            
+            let frc = self.getFetchedResultsControllerBouquets()
+            
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@", bref)
+            self.context.perform {
+                do{
+                    
+                    try frc.performFetch()
+                    self.fetchedResultsControllerBouquetsDelegate.cb={
+                        if let obj = frc.fetchedObjects{
+                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                            cb(obj.first)
+                            //}
+                        }
+                    }
+                    
+                }catch{
+                    
                 }
-            }catch{
-                //  }
             }
+            
+            
         }
     }
     
     
     func getBouquetSerial(bref:String, cb:@escaping ((EpgBouquet?)->Void)){
-        context.performAndWait {
-            //EPGHelper.getInstance()?.serialPrefetchQueue?.async{
-            //        EPGHelper.getInstance()?.serialPrefetchQueue?.async?.async {
-            do{
-                let frc = self.fetchedResultsControllerBouquets
-                frc.fetchRequest.predicate = NSPredicate(format: "sref = %@", bref)
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects{
-                    //  EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj.first)
-                    //}
+        self.context.perform {
+            
+            let frc = self.getFetchedResultsControllerBouquets()
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@", bref)
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                    self.fetchedResultsControllerBouquetsDelegate.cb={
+                        if let obj = frc.fetchedObjects{
+                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                            cb(obj.first)
+                            //}
+                        }
+                    }
+                    
+                }catch{
+                    
                 }
-            }catch{
             }
         }
-        //}
     }
     
     
@@ -285,61 +321,76 @@ class DataProvider: NSObject {
     
     
     func getServices(bref:String,  cb:@escaping (([EpgService])->Void)){
-        context.performAndWait {
+        self.context.perform {
             //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
             //        EPGHelper.getInstance()?.asyncDataQueue?.async {
-            do{
-                let frc = self.fetchedResultsControllerServices
-                frc.fetchRequest.predicate = NSPredicate(format: "bref = %@", bref)
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects{
-                    //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj)
-                    //}
+            
+            let frc = self.fetchedResultsControllerServices
+            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@", bref)
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                }catch{
+                    
                 }
-            }catch{
             }
+            if let obj = frc.fetchedObjects{
+                //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                cb(obj)
+                //}
+            }
+            
         }
         
     }
     func getService(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
-        context.performAndWait {
+        self.context.perform {
             //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-            do{
-                let frc = self.fetchedResultsControllerServices
-                frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects{
-                    //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj.first)
-                    
+            
+            let frc = self.fetchedResultsControllerServices
+            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
+            
+                do{
+                    try frc.performFetch()
+                }catch{
                     
                 }
-            }catch{
+            
+            if let obj = frc.fetchedObjects{
+                //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                cb(obj.first)
+                
                 
             }
+            
             
         }
     }
     
     
     func getServiceSerial(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
-        context.performAndWait {
-            //        EPGHelper.getInstance()?.serialPrefetchQueue?.async?.async {
-            do{
-                let frc = self.fetchedResultsControllerServices
-                frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
-                try frc.performFetch()
-                if let obj = frc.fetchedObjects{
-                    //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                    cb(obj.first)
+       
+            
+            let frc = self.fetchedResultsControllerServices
+            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
+            
+                do{
+                    try frc.performFetch()
+                }catch{
                     
-                    //obj.first?.refresh(mergeChanges: <#T##Bool#>, in: <#T##NSManagedObjectContext#>)
                 }
-            }catch{
-            }
+            
+            if let obj = frc.fetchedObjects{
+        
+                cb(obj.first)
+
         }
+            
+        
     }
+    
+    
+    
     
     
     
@@ -364,20 +415,20 @@ class DataProvider: NSObject {
     
     
     
-    
-    fileprivate lazy var fetchedResultsControllerBouquets: NSFetchedResultsController<EpgBouquet> = {
-        let pc = self.persistentContainer.viewContext
-        do {
+    fileprivate var fetchedResultsControllerBouquetsDelegate = EpgBouquetDelegate()
+    private var _fetchedResultsControllerBouquets:NSFetchedResultsController<EpgBouquet>!
+    public func getFetchedResultsControllerBouquets() -> NSFetchedResultsController<EpgBouquet>  {
+        print("[DATA ROVIDER] New NSFetchedResultsController<EpgBouquet>")
+            let pc = self.persistentContainer.viewContext
+        
             let fetchRequest: NSFetchRequest<EpgBouquet> = EpgBouquet.fetchRequest()
             
             fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sname", ascending: true)]
             let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: pc, sectionNameKeyPath: nil, cacheName: nil)
-            return fetchedResultsController
-        }catch{
-            
-        }
-        
-    }()
+            fetchedResultsController.delegate = self.fetchedResultsControllerBouquetsDelegate
+            _fetchedResultsControllerBouquets = fetchedResultsController
+            return _fetchedResultsControllerBouquets
+    }
     
     
     
@@ -397,7 +448,29 @@ class DataProvider: NSObject {
         
     }()
     
+    
+    
+}
 
 
+
+
+class EpgBouquetDelegate : NSObject, NSFetchedResultsControllerDelegate {
+    var cb : (()->Void)? {
+        didSet{
+            cb?()
+        }
+    }
+    //func controller
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("[DELEG] Will change EpgBouquetDelegate NSFetchedResultsController Query")
+    }
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        print("[DELEG] Changed EpgBouquetDelegate NSFetchedResultsController Query")
+        
+    cb?()
+    }
+    
+    
 }
 
