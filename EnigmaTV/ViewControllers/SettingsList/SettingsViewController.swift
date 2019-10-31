@@ -66,7 +66,7 @@ class SettingsViewController: UIViewController, UITableViewDelegate,UITableViewD
         }, failure: { st in
             self.info.text = "Failed finding a device..."
              var reachability: Reachability?
-            reachability = Reachability()
+            reachability = try! Reachability()
             reachability?.whenReachable = { reachability in
                 DispatchQueue.main.async {
                     self.info.text = "No supported device in Your Network. Check  Your STB."

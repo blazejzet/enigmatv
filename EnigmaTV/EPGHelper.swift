@@ -139,59 +139,64 @@ class EPGHelper {
                                                 print("[EPGHELPER]    prefetching \(service.servicename) bouquet")
                                                 //todo: compute dates.
 
+                                                //---------------------------------------------------------------------------
+                                                
                                                 DataProvider.def().getLastEpgForServiceSerial(sref: service.servicereference!){ start in
                                                     var end = start+60*60*72
-                                                    print("[EPGHELPER]    prefetching \(service.servicename) bouquet [\(start) -- \(end)]")
-//                                                    print("-----------------------------D-----------------------------")
-
-
+                                                    print("[EPGHELPER - programs x1]    prefetching \(service.servicename) bouquet [\(start) -- \(end)]")
+                                                    //                                                    print("-----------------------------D-----------------------------")
+                                                    
+                                                    
                                                     ///Get program list
                                                     STBAPI.common()?.getEPG(for:service, from:UInt64(start), to:UInt64(end)){ (events:[EpgEvent],service:Service) in
-
-//                                                                                                        self.serialPrefetchQueue?.async{
+                                                        
+                                                        //                                                                                                        self.serialPrefetchQueue?.async{
                                                         self.serialPrefetchQueue?.async {
                                                             //todo: check if EPGDataFetchInfo exists in database
                                                             DispatchQueue.main.async{
-                                                            var x = EPGDataFetchInfo(context: DataProvider.def().context)
-                                                            x.lasttimestamp =  Int64(end)
-                                                            x.serviceid = service.servicereference
-//                                                            DataProvider.def().saveContextSerial()
-                                                             DataProvider.def().saveContext()
+                                                                var x = EPGDataFetchInfo(context: DataProvider.def().context)
+                                                                x.lasttimestamp =  Int64(end)
+                                                                x.serviceid = service.servicereference
+                                                                //                                                            DataProvider.def().saveContextSerial()
+                                                                DataProvider.def().saveContext()
                                                             }
-                                                            print("[EPGHELPER]    \(events.count) in \(service)")
-//                                                            print("-----------------------------DD-----------------------------")
-
+                                                            print("[EPGHELPER - programs x2]    \(events.count) in \(service)")
+                                                            //                                                            print("-----------------------------DD-----------------------------")
+                                                             print("[EPGHELPER - programs x2]    \(events.count) in \(service)")
                                                             for event in events{
-                                                                print("[EPGHELPER]    EVENT \(event) in \(service)")
-//                                                                print("-----------------------------DDD-----------------------------")
-
-                                                                    DispatchQueue.main.async{
-                                                                var e = EpgEventCache(context: DataProvider.def().context)
-                                                                if let t = event.begin_timestamp{
-                                                                    e.begin_timestamp = Int64(event.begin_timestamp!)
-                                                                    e.end_timestamp = Int64(event.begin_timestamp!+event.duration_sec!)
-                                                                    e.dudation_sec = Int64(event.duration_sec!)
-
-                                                                }
-                                                                e.tilte = event.title
-                                                                e.longdesc = event.longdesc
-                                                                if let id = event.id{
-                                                                    e.id = Int64(id)
-                                                                }
-                                                                e.sname = event.sname
-                                                                e.sref = event.sref
-                                                                e.shortdesc = event.shortdesc
-                                                                if let t = event.now_timestamp{
-                                                                    e.now_timestamp =  Int64(t)
-                                                                }
-//                                                                DataProvider.def().saveContextSerial()
-                                                                 DataProvider.def().saveContext()
+                                                                print("[EPGHELPER - programs for1]    EVENT \(event) in \(service)")
+                                                                //                                                                print("-----------------------------DDD-----------------------------")
+                                                                
+                                                                DispatchQueue.main.async{
+                                                                    var e = EpgEventCache(context: DataProvider.def().context)
+                                                                    if let t = event.begin_timestamp{
+                                                                        e.begin_timestamp = Int64(event.begin_timestamp!)
+                                                                        e.end_timestamp = Int64(event.begin_timestamp!+event.duration_sec!)
+                                                                        e.dudation_sec = Int64(event.duration_sec!)
+                                                                        
+                                                                    }
+                                                                    e.tilte = event.title
+                                                                    e.longdesc = event.longdesc
+                                                                    if let id = event.id{
+                                                                        e.id = Int64(id)
+                                                                    }
+                                                                    e.sname = event.sname
+                                                                    e.sref = event.sref
+                                                                    e.shortdesc = event.shortdesc
+                                                                    if let t = event.now_timestamp{
+                                                                        e.now_timestamp =  Int64(t)
+                                                                    }
+                                                                    print("[EPGHELPER - programs for2]   \"e\" before saveContext \(e)" )
+                                                                    //                                                                DataProvider.def().saveContextSerial()
+                                                                    DataProvider.def().saveContext()
                                                                 }
                                                             }
                                                         }
-                                                        print("[EPGHELPER]    left \(self.isFetching) bouquets for prefetching")
+                                                        print("[EPGHELPER - programs end]    left \(self.isFetching) bouquets for prefetching")
                                                     }
                                                 }
+                                                
+                                                //---------------------------------------------------------------------------
                                             }
                                         }
                                     }, fail: {

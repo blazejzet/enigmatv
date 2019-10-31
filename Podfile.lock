@@ -1,8 +1,8 @@
 PODS:
   - AERecord (4.1.2)
-  - ReachabilitySwift (4.3.1)
+  - ReachabilitySwift (5.0.0)
   - SWXMLHash (4.0.0)
-  - TVVLCKit (3.3.6)
+  - TVVLCKit (3.3.8)
 
 DEPENDENCIES:
   - AERecord
@@ -19,10 +19,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AERecord: ee8e773baa650731f06e89546a8f97e28fe00c32
-  ReachabilitySwift: 4032e2f59586e11e3b0ebe15b167abdd587a388b
+  ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
-  TVVLCKit: c568ead8117ed607f837f1e9579500abe5fb4ed0
+  TVVLCKit: c5cf078384715bbb2f9fa4817fcc27761dbd2f2a
 
 PODFILE CHECKSUM: aee6be2222f9a9272c3e2673e8ce498399bd756c
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
