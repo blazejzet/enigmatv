@@ -46,19 +46,19 @@ class DataProvider: NSObject {
         //  EPGHelper.getInstance()?.serialPrefetchQueue?.async {
         self.context.perform {
             do{
-                let frc = self.fetchedResultsControllerEPG
+                let frc = self.getFetchedResultsControllerEPG()
                 frc.fetchRequest.predicate = NSPredicate(format: "end_timestamp > %d ", 1)
-                
                 try frc.performFetch()
+                if let obj = frc.fetchedObjects{
+                    for epgec in obj{
+                        epgec.delete()
+                    }
+                }
                 
             }catch{
                 
             }
-            if let obj = self.fetchedResultsControllerEPG.fetchedObjects{
-                for epgec in obj{
-                    epgec.delete()
-                }
-            }
+            
         }
         
     }
@@ -109,22 +109,24 @@ class DataProvider: NSObject {
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
         self.context.perform {
             
-            let frc = self.fetchedResultsControllerEPG
+            let frc = self.getFetchedResultsControllerEPG()
             frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %d && end_timestamp < %d", sref,begin,end)
             self.context.perform {
                 do{
                     try frc.performFetch()
+                    if let obj = frc.fetchedObjects{
+                                    print("fetched \(frc.fetchedObjects?.count) objects")
+                                   cb(obj)
+                                   
+                               }
                 }catch{
                     
                 }
+                
             }
             
-            print("fetched \(self.fetchedResultsControllerEPG.fetchedObjects?.count) objects")
-            if let obj = self.fetchedResultsControllerEPG.fetchedObjects{
-                //    EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                cb(obj)
-                //}
-            }
+            
+           
         }
         //}
     }
@@ -133,7 +135,7 @@ class DataProvider: NSObject {
         self.context.perform {
             // EPGHelper.getInstance()?.serialPrefetchQueue?.async {
             
-            let frc = self.fetchedResultsControllerEPG
+            let frc = self.getFetchedResultsControllerEPG()
             frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ ", sref)
             frc.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "end_timestamp", ascending: false)]
             self.context.perform {
@@ -164,7 +166,7 @@ class DataProvider: NSObject {
             
             //        EPGHelper.getInstance()?.serialPrefetchQueue?.async?.async {
             
-            let frc = self.fetchedResultsControllerEPG
+            let frc = self.getFetchedResultsControllerEPG()
             frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ ", sref)
             frc.fetchRequest.sortDescriptors = [NSSortDescriptor(key: "end_timestamp", ascending: false)]
             self.context.perform {
@@ -195,7 +197,7 @@ class DataProvider: NSObject {
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
         self.context.perform {
             
-            let frc = self.fetchedResultsControllerEPG
+            let frc = self.getFetchedResultsControllerEPG()
             frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
             self.context.perform {
                 do{
@@ -203,12 +205,13 @@ class DataProvider: NSObject {
                 }catch{
                     
                 }
-            }
-            print("fetched \(self.fetchedResultsControllerEPG.fetchedObjects?.count) objects")
-            if let obj = self.fetchedResultsControllerEPG.fetchedObjects{
-                for o in obj {
-                    print(o.tilte)
+                print("fetched \(frc.fetchedObjects?.count) objects")
+                if let obj = frc.fetchedObjects{
+                    for o in obj {
+                        print(o.tilte)
+                    }
                 }
+
             }
             //  }
         }
@@ -466,7 +469,7 @@ class DataProvider: NSObject {
     
     
     
-    fileprivate lazy var fetchedResultsControllerEPG: NSFetchedResultsController<EpgEventCache> = {
+    func  getFetchedResultsControllerEPG() -> NSFetchedResultsController<EpgEventCache> {
         let pc = self.persistentContainer.viewContext
         
         let fetchRequest: NSFetchRequest<EpgEventCache> = EpgEventCache.fetchRequest()
@@ -477,7 +480,7 @@ class DataProvider: NSObject {
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: pc, sectionNameKeyPath: nil, cacheName: nil)
         return fetchedResultsController
         
-    }()
+    }
     
     
     
