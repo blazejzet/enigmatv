@@ -18,7 +18,14 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
     
     var url:URL?
     
+    
+    //var timer: Timer?//
+    
+    
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
+        print(mp?.media?.metaDictionary)
+        print("------------ !!!! META CHANGED")
+                      
         print(aNotification)
         print(mp?.state.rawValue)
         if(mp?.state == VLCMediaPlayerState.buffering){
@@ -42,10 +49,17 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
     var mp:VLCMediaPlayer?
     
     var timer:Timer?
+    var timerVA:Timer?
     var cdelay = 0
     init() {
         super.init(frame:CGRect(x: 0, y: 0, width: 1920 , height: 1080));
-       
+        timerVA = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){_ in
+            print("VA: \( self.mp?.media.metadata(forKey: "title") )")
+            print("VA: \( self.mp?.media.metaDictionary )")
+            print("VA: \( self.mp?.media.stats )")
+            
+        }
+        
        timer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true){_ in
             let currentRoute = AVAudioSession.sharedInstance().currentRoute
        //().set
