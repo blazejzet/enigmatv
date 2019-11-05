@@ -2668,11 +2668,6 @@
 		E0BFA0CE2010949D00056CDB /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BFA0CD2010949D00056CDB /* InfoViewController.swift */; };
 		E0DBA62420D83AE0005B4AD9 /* XMLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DBA62320D83AE0005B4AD9 /* XMLDecoder.swift */; };
 		E0DBA62620D83CC8005B4AD9 /* APIDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DBA62520D83CC8005B4AD9 /* APIDecoder.swift */; };
-		E0EB369D2227420B000E839B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EB369C2227420B000E839B /* AppDelegate.swift */; };
-		E0EB369F2227420B000E839B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0EB369E2227420B000E839B /* ViewController.swift */; };
-		E0EB36A22227420B000E839B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0EB36A02227420B000E839B /* Main.storyboard */; };
-		E0EB36A42227420C000E839B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0EB36A32227420C000E839B /* Assets.xcassets */; };
-		E0EB36A72227420C000E839B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0EB36A52227420C000E839B /* LaunchScreen.storyboard */; };
 		E0FE175D20AB136400F5F1C6 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE175C20AB136400F5F1C6 /* MovieCollectionViewCell.swift */; };
 		E0FE175F20AB1E0400F5F1C6 /* CommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE175E20AB1E0400F5F1C6 /* CommonCollectionViewCell.swift */; };
 		E0FE176120AB473400F5F1C6 /* TimerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE176020AB473400F5F1C6 /* TimerCollectionViewCell.swift */; };
@@ -5346,7 +5341,6 @@
 		E0BFA0CD2010949D00056CDB /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		E0DBA62320D83AE0005B4AD9 /* XMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDecoder.swift; sourceTree = "<group>"; };
 		E0DBA62520D83CC8005B4AD9 /* APIDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDecoder.swift; sourceTree = "<group>"; };
-		E0EB369A2227420A000E839B /* Enigma TV.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Enigma TV.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0EB369C2227420B000E839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0EB369E2227420B000E839B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E0EB36A12227420B000E839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -5366,13 +5360,6 @@
 				E01874CF208A7E7D00D3A0CA /* CloudKit.framework in Frameworks */,
 				E01D9418200D6A1B00A962E6 /* TVVLCKit.framework in Frameworks */,
 				A9873347A57ED07C7D67C3DE /* Pods_EnigmaTV.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E0EB36972227420A000E839B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5404,7 +5391,6 @@
 			isa = PBXGroup;
 			children = (
 				E01D93F5200D1F1E00A962E6 /* EnigmaTV.app */,
-				E0EB369A2227420A000E839B /* Enigma TV.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -8204,23 +8190,6 @@
 			productReference = E01D93F5200D1F1E00A962E6 /* EnigmaTV.app */;
 			productType = "com.apple.product-type.application";
 		};
-		E0EB36992227420A000E839B /* Enigma TV */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E0EB36AB2227420C000E839B /* Build configuration list for PBXNativeTarget "Enigma TV" */;
-			buildPhases = (
-				E0EB36962227420A000E839B /* Sources */,
-				E0EB36972227420A000E839B /* Frameworks */,
-				E0EB36982227420A000E839B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Enigma TV";
-			productName = "Enigma TV";
-			productReference = E0EB369A2227420A000E839B /* Enigma TV.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -8243,10 +8212,6 @@
 							};
 						};
 					};
-					E0EB36992227420A000E839B = {
-						CreatedOnToolsVersion = 10.1;
-						ProvisioningStyle = Automatic;
-					};
 				};
 			};
 			buildConfigurationList = E01D93F0200D1F1E00A962E6 /* Build configuration list for PBXProject "EnigmaTV" */;
@@ -8263,7 +8228,6 @@
 			projectRoot = "";
 			targets = (
 				E01D93F4200D1F1E00A962E6 /* EnigmaTV */,
-				E0EB36992227420A000E839B /* Enigma TV */,
 			);
 		};
 /* End PBXProject section */
@@ -10889,16 +10853,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E0EB36982227420A000E839B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0EB36A72227420C000E839B /* LaunchScreen.storyboard in Resources */,
-				E0EB36A42227420C000E839B /* Assets.xcassets in Resources */,
-				E0EB36A22227420B000E839B /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -10997,15 +10951,6 @@
 				E01D93F9200D1F1E00A962E6 /* AppDelegate.swift in Sources */,
 				E0BFA0C5200FFB5E00056CDB /* MoviesViewController.swift in Sources */,
 				E06653A62023C3EC00C559DE /* MovieDataProvider.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		E0EB36962227420A000E839B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E0EB369F2227420B000E839B /* ViewController.swift in Sources */,
-				E0EB369D2227420B000E839B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -11148,7 +11093,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB45BAC20788FAD51005DD3F /* Pods-EnigmaTV.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EnigmaTV/EnigmaTV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -11173,7 +11117,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 653751C7FE608A03F1C392E4 /* Pods-EnigmaTV.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EnigmaTV/EnigmaTV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -11194,51 +11137,6 @@
 			};
 			name = Release;
 		};
-		E0EB36A92227420C000E839B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 59P42C7A37;
-				INFOPLIST_FILE = "Enigma TV/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "cc.asuri.Enigma-TV";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		E0EB36AA2227420C000E839B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_OBJC_WEAK = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 59P42C7A37;
-				INFOPLIST_FILE = "Enigma TV/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "cc.asuri.Enigma-TV";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -11256,15 +11154,6 @@
 			buildConfigurations = (
 				E01D9405200D1F1E00A962E6 /* Debug */,
 				E01D9406200D1F1E00A962E6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E0EB36AB2227420C000E839B /* Build configuration list for PBXNativeTarget "Enigma TV" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E0EB36A92227420C000E839B /* Debug */,
-				E0EB36AA2227420C000E839B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

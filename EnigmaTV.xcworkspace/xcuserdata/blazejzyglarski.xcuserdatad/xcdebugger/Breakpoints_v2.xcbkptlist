@@ -287,9 +287,9 @@
             timestampString = "579562671.839156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
-            landmarkName = "prepareStream(ref:saveLast:full:)"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "startTimeshift(url:service:inBouquet:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -338,8 +338,8 @@
             timestampString = "579562671.83929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -423,8 +423,8 @@
             timestampString = "579562671.8395669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -440,9 +440,9 @@
             timestampString = "579562671.83961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
-            landmarkName = "switchToTimeshift()"
+            startingLineNumber = "128"
+            endingLineNumber = "128"
+            landmarkName = "stop()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -559,8 +559,8 @@
             timestampString = "579562671.839861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "226"
+            endingLineNumber = "226"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -644,10 +644,10 @@
             timestampString = "579562671.8399971"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "StreamView"
-            landmarkType = "3">
+            startingLineNumber = "30"
+            endingLineNumber = "30"
+            landmarkName = "mediaPlayerStateChanged(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -661,9 +661,9 @@
             timestampString = "579562671.84004"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
-            landmarkName = "showMe()"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "mediaPlayerStateChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -695,9 +695,9 @@
             timestampString = "579562671.840127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
-            landmarkName = "stplay()"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "stTogglePause()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -712,8 +712,8 @@
             timestampString = "579562671.840169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
             landmarkName = "play(_:inBouquet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -729,8 +729,8 @@
             timestampString = "579562671.840211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "210"
-            endingLineNumber = "210"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -746,8 +746,8 @@
             timestampString = "579562671.840252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "115"
-            endingLineNumber = "115"
+            startingLineNumber = "121"
+            endingLineNumber = "121"
             landmarkName = "stop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -899,9 +899,9 @@
             timestampString = "579562671.840665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
-            landmarkName = "play(_:inBouquet:)"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "playLiveStream()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
