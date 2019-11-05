@@ -104,7 +104,6 @@ class EPGHelper {
                                         }
                                     }
                                     //TODO: deleting bouquets that dont exist in database
-
                                 }
                                 self.serialPrefetchQueue?.async {
                                     STBAPI.common()?.getServices(for: bouquet, cb: {list in
@@ -162,7 +161,6 @@ class EPGHelper {
                                                             }
                                                             print("[EPGHELPER - programs x2]    \(events.count) in \(service)")
                                                             //                                                            print("-----------------------------DD-----------------------------")
-                                                             print("[EPGHELPER - programs x2]    \(events.count) in \(service)")
                                                             for event in events{
                                                                 print("[EPGHELPER - programs for1]    EVENT \(event) in \(service)")
                                                                 //                                                                print("-----------------------------DDD-----------------------------")
@@ -198,13 +196,50 @@ class EPGHelper {
                                                 
                                                 //---------------------------------------------------------------------------
                                             }
+                                            //Deleting missing services
+                                            DataProvider.def().getServices(bref: bouquet.servicereference!){ list in
+                                                for item in list {
+                                                    if services.contains(where: {$0.servicename == item.sname}){
+                                                        print("Test Delete: - service exists \(item.sname)")
+                                                    }else{
+                                                        print("Test Delete: - service doesn't exist")
+                                                        DataProvider.def().removeService(bref: bouquet.servicereference!, sref: item.sref!)
+                                                        DataProvider.def().saveContext()
+                                                    }
+                                                }
+                                            }
                                         }
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
                                     }, fail: {
                                         print("[EPGHELPER]    Failed to preload data")
                                         self.isFetching = false
                                     })
                                 }
                             }
+                            
+                            //Deleting missing bouquets
+                            DataProvider.def().getBouquetsSerial() { list in
+                                for item in list {
+                                    if services.contains(where: {$0.servicename == item.sname}){
+                                        print("Test Delete: - bouquet exists \(item.sref)")
+                                    }else{
+                                        print("Test Delete: - bouquet doesn't exist \(item.sref)")
+                                        DataProvider.def().removeBouquet(bref: item.sref!)
+                                        DataProvider.def().saveContext()
+                                    }
+                                }
+                                
+                            }
+                            
+                            
+                            
+                            
+                            
                         }
                         self.serialPrefetchQueue?.async {
                             //                                                    self.isFetching = false;

@@ -40,6 +40,9 @@ UICollectionViewDelegate, UICollectionViewDataSource{
         return bcell!;
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     @IBAction func clearTest(){
         EPGHelper.getInstance()?.testClear()

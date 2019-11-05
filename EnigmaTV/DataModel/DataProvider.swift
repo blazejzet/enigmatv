@@ -172,18 +172,19 @@ class DataProvider: NSObject {
             self.context.perform {
                 do{
                     try frc.performFetch()
+                    if let e = frc.fetchedObjects {
+                        //                     self.context.perform {
+                        if let f = e.first{
+                            cb(f.begin_timestamp+f.dudation_sec)
+                        }else{
+                            cb(Int64(Date().timeIntervalSince1970))
+                        }
+                    }
                 }catch{
                     
                 }
             }
-            if let e = frc.fetchedObjects {
-                //                     self.context.perform {
-                if let f = e.first{
-                    cb(f.begin_timestamp+f.dudation_sec)
-                }else{
-                    cb(Int64(Date().timeIntervalSince1970))
-                }
-            }
+            
             //                    }
             
             
@@ -227,6 +228,7 @@ class DataProvider: NSObject {
                 do{
                      try frc.performFetch()
                     self.fetchedResultsControllerBouquetsDelegate.cb={
+                    
                                            if let obj = frc.fetchedObjects{
                                                //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
                                                cb(obj)
@@ -263,6 +265,30 @@ class DataProvider: NSObject {
     }
     }
     
+    func removeBouquet(bref:String){
+        
+        self.context.perform {
+            let frc = self.getFetchedResultsControllerBouquets()
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@", bref)
+            self.context.perform {
+                do{
+
+                    try frc.performFetch()
+                    self.fetchedResultsControllerBouquetsDelegate.cb={
+                        if let obj = frc.fetchedObjects{
+                            for epgec in obj{
+                                self.context.delete(epgec)
+                            }
+                        }
+                    }
+                    try self.context.save()
+                }
+                catch{
+
+                }
+            }
+        }
+    }
     
     
     func getBouquet(bref:String, cb:@escaping ((EpgBouquet?)->Void)){
@@ -316,7 +342,29 @@ class DataProvider: NSObject {
         }
     }
     
-    
+    func removeService(bref:String,sref:String){
+        self.context.perform {
+            let frc = self.getFetchedResultsControllerServices()
+            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
+            self.context.perform {
+                do{
+                    
+                    try frc.performFetch()
+                    self.fetchedResultsControllerBouquetsDelegate.cb={
+                        if let obj = frc.fetchedObjects{
+                            for epgec in obj{
+                                self.context.delete(epgec)
+                            }
+                        }
+                    }
+                    try self.context.save()
+                }
+                catch{
+
+                }
+            }
+        }
+    }
     
     func getServices(bref:String,  cb:@escaping (([EpgService])->Void)){
         self.context.perform {

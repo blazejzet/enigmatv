@@ -22,6 +22,7 @@ class BouquetCell: UITableViewCell {
     func configure(bouquet:EpgBouquet){
         self.bouquet = bouquet
         self.textLabel?.text = bouquet.sname;
+//        self.textLabel.setColor
         self.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
     }
     func configure(serv:Service){
@@ -52,14 +53,14 @@ class BouquetCell: UITableViewCell {
         if(context.previouslyFocusedView is UITableViewCell){
             context.previouslyFocusedView?.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
             if let pv = context.previouslyFocusedView {
-                self.set(color: UIColor.lightGray, inView: pv)
+                self.set(color: UIColor.white, inView: pv)
             }
         }
         
         if(context.nextFocusedView is UITableViewCell){
             context.nextFocusedView?.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
             if let pv = context.nextFocusedView {
-                self.set(color: UIColor.white, inView: pv)
+                self.set(color: UIColor.black, inView: pv)
             }
         }
     }
