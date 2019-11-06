@@ -99,7 +99,7 @@
                         <outlet property="tvView" destination="KYV-Av-Z7G" id="3sT-0e-oDg"/>
                         <segue destination="AN2-0a-dr3" kind="presentation" identifier="info" modalPresentationStyle="overFullScreen" id="VSb-OZ-QAv"/>
                         <segue destination="hly-5H-1sV" kind="presentation" identifier="showsettings" modalPresentationStyle="overFullScreen" id="CMo-bO-teS"/>
-                        <segue destination="n8S-Ta-ntZ" kind="presentation" identifier="epg" id="RAV-x1-rAN"/>
+                        <segue destination="n8S-Ta-ntZ" kind="presentation" identifier="epg" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="RAV-x1-rAN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

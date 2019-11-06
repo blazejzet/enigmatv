@@ -55,6 +55,21 @@ class ViewController: UIViewController {
         }
         
     }
+    @objc func bouquetPlayed(notification:NSNotification){
+        print("play stream");
+        let dvc = self.dvc;
+        dvc?.dismiss(animated: true, completion: {
+            dvc?.dismiss(animated: true, completion: nil)
+        });
+        if let dict = notification.object as? [String:Any]{
+           if let bouquet = dict["bouquet"] as? EpgBouquet, let service = dict["service"] as? EpgService{
+            print(dict)
+                self.watch(service, inBouquet: bouquet)
+            }
+            
+        }
+        
+    }
     
     
     
@@ -85,6 +100,9 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismissVC(notification:)), name: NSNotification.Name(rawValue: "moviePlayed"), object: nil);
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismissVCCont(notification:)), name: NSNotification.Name(rawValue: "movieContinue"), object: nil);
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPlayed(notification:)), name: NSNotification.Name(rawValue: "bouquetPlayed"), object: nil);
+        
+        
         
         
         // Do any additional setup after loading the view, typically from a nib.
@@ -248,12 +266,13 @@ class ViewController: UIViewController {
     
     func watch(_ service:EpgService, inBouquet bouquet:EpgBouquet, dir:Direction = .Center){
         self.switchChannel(dir)
+        self.bouquet = bouquet
         self.watching = service
-        if ((bouquet.sname) == (self.bouquet?.sname)){
+       // if ((bouquet.sname) == (self.bouquet?.sname)){
                 //existing service
             sv?.play(service, inBouquet:bouquet)
             self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
-        }else{
+        /*}else{
             self.bouquet = bouquet
             /*STBAPI.common()?.getServices(for: bouquet,cb:{
                 list in
@@ -270,8 +289,9 @@ class ViewController: UIViewController {
                 self.sv?.play(service, inBouquet:bouquet)
                 self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
             }
-
-        }
+            */
+        
+        
     }
     func watchMovie(_ movie:Movie){
         self.watching = movie

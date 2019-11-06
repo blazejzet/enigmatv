@@ -337,8 +337,10 @@ class EPGListViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Watch Channel Now", style: .default){ a in
             let service = self.services![button.row!]
             self.delegate?.watch(service, inBouquet: self.bouquet!)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPlayed"), object: ["service":service,"bouquet":self.bouquet!])
+
             alert.dismiss(animated: true, completion: nil)
-            self.dismiss()
+            //self.dismiss()
         })
         alert.addAction(UIAlertAction(title: "Record", style: .default){ a in
             
