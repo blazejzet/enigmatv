@@ -54,9 +54,9 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
     init() {
         super.init(frame:CGRect(x: 0, y: 0, width: 1920 , height: 1080));
         timerVA = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){_ in
-            print("VA: \( self.mp?.media.metadata(forKey: "title") )")
-            print("VA: \( self.mp?.media.metaDictionary )")
-            print("VA: \( self.mp?.media.stats )")
+            print("VA: \( self.mp?.media?.metadata(forKey: "title") )")
+            print("VA: \( self.mp?.media?.metaDictionary )")
+            print("VA: \( self.mp?.media?.stats )")
             
         }
         

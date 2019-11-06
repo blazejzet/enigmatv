@@ -5341,12 +5341,6 @@
 		E0BFA0CD2010949D00056CDB /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		E0DBA62320D83AE0005B4AD9 /* XMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDecoder.swift; sourceTree = "<group>"; };
 		E0DBA62520D83CC8005B4AD9 /* APIDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDecoder.swift; sourceTree = "<group>"; };
-		E0EB369C2227420B000E839B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E0EB369E2227420B000E839B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		E0EB36A12227420B000E839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E0EB36A32227420C000E839B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E0EB36A62227420C000E839B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E0EB36A82227420C000E839B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0FE175C20AB136400F5F1C6 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0FE175E20AB1E0400F5F1C6 /* CommonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0FE176020AB473400F5F1C6 /* TimerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -5380,7 +5374,6 @@
 			children = (
 				E06D9D43207F9B0800C4E824 /* Settings.bundle */,
 				E01D93F7200D1F1E00A962E6 /* EnigmaTV */,
-				E0EB369B2227420A000E839B /* Enigma TV */,
 				E01D93F6200D1F1E00A962E6 /* Products */,
 				E01D9407200D20A100A962E6 /* Frameworks */,
 				5F4153628529BAAD2747D10F /* Pods */,
@@ -8153,19 +8146,6 @@
 				E0DBA62520D83CC8005B4AD9 /* APIDecoder.swift */,
 			);
 			path = Decoders;
-			sourceTree = "<group>";
-		};
-		E0EB369B2227420A000E839B /* Enigma TV */ = {
-			isa = PBXGroup;
-			children = (
-				E0EB369C2227420B000E839B /* AppDelegate.swift */,
-				E0EB369E2227420B000E839B /* ViewController.swift */,
-				E0EB36A02227420B000E839B /* Main.storyboard */,
-				E0EB36A32227420C000E839B /* Assets.xcassets */,
-				E0EB36A52227420C000E839B /* LaunchScreen.storyboard */,
-				E0EB36A82227420C000E839B /* Info.plist */,
-			);
-			path = "Enigma TV";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -10963,22 +10943,6 @@
 				E01D93FD200D1F1E00A962E6 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E0EB36A02227420B000E839B /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E0EB36A12227420B000E839B /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E0EB36A52227420C000E839B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E0EB36A62227420C000E839B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
