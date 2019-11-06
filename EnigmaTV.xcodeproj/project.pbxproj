@@ -2668,6 +2668,7 @@
 		E0BFA0CE2010949D00056CDB /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BFA0CD2010949D00056CDB /* InfoViewController.swift */; };
 		E0DBA62420D83AE0005B4AD9 /* XMLDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DBA62320D83AE0005B4AD9 /* XMLDecoder.swift */; };
 		E0DBA62620D83CC8005B4AD9 /* APIDecoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DBA62520D83CC8005B4AD9 /* APIDecoder.swift */; };
+		E0E6B8332372EFA30078C405 /* MenuTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E6B8322372EFA30078C405 /* MenuTabBarController.swift */; };
 		E0FE175D20AB136400F5F1C6 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE175C20AB136400F5F1C6 /* MovieCollectionViewCell.swift */; };
 		E0FE175F20AB1E0400F5F1C6 /* CommonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE175E20AB1E0400F5F1C6 /* CommonCollectionViewCell.swift */; };
 		E0FE176120AB473400F5F1C6 /* TimerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FE176020AB473400F5F1C6 /* TimerCollectionViewCell.swift */; };
@@ -5341,6 +5342,8 @@
 		E0BFA0CD2010949D00056CDB /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		E0DBA62320D83AE0005B4AD9 /* XMLDecoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLDecoder.swift; sourceTree = "<group>"; };
 		E0DBA62520D83CC8005B4AD9 /* APIDecoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIDecoder.swift; sourceTree = "<group>"; };
+		E0E6B8322372EFA30078C405 /* MenuTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabBarController.swift; sourceTree = "<group>"; };
+		E0E6B8352372F02E0078C405 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E0FE175C20AB136400F5F1C6 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0FE175E20AB1E0400F5F1C6 /* CommonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonCollectionViewCell.swift; sourceTree = "<group>"; };
 		E0FE176020AB473400F5F1C6 /* TimerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -8105,6 +8108,7 @@
 				E0BFA0C620107F3500056CDB /* MoviesList */,
 				E05132F220D0704C00A67E6D /* SettingsList */,
 				E0680F1F2085CE060040A99B /* HelpViewController.swift */,
+				E0E6B8322372EFA30078C405 /* MenuTabBarController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -10916,6 +10920,7 @@
 				E01D9427200D96F400A962E6 /* Eventlist.swift in Sources */,
 				E08A4014207FD7DC00BA8E44 /* SettingsViewController.swift in Sources */,
 				E0A7ED70201283D6005CE24B /* TimeLabel.swift in Sources */,
+				E0E6B8332372EFA30078C405 /* MenuTabBarController.swift in Sources */,
 				E01D941F200D733F00A962E6 /* BouquetCell.swift in Sources */,
 				E0A8082C2284C8320035A374 /* EPGHelper.swift in Sources */,
 				E06D9D42207F8C0E00C4E824 /* NetworkHelper.swift in Sources */,
@@ -10941,6 +10946,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				E01D93FD200D1F1E00A962E6 /* Base */,
+				E0E6B8352372F02E0078C405 /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -11057,6 +11063,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AB45BAC20788FAD51005DD3F /* Pods-EnigmaTV.debug.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EnigmaTV/EnigmaTV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
@@ -11081,6 +11088,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 653751C7FE608A03F1C392E4 /* Pods-EnigmaTV.release.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = EnigmaTV/EnigmaTV.entitlements;
 				CODE_SIGN_STYLE = Automatic;
