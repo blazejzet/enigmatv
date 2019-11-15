@@ -105,7 +105,7 @@ class DataProvider: NSObject {
     //        }
     //    }
     
-    func getEpgForService(sref:String,begin:Int64,end:Int64,cb:@escaping ([EpgEventCache])->Void){
+    func getEpgForService(sref:String,begin:Int64,end:Int64,cb:@escaping ([EpgEventCacheProtocol])->Void){
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
         self.context.perform {
             
@@ -116,7 +116,71 @@ class DataProvider: NSObject {
                     try frc.performFetch()
                     if let obj = frc.fetchedObjects{
                                     print("fetched \(frc.fetchedObjects?.count) objects")
-                                   cb(obj)
+                        
+                        
+                        var tmpList = [EpgEventCacheFake]()
+                        for item in obj{
+                            tmpList.append(EpgEventCacheFake(item: item))
+                        }
+//                        tmpList.append(EpgEventCacheFake(start: 1573810237, end: 1573810237 + 5*60, ref: sref)) //10.30
+//                        tmpList.append(EpgEventCacheFake(start: 1573814437, end: 1573814437 + 5*60, ref: sref)) //11.40
+//                        tmpList.append(EpgEventCacheFake(start: 1573768800, end: 1573769400, ref: sref))
+                        
+                        //Sprawdza czy są jakieś elementy w tablicy
+                        if tmpList.count == 0{
+                            var tmpBegin = begin
+                            while tmpBegin < end{
+                                if (end - tmpBegin > 1800){
+                                    tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref), at: 0)
+                                    
+                                    tmpBegin += 1800
+                                }else{
+                                    tmpList.append(EpgEventCacheFake(start: tmpBegin, end: end, ref: sref))
+                                    tmpBegin += end - tmpBegin
+                                }
+                            }
+                        //Gdy są jakieś elementy to w tablicy
+                        } else if( tmpList.count > 0 ){
+                            //Gdy mamy puste pole przed pierwszym buttonem
+                            if tmpList.first!.begin_timestamp > begin{
+                                if tmpList.first!.begin_timestamp - begin > 1800{
+                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref), at: 0)
+                                }else{
+                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref), at: 0)
+                                }
+                            }
+                            //Sprawdzamy czy są puste pola za buttonami
+                            var counter = tmpList.count
+                            for index in 0...counter - 1{
+                                if index < counter - 1{
+                                    if tmpList[index].end_timestamp < tmpList[index + 1].begin_timestamp{
+//                                        if tmpList[index + 1].begin_timestamp - tmpList[index].end_timestamp > 1800{
+//                                            tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index].end_timestamp + 1800, ref: sref), at: index + 1)
+//                                            counter += 1
+//                                        }else if tmpList[index + 1].begin_timestamp - tmpList[index].end_timestamp > 0{
+//                                            tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref), at: index + 1)
+//                                            counter += 1
+//                                        }
+                                        
+                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref), at: index + 1)
+                                        counter += 1
+                                    }
+                                }
+                            }
+                            var tmpEnd = tmpList.last!.end_timestamp
+                            while tmpEnd < end{
+                                if (end - tmpEnd > 1800){
+                                    tmpList.insert(EpgEventCacheFake(start: tmpEnd, end: tmpEnd + 1800, ref: sref), at: 0)
+                                    
+                                    tmpEnd += 1800
+                                }else{
+                                    tmpList.append(EpgEventCacheFake(start: tmpEnd, end: end, ref: sref))
+                                    tmpEnd += end - tmpEnd
+                                }
+                            }
+                        }
+                        cb(tmpList)
+//                                   cb(obj)
                                    
                                }
                 }catch{
@@ -130,6 +194,7 @@ class DataProvider: NSObject {
         }
         //}
     }
+
     
     func getLastEpgForService(sref:String,cb:@escaping (Int64)->Void){
         self.context.perform {
@@ -194,29 +259,29 @@ class DataProvider: NSObject {
     
     
     
-    func getEpgForService(sref:String,begin:Int64,end:Int64){
-        //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-        self.context.perform {
-            
-            let frc = self.getFetchedResultsControllerEPG()
-            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
-            self.context.perform {
-                do{
-                    try frc.performFetch()
-                }catch{
-                    
-                }
-                print("fetched \(frc.fetchedObjects?.count) objects")
-                if let obj = frc.fetchedObjects{
-                    for o in obj {
-                        print(o.tilte)
-                    }
-                }
-
-            }
-            //  }
-        }
-    }
+//    func getEpgForService(sref:String,begin:Int64,end:Int64){
+//        //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+//        self.context.perform {
+//            
+//            let frc = self.getFetchedResultsControllerEPG()
+//            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
+//            self.context.perform {
+//                do{
+//                    try frc.performFetch()
+//                }catch{
+//                    
+//                }
+//                print("fetched \(frc.fetchedObjects?.count) objects")
+//                if let obj = frc.fetchedObjects{
+//                    for o in obj {
+//                        print(o.tilte)
+//                    }
+//                }
+//
+//            }
+//            //  }
+//        }
+//    }
     
     
     func getBouquets( cb:@escaping ([EpgBouquet])->Void){
@@ -389,6 +454,55 @@ class DataProvider: NSObject {
             }
         }
     }
+    
+//    func getServicesWithSpecificRange(bref:String, start:Int, end:Int,  cb:@escaping (([EpgService])->Void)){
+//        self.context.perform {
+//            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+//            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
+//
+//            let frc = self.getFetchedResultsControllerServices()
+//            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && %d <= row && row <= %d", bref, start, end)
+//            self.context.perform {
+//                do{
+//                    try frc.performFetch()
+//                    self.fetchedResultsControllerServicesDelegate.cb = {
+//                        if let obj = frc.fetchedObjects{
+//                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+//                            cb(obj)
+//                            //}
+//                        }
+//                    }
+//                }catch{
+//
+//                }
+//            }
+//        }
+//    }
+//
+//
+//    func getServiceAt(bref:String, at row:Int,  cb:@escaping (([EpgService])->Void)){
+//        self.context.perform {
+//            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+//            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
+//
+//            let frc = self.getFetchedResultsControllerServices()
+//            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && row = %d", bref, row)
+//            self.context.perform {
+//                do{
+//                    try frc.performFetch()
+//                    self.fetchedResultsControllerServicesDelegate.cb = {
+//                        if let obj = frc.fetchedObjects{
+//                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+//                            cb(obj)
+//                            //}
+//                        }
+//                    }
+//                }catch{
+//
+//                }
+//            }
+//        }
+//    }
     
     func getService(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
         self.context.perform {
@@ -628,5 +742,102 @@ class EpgServiceDelegate : NSObject, NSFetchedResultsControllerDelegate {
         
    // cb?()
     }
+}
+
+
+
+
+@objc protocol EpgEventCacheProtocol{
+    @objc var begin_timestamp:Int64 { get set }
+    @objc var dudation_sec: Int64 { get set }
+    @objc var end_timestamp: Int64 { get set }
+    @objc var id: Int64 { get set }
+    @objc var longdesc: String? { get set }
+    @objc var now_timestamp: Int64 { get set }
+    @objc var remaining:Int64 { get set }
+    @objc var shortdesc:String? { get set }
+    @objc var sname:String? { get set }
+    @objc var sref:String? { get set }
+    @objc var tilte:String? { get set }
+    @objc var timer:String? { get set }
+}
+
+extension EpgEventCache:EpgEventCacheProtocol{
+    
+}
+
+
+class EpgEventCacheFake:EpgEventCacheProtocol{
+    var dudation_sec: Int64
+    
+    var end_timestamp: Int64
+    
+    var id: Int64
+    
+    var longdesc: String?
+    
+    var now_timestamp: Int64
+    
+    var remaining: Int64
+    
+    var shortdesc: String?
+    
+    var sname: String?
+    
+    var sref: String?
+    
+    var tilte: String?
+    
+    var timer: String?
+    
+    var begin_timestamp: Int64
+    
+    
+    init (duration dudation_sec: Int64, start begin_timestamp:Int64, end end_timestamp:Int64, id:Int64, now now_timestamp:Int64, remaining:Int64, shortdesc:String, longdesc:String, name sname:String, ref sref:String, title tilte: String, timer: String){
+        self.dudation_sec = dudation_sec
+        self.begin_timestamp = begin_timestamp
+        self.end_timestamp = end_timestamp
+        self.id = id
+        self.now_timestamp = now_timestamp
+        self.remaining = remaining
+        self.shortdesc = shortdesc
+        self.longdesc = longdesc
+        self.sname = sname
+        self.sref = sref
+        self.tilte = tilte
+        self.timer = timer
+    }
+    
+    init (item:EpgEventCache){
+        self.dudation_sec = item.dudation_sec
+        self.begin_timestamp = item.begin_timestamp
+        self.end_timestamp = item.end_timestamp
+        self.id = item.id
+        self.now_timestamp = item.now_timestamp
+        self.remaining = item.remaining
+        self.shortdesc = item.shortdesc
+        self.longdesc = item.longdesc
+        self.sname = item.sname
+        self.sref = item.sref
+        self.tilte = item.tilte
+        self.timer = item.timer
+    }
+    
+    init (start begin_timestamp:Int64, end end_timestamp:Int64, ref sref:String){
+        self.dudation_sec = (end_timestamp - begin_timestamp)
+        self.begin_timestamp = begin_timestamp
+        self.end_timestamp = end_timestamp
+        self.id = 0
+        self.now_timestamp = begin_timestamp
+        self.remaining = 0
+        self.shortdesc = "Brak danych"
+        self.longdesc = "Brak danych"
+        self.sname = "Brak danych"
+        self.sref = sref
+        self.tilte = "Brak danych"
+        self.timer = nil
+    }
+    
+    
 }
 

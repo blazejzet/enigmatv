@@ -75,7 +75,7 @@ class TimeShiftRecorder: NSObject {
         
         DataProvider.def().getEpgForService(sref: service.sref!, begin: Int64(UInt64(Date().timeIntervalSince1970)), end: Int64(UInt64(Date().timeIntervalSince1970+60.0*60.0*5.0))){
             events in
-             self.events = events
+            self.events = events as! [EpgEventCache]
         }
         
         

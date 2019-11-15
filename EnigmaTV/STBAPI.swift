@@ -488,11 +488,11 @@ class STBAPI: NSObject {
                         if events.count>1{
                             let nextPlaying = events[1]
                             if let  cb = cb{
-                                cb(nowPlaying,nextPlaying)
+                                cb(nowPlaying as! EpgEventCache,nextPlaying as! EpgEventCache)
                             }
                         }else{
                             if let  cb = cb{
-                                cb(nowPlaying,nil)
+                                cb(nowPlaying as! EpgEventCache,nil)
                             }
                         }
                     }

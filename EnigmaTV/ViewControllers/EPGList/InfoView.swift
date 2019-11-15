@@ -70,7 +70,7 @@ class InfoView: UIView {
         
     }
     var eid:Int=0
-    func setup(_ event:EpgEventCache){
+    func setup(_ event:EpgEventCacheProtocol){
         self.eid = Int(event.id)
         //descriptionLabel.frame = CGRect(origin: CGPoint(x:10.0,y:EPGListViewController.height), size: CGSize(width: 1500, height: EPGListViewController.height*2.0))
         self.coverView.alpha = 0.0

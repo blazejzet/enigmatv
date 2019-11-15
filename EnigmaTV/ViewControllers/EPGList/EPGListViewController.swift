@@ -46,6 +46,9 @@ class EPGListViewController: UIViewController {
     static var bottomRow = 7
     static var visibleRows = 9
     
+    var visibleTopRow = 0
+    var visibleBottomRow = 9
+    var visibleBeginTime = EPGListViewController.startupTime
     
     
     var info : InfoView?
@@ -87,7 +90,7 @@ class EPGListViewController: UIViewController {
                 
                 row += 1
             }
-            self.createEPG(from: EPGListViewController.startupTime-60*60, to:EPGListViewController.startupTime+60*60*3);
+            self.createEPG(from: EPGListViewController.startupTime-60*60*3, to:EPGListViewController.startupTime+60*60*3, firstVisibleRow: self.visibleTopRow, lastVisibleRow: self.visibleBottomRow, isInit: true)
         }
         
         
@@ -117,7 +120,7 @@ class EPGListViewController: UIViewController {
     }
     var _visibleRows = 9
     
-    func createEPG(from start:UInt64, to end:UInt64){
+    func createEPG(from start:UInt64, to end:UInt64, firstVisibleRow: Int, lastVisibleRow: Int, isInit:Bool){
         // w sekundach.
         
         if let services = self.services{
@@ -125,20 +128,27 @@ class EPGListViewController: UIViewController {
             for service in services{
                 service.row = Int16(row)//Zapmiętuje w którym jest wierszu.
                 //if(row < _visibleRows){
-                
-                    self.organizeData(for: service, from: start, to: end)
+
+                    self.organizeData(for: service, from: start, to: end, isInit: false)
                 //}
             row += 1
             }
+//            for index in firstVisibleRow...lastVisibleRow{
+//                if firstVisibleRow >= 0 && lastVisibleRow < services.count{
+//                    services[index].row = Int16(index)
+//                    self.organizeData(for: services[index], from: start, to: end, isInit: isInit)
+//                }
+//
+//            }
         }
         
     }
     
-    func clear(list: inout Array<EPGButton>, from start:UInt64, to end:UInt64){
+    func clear(list: inout Array<EPGButton>, from start:UInt64, to end:UInt64, row: Int16){
         var list2:Array<EPGButton> = Array()
         for button in list {
             if let e = button.event{
-                if (e.begin_timestamp > Int64(end) || e.end_timestamp < Int64(start)){
+                if (e.begin_timestamp > Int64(end) || e.end_timestamp < Int64(start) || row < visibleTopRow || row > visibleBottomRow){
                     button.removeFromSuperview()
                     //sleep(1)
                 }else{
@@ -152,37 +162,66 @@ class EPGListViewController: UIViewController {
         }
     }
     
-    func organizeData(for service:EpgService, from start:UInt64, to end:UInt64){
+    func organizeData(for service:EpgService, from start:UInt64, to end:UInt64, isInit:Bool){
         DataProvider.def().getEpgForService(sref: service.sref!, begin: Int64(start), end: Int64(end)) { epgEvents in
             DispatchQueue.main.async {
-                
-                 var list:Array<EPGButton> = Array()
+            
+                var list:Array<EPGButton> = Array()
                 if let listold =  self._epgActiveButtons[Int(service.row)] {
-                   list = listold
+                    list = listold
                 }
-                self.clear(list: &list, from: start, to: end)
-                self.show( epgEvents, for:service, activeRow:1, onList: &list, atBeginning: false)
+                self.clear(list: &list, from: start, to: end, row: service.row)
+                self.show( epgEvents, for:service, activeRow:1, onList: &list, atBeginning: false, isInit: isInit)
                 self._epgActiveButtons[Int(service.row)]=list
+                
             }
             
         }
     }
     
-    func show(_ events:[EpgEventCache], for service:EpgService, activeRow arow:Int, onList list: inout Array<EPGButton>, atBeginning begin:Bool){
+    func show(_ events:[EpgEventCacheProtocol], for service:EpgService, activeRow arow:Int, onList list: inout Array<EPGButton>, atBeginning begin:Bool, isInit:Bool){
         for event in events{
-            if (event.end_timestamp==0){
-                event.end_timestamp = event.begin_timestamp + event.dudation_sec
-            }
-            print ("creating button for \(event.begin_timestamp )-\(event.end_timestamp) \(event.tilte)");
-            let e = EPGButton.newButton(with:event, andService:service);
+            
+//            if !isInit{
+//                list.first?.event?.begin_timestamp
+            
+            
+//            var tmpList = list.compactMap({$0.event?.tilte == "Brak danych"
+//                && ($0.event?.begin_timestamp)! <= event.begin_timestamp
+//                && event.begin_timestamp <= ($0.event?.end_timestamp)!
+//
+//                } )
+            
+//            var tmpList = list.filter( {$0.event?.tilte == "Brak danych"
+//                            && ($0.event?.begin_timestamp)! <= event.begin_timestamp
+//                            && event.begin_timestamp <= ($0.event?.end_timestamp)!
+//
+//            })
+//
+//            for i in tmpList{
+//                i.removeFromSuperview()
+//            }
+            
+            var tmpAdd = list.contains(where: { $0.event?.begin_timestamp == event.begin_timestamp && $0.event?.end_timestamp == event.end_timestamp})
+            
+            
+                
+//            }
+            if !tmpAdd{
+                if (event.end_timestamp==0){
+                    event.end_timestamp = event.begin_timestamp + event.dudation_sec
+                }
+                print ("creating button for \(event.begin_timestamp )-\(event.end_timestamp) \(event.tilte)");
+                let e = EPGButton.newButton(with:event, andService:service);
                 e.position()
                 e.delegate=self
-            
-            self.channellist?.addSubview(e)
-            if(begin){
-                list.insert(e, at: 0)
-            }else{
-                list.append(e)
+                
+                self.channellist?.addSubview(e)
+                if(begin){
+                    list.insert(e, at: 0)
+                }else{
+                    list.append(e)
+                }
             }
         }
     }
@@ -191,7 +230,7 @@ class EPGListViewController: UIViewController {
     
     
     var prev :EpgEventCache?
-    func selected(_ event:EpgEventCache, at point:CGPoint, inRow row:Int){
+    func selected(_ event:EpgEventCacheProtocol, at point:CGPoint, inRow row:Int){
         
         print("Active row:\(row)")
         print("seleected event time= \(event.begin_timestamp)")
@@ -204,6 +243,11 @@ class EPGListViewController: UIViewController {
         }else{
             EPGListViewController.offsetY = 0;
         }
+        
+        visibleTopRow = EPGListViewController.offsetY
+        visibleBottomRow = EPGListViewController.offsetY+9
+        
+        
         
         
         var spos = CGFloat(event.begin_timestamp)/EPGListViewController.density
@@ -219,6 +263,11 @@ class EPGListViewController: UIViewController {
         if (EPGListViewController.offsetX < now){
             EPGListViewController.offsetX = now
         }
+        
+        visibleBeginTime = UInt64(EPGListViewController.offsetX*EPGListViewController.density)
+        //\\\\\\
+        print("---------------- visibleTopRow = \(visibleTopRow) | visibleBottomRow = \(visibleBottomRow) | visibleBeginTime = \(visibleBeginTime)")
+        self.createEPG(from: visibleBeginTime-60*60*3, to: visibleBeginTime+60*60*3, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
         
         self.info?.setup(event)
         self.info?.position()
@@ -257,16 +306,19 @@ class EPGListViewController: UIViewController {
         }
 
 
+//    ładuje kolejne komórki, zepsute(nakłada na siebie już istniejące)
+//        if let prev = self.prev {
+//            if prev.id != event.id{
+//                var starttime = EPGListViewController.offsetX*EPGListViewController.density - 60*60
+//                var endtime = EPGListViewController.offsetX*EPGListViewController.density + 60*60*3
+//                self.createEPG(from: UInt64(starttime), to: UInt64(endtime))
+//            }
+//
+//        }
+//        self.prev = event
         
-        if let prev = self.prev {
-            if prev.id != event.id{
-                var starttime = EPGListViewController.offsetX*EPGListViewController.density - 60*60
-                var endtime = EPGListViewController.offsetX*EPGListViewController.density + 60*60*3
-                self.createEPG(from: UInt64(starttime), to: UInt64(endtime))
-            }
-            
-        }
-        self.prev = event
+        
+        
 
         /*var tx = EPGListViewController.xpos - Double(point.x);
         EPGListViewController.offset = EPGListViewController.offset - tx*3.0;
@@ -332,7 +384,7 @@ class EPGListViewController: UIViewController {
         
     }
     
-    func pressed(_ event:EpgEventCache, atButton button:EPGButton){
+    func pressed(_ event:EpgEventCacheProtocol, atButton button:EPGButton){
         let alert = UIAlertController(title: event.tilte, message: event.shortdesc, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Watch Channel Now", style: .default){ a in
             let service = self.services![button.row!]

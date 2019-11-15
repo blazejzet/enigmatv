@@ -9,7 +9,7 @@
 import UIKit
 
 class EPGButton: UIButton {
-    var event:EpgEventCache?
+    var event:EpgEventCacheProtocol?
     var type: UIButtonType = UIButtonType.system
     var row:Int?
     var oframe :CGRect?
@@ -47,9 +47,8 @@ class EPGButton: UIButton {
                 }
             }
         }
-        
     }
-    class func newButton(with event:EpgEventCache, andService service:EpgService) -> EPGButton {
+    class func newButton(with event:EpgEventCacheProtocol, andService service:EpgService) -> EPGButton {
         let b =  EPGButton()
         b.event = event
         b.row = Int(service.row)
