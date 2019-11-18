@@ -327,9 +327,13 @@ class ViewController: UIViewController {
     }
     
     func showInfo(for media:Any){
-        self.performSegue(withIdentifier: "info", sender: media)
-    }
-    
+           self.performSegue(withIdentifier: "info", sender: media)
+       }
+
+    func showChooser(for media:Any){
+           self.performSegue(withIdentifier: "chooser", sender: media)
+       }
+       
     
     @IBAction func tapRight(_ sender: Any) {
         if let service = watching as? Service{

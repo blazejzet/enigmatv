@@ -2661,6 +2661,7 @@
 		E0A8082E2284CE320035A374 /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A8082D2284CE320035A374 /* DataProvider.swift */; };
 		E0A808312284CEDB0035A374 /* EPGData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E0A8082F2284CEDB0035A374 /* EPGData.xcdatamodeld */; };
 		E0AE3CFB2015FB1600AECF61 /* TimeShiftRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0AE3CFA2015FB1600AECF61 /* TimeShiftRecorder.swift */; };
+		E0B890FC23834F23008722B6 /* UIVisualEffectExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B890FB23834F23008722B6 /* UIVisualEffectExtension.swift */; };
 		E0BFA0BF200FD5DC00056CDB /* RecordingTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BFA0BE200FD5DC00056CDB /* RecordingTimer.swift */; };
 		E0BFA0C1200FF8A300056CDB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BFA0C0200FF8A300056CDB /* Movie.swift */; };
 		E0BFA0C3200FFB2D00056CDB /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0BFA0C2200FFB2D00056CDB /* MovieCell.swift */; };
@@ -5335,6 +5336,7 @@
 		E0A8082D2284CE320035A374 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		E0A808302284CEDB0035A374 /* EPGData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = EPGData.xcdatamodel; sourceTree = "<group>"; };
 		E0AE3CFA2015FB1600AECF61 /* TimeShiftRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeShiftRecorder.swift; sourceTree = "<group>"; };
+		E0B890FB23834F23008722B6 /* UIVisualEffectExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVisualEffectExtension.swift; sourceTree = "<group>"; };
 		E0BFA0BE200FD5DC00056CDB /* RecordingTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingTimer.swift; sourceTree = "<group>"; };
 		E0BFA0C0200FF8A300056CDB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		E0BFA0C2200FFB2D00056CDB /* MovieCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCell.swift; sourceTree = "<group>"; };
@@ -5406,6 +5408,7 @@
 				E01D9401200D1F1E00A962E6 /* Info.plist */,
 				E01D9419200D6AFC00A962E6 /* TVVLCKit-Bridging-Header.h */,
 				E0A8082F2284CEDB0035A374 /* EPGData.xcdatamodeld */,
+				E0B890FB23834F23008722B6 /* UIVisualEffectExtension.swift */,
 			);
 			path = EnigmaTV;
 			sourceTree = "<group>";
@@ -10929,6 +10932,7 @@
 				E01D9411200D21C300A962E6 /* Servicelist.swift in Sources */,
 				E01D93FB200D1F1E00A962E6 /* ViewController.swift in Sources */,
 				E03918E7209068E20056A7A8 /* TimerCell.swift in Sources */,
+				E0B890FC23834F23008722B6 /* UIVisualEffectExtension.swift in Sources */,
 				E01D9413200D275B00A962E6 /* EpgEvent.swift in Sources */,
 				E0680F202085CE060040A99B /* HelpViewController.swift in Sources */,
 				E05132ED20CFE82100A67E6D /* TunerInfo.swift in Sources */,
