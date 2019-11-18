@@ -1,28 +1,32 @@
 PODS:
   - AERecord (4.1.2)
+  - FontAwesome.swift (1.8.2)
   - ReachabilitySwift (5.0.0)
   - SWXMLHash (4.0.0)
   - TVVLCKit (3.3.8)
 
 DEPENDENCIES:
   - AERecord
+  - FontAwesome.swift
   - ReachabilitySwift
   - SWXMLHash (~> 4.0.0)
   - TVVLCKit (>= 3.1.4)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/cocoapods/specs.git:
     - AERecord
+    - FontAwesome.swift
     - ReachabilitySwift
     - SWXMLHash
     - TVVLCKit
 
 SPEC CHECKSUMS:
   AERecord: ee8e773baa650731f06e89546a8f97e28fe00c32
+  FontAwesome.swift: 7938d6a03113ff3f39001bde7f50be8a0903d605
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
   TVVLCKit: c5cf078384715bbb2f9fa4817fcc27761dbd2f2a
 
-PODFILE CHECKSUM: aee6be2222f9a9272c3e2673e8ce498399bd756c
+PODFILE CHECKSUM: f85a49500e466963edd773de7468c5a62e44f462
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.7.5

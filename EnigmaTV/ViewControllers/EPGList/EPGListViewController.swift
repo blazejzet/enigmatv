@@ -59,6 +59,7 @@ class EPGListViewController: UIViewController {
         EPGListViewController.startupTime  = UInt64(Date().timeIntervalSince1970)
         
         channellist = UIScrollView(frame: CGRect(origin: CGPoint(x:0,y:0), size: epgViewContainer.frame.size))
+        channellist?.clipsToBounds = false;
         epgViewContainer.addSubview(channellist!)
         EPGListViewController.offsetX = CGFloat(EPGListViewController.startupTime)/EPGListViewController.density - EPGListViewController.xposition
         

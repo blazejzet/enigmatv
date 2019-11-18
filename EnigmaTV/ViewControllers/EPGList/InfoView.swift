@@ -18,22 +18,23 @@ class InfoView: UIView {
     }
     */
     
-    let backgroundImageView:UIImageView
+    //let backgroundImageView:UIImageView
     let coverView:UIImageView
     var backdrop:UIImage?
     let titleLabel:UILabel
     let descriptionLabel:UILabel
     
     init(){
-        backgroundImageView = UIImageView(image: #imageLiteral(resourceName: "blueEPGButton"))
+        //backgroundImageView = UIImageView(image: #imageLiteral(resourceName: "blueEPGButton"))
         coverView = UIImageView()
         titleLabel = UILabel(frame: .zero)
         descriptionLabel = UILabel(frame: .zero)
         super.init(frame: CGRect(x: 0.0, y: 0.0, width: 1600.0, height: EPGListViewController.height*3.0))
         
-        
-        backgroundImageView.frame = self.frame
-        self.addSubview(backgroundImageView)
+        self.dropShadow()
+        self.clipsToBounds = false;
+        //backgroundImageView.frame = self.frame
+        //self.addSubview(backgroundImageView)
         
         coverView.frame = CGRect(x: 10.0, y: 10.0, width: EPGListViewController.height*2.0-10.0, height: EPGListViewController.height*3.0-20.0)
         self.addSubview(coverView)
@@ -53,7 +54,7 @@ class InfoView: UIView {
         descriptionLabel.textColor = UIColor.white
         descriptionLabel.sizeToFit()
         
-        self.clipsToBounds=true;
+        //self.clipsToBounds=true;
         
     }
     
@@ -71,6 +72,8 @@ class InfoView: UIView {
     }
     var eid:Int=0
     func setup(_ event:EpgEventCacheProtocol){
+        self.dropShadow()
+        
         self.eid = Int(event.id)
         //descriptionLabel.frame = CGRect(origin: CGPoint(x:10.0,y:EPGListViewController.height), size: CGSize(width: 1500, height: EPGListViewController.height*2.0))
         self.coverView.alpha = 0.0

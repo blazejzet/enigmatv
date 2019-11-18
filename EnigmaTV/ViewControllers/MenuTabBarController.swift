@@ -14,8 +14,7 @@ class MenuTabBarController: UITabBarController {
         super.viewDidLoad()
         self.tabBar.items?[0].title="EPG"
         self.tabBar.items?[1].title="Recordings"
-        self.tabBar.items?[2].title="Recordings #2"
-        self.tabBar.items?[3].title="Settings"
+        self.tabBar.items?[2].title="Settings"
         //self.tabBar.items?[3].title="Settings"
 
         // Do any additional setup after loading the view.

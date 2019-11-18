@@ -8,12 +8,42 @@
 
 import UIKit
 
+
+extension UIView {
+
+    func dropShadow() {
+
+        let view = self
+
+       
+        let shadowLayer = view.layer
+        shadowLayer.cornerRadius = self.frame.size.height/2
+        shadowLayer.frame = view.frame
+        shadowLayer.shadowPath = UIBezierPath(roundedRect: view.bounds, cornerRadius: self.frame.size.height/2).cgPath
+        shadowLayer.shadowOpacity = 0.8
+        shadowLayer.shadowRadius = 45
+        shadowLayer.masksToBounds = false
+        shadowLayer.shadowOffset = .zero
+        
+        //b.background?.clipsToBounds=true
+
+        
+    }
+    func delShadow(){
+        let view = self
+        let shadowLayer = view.layer
+        shadowLayer.shadowRadius = 0
+    }
+}
+
+
 class EPGButton: UIButton {
     var event:EpgEventCacheProtocol?
     var type: UIButtonType = UIButtonType.system
     var row:Int?
     var oframe :CGRect?
     var background :UIImageView?
+    var backgroundBlur: UIVisualEffectView?
     weak var delegate:EPGListViewController?
     
     
@@ -35,13 +65,25 @@ class EPGButton: UIButton {
                     print("eventid: \(b.event?.id), \(b.event?.sref), \(b.event?.sname)");
                     self.oframe=self.background?.frame
                       self.background?.frame = CGRect(x: (self.oframe?.origin.x)!-10, y: (self.oframe?.origin.y)!-10, width: (self.oframe?.size.width)!+20, height: (self.oframe?.size.height)!+20)
+
+                    self.background?.layer.cornerRadius = self.oframe!.size.height/2+10
+                    self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2+10
+                    
                     self.background?.image = #imageLiteral(resourceName: "blueEPGButton")
                     self.background?.alpha = 1.0
                     self.superview?.bringSubview(toFront: self)
+                    
+                    self.dropShadow()
+                    
                 }else{
                     self.background?.frame =  self.oframe!
                     self.background?.image = #imageLiteral(resourceName: "grayEPGButton")
-                    self.background?.alpha = 0.1
+                    self.background?.alpha = 0.0
+                    
+                    self.background?.layer.cornerRadius = self.oframe!.size.height/2
+                    self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2
+                    
+                    self.delShadow()
                     
                     
                 }
@@ -57,6 +99,17 @@ class EPGButton: UIButton {
         
         b.background = UIImageView(frame: CGRect(origin: .zero, size: b.frame.size))
         b.background?.alpha = 0.1
+        
+      
+        
+        let blurEffect = UIBlurEffect(style: .dark)
+        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        blurredEffectView.frame = b.bounds
+        b.backgroundBlur = blurredEffectView
+        
+        
+        
+        b.addSubview(b.backgroundBlur!)
         b.addSubview(b.background!)
         var r = ""
         if (event.timer != nil){r="🔴 ";}
@@ -68,6 +121,8 @@ class EPGButton: UIButton {
         
         b.background?.image = #imageLiteral(resourceName: "grayEPGButton");
         b.background?.clipsToBounds=true
+        b.backgroundBlur?.clipsToBounds=true
+        
         b.addTarget(b, action: #selector(EPGButton.pressed), for: .primaryActionTriggered)
         return b
     }
@@ -100,6 +155,11 @@ class EPGButton: UIButton {
             
             self.frame = CGRect(x: start, y: top, width: width, height: height)
             self.background?.frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
+            self.backgroundBlur?.frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
+            
+            self.background?.layer.cornerRadius = height/2
+            self.backgroundBlur?.layer.cornerRadius = height/2
+            
             
             if(start<0){
                 self.titleEdgeInsets = .init(top: 0, left: (-start)+10, bottom: 0, right: 0)
