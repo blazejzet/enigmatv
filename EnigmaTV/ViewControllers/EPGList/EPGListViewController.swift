@@ -90,7 +90,7 @@ class EPGListViewController: UIViewController {
                 
                 row += 1
             }
-            self.createEPG(from: EPGListViewController.startupTime-60*60*3, to:EPGListViewController.startupTime+60*60*3, firstVisibleRow: self.visibleTopRow, lastVisibleRow: self.visibleBottomRow, isInit: true)
+            self.createEPG(from: EPGListViewController.startupTime-60*60*5, to:EPGListViewController.startupTime+60*60*5, firstVisibleRow: self.visibleTopRow, lastVisibleRow: self.visibleBottomRow, isInit: true)
         }
         
         
@@ -124,22 +124,22 @@ class EPGListViewController: UIViewController {
         // w sekundach.
         
         if let services = self.services{
-            var row = 0
-            for service in services{
-                service.row = Int16(row)//Zapmiętuje w którym jest wierszu.
-                //if(row < _visibleRows){
-
-                    self.organizeData(for: service, from: start, to: end, isInit: false)
-                //}
-            row += 1
-            }
-//            for index in firstVisibleRow...lastVisibleRow{
-//                if firstVisibleRow >= 0 && lastVisibleRow < services.count{
-//                    services[index].row = Int16(index)
-//                    self.organizeData(for: services[index], from: start, to: end, isInit: isInit)
-//                }
+//            var row = 0
+//            for service in services{
+//                service.row = Int16(row)//Zapmiętuje w którym jest wierszu.
+//                //if(row < _visibleRows){
 //
+//                    self.organizeData(for: service, from: start, to: end, isInit: false)
+//                //}
+//            row += 1
 //            }
+            for index in firstVisibleRow...lastVisibleRow{
+                if index >= 0 && index < services.count{
+                    services[index].row = Int16(index)
+                    self.organizeData(for: services[index], from: start, to: end, isInit: isInit)
+                }
+
+            }
         }
         
     }
@@ -182,25 +182,28 @@ class EPGListViewController: UIViewController {
     func show(_ events:[EpgEventCacheProtocol], for service:EpgService, activeRow arow:Int, onList list: inout Array<EPGButton>, atBeginning begin:Bool, isInit:Bool){
         for event in events{
             
-//            if !isInit{
-//                list.first?.event?.begin_timestamp
+            var tmpList2 = list.filter( { $0.event?.tilte == "Brak danych" } )
+            
+            tmpList2 = tmpList2.filter( {  ( UInt64(visibleBeginTime + 9000) < ($0.event?.begin_timestamp)! ||
+                                                UInt64(visibleBeginTime - 9000) > ($0.event?.begin_timestamp)! )} )
+
+
+            for item in tmpList2{
+                item.removeFromSuperview()
+                if let index = list.index(of: item) {
+                    list.remove(at: index)
+                }
+            }
+            
+            var tmpList1 = list.filter( { (event.tilte != "Brak danych" && $0.event?.tilte == "Brak danych") && ( event.begin_timestamp == $0.event?.begin_timestamp ||  event.end_timestamp == $0.event?.end_timestamp) } )
             
             
-//            var tmpList = list.compactMap({$0.event?.tilte == "Brak danych"
-//                && ($0.event?.begin_timestamp)! <= event.begin_timestamp
-//                && event.begin_timestamp <= ($0.event?.end_timestamp)!
-//
-//                } )
-            
-//            var tmpList = list.filter( {$0.event?.tilte == "Brak danych"
-//                            && ($0.event?.begin_timestamp)! <= event.begin_timestamp
-//                            && event.begin_timestamp <= ($0.event?.end_timestamp)!
-//
-//            })
-//
-//            for i in tmpList{
-//                i.removeFromSuperview()
-//            }
+            for item in tmpList1{
+                item.removeFromSuperview()
+                if let index = list.index(of: item) {
+                    list.remove(at: index)
+                }
+            }
             
             var tmpAdd = list.contains(where: { $0.event?.begin_timestamp == event.begin_timestamp && $0.event?.end_timestamp == event.end_timestamp})
             
@@ -267,7 +270,7 @@ class EPGListViewController: UIViewController {
         visibleBeginTime = UInt64(EPGListViewController.offsetX*EPGListViewController.density)
         //\\\\\\
         print("---------------- visibleTopRow = \(visibleTopRow) | visibleBottomRow = \(visibleBottomRow) | visibleBeginTime = \(visibleBeginTime)")
-        self.createEPG(from: visibleBeginTime-60*60*3, to: visibleBeginTime+60*60*3, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
+        self.createEPG(from: visibleBeginTime-60*60*5, to: visibleBeginTime+60*60*5, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
         
         self.info?.setup(event)
         self.info?.position()

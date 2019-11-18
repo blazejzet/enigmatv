@@ -122,31 +122,28 @@ class DataProvider: NSObject {
                         for item in obj{
                             tmpList.append(EpgEventCacheFake(item: item))
                         }
-//                        tmpList.append(EpgEventCacheFake(start: 1573810237, end: 1573810237 + 5*60, ref: sref)) //10.30
-//                        tmpList.append(EpgEventCacheFake(start: 1573814437, end: 1573814437 + 5*60, ref: sref)) //11.40
-//                        tmpList.append(EpgEventCacheFake(start: 1573768800, end: 1573769400, ref: sref))
                         
                         //Sprawdza czy są jakieś elementy w tablicy
                         if tmpList.count == 0{
-                            var tmpBegin = begin
+                            var tmpBegin = begin - (begin % 1800)
                             while tmpBegin < end{
-                                if (end - tmpBegin > 1800){
-                                    tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref), at: 0)
+//                                if (end - tmpBegin > 1800){
+                                    tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref, id: 3), at: 0)
                                     
                                     tmpBegin += 1800
-                                }else{
-                                    tmpList.append(EpgEventCacheFake(start: tmpBegin, end: end, ref: sref))
-                                    tmpBegin += end - tmpBegin
-                                }
+//                                }else{
+//                                    tmpList.append(EpgEventCacheFake(start: tmpBegin, end: end, ref: sref, id: 3))
+//                                    tmpBegin += end - tmpBegin
+//                                }
                             }
                         //Gdy są jakieś elementy to w tablicy
                         } else if( tmpList.count > 0 ){
                             //Gdy mamy puste pole przed pierwszym buttonem
                             if tmpList.first!.begin_timestamp > begin{
                                 if tmpList.first!.begin_timestamp - begin > 1800{
-                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref), at: 0)
+                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref, id: -1), at: 0)
                                 }else{
-                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref), at: 0)
+                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref, id: -1), at: 0)
                                 }
                             }
                             //Sprawdzamy czy są puste pola za buttonami
@@ -162,20 +159,9 @@ class DataProvider: NSObject {
 //                                            counter += 1
 //                                        }
                                         
-                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref), at: index + 1)
+                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref, id: 0), at: index + 1)
                                         counter += 1
                                     }
-                                }
-                            }
-                            var tmpEnd = tmpList.last!.end_timestamp
-                            while tmpEnd < end{
-                                if (end - tmpEnd > 1800){
-                                    tmpList.insert(EpgEventCacheFake(start: tmpEnd, end: tmpEnd + 1800, ref: sref), at: 0)
-                                    
-                                    tmpEnd += 1800
-                                }else{
-                                    tmpList.append(EpgEventCacheFake(start: tmpEnd, end: end, ref: sref))
-                                    tmpEnd += end - tmpEnd
                                 }
                             }
                         }
@@ -823,7 +809,7 @@ class EpgEventCacheFake:EpgEventCacheProtocol{
         self.timer = item.timer
     }
     
-    init (start begin_timestamp:Int64, end end_timestamp:Int64, ref sref:String){
+    init (start begin_timestamp:Int64, end end_timestamp:Int64, ref sref:String, id: Int){
         self.dudation_sec = (end_timestamp - begin_timestamp)
         self.begin_timestamp = begin_timestamp
         self.end_timestamp = end_timestamp
