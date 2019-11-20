@@ -54,6 +54,7 @@ class CommonTableViewCell: UITableViewCell {
     func conf(){
      self.lco.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
      self.setInidicatorAlpha(alpha: 1.0)
+        self.lco.layer.cornerRadius = self.frame.size.height/2
     }
     
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {

@@ -35,6 +35,7 @@ UICollectionViewDelegate, UICollectionViewDataSource{
         let bcell = tableView.dequeueReusableCell(withIdentifier: "bcell") as? BouquetCell
         if  let bouquets = bouquets{
            bcell?.configure(bouquet: bouquets[indexPath.row])
+            bcell?.delegate = self
             
         }
         return bcell!;

@@ -75,9 +75,12 @@ class EPGHelper {
     
     func preload()
     {
+        
         if(!self.isFetching ){
             self.serialPrefetchQueue?.async {
 
+                DataProvider.def().removeOldEPG(olderThan: Int64(Date().timeIntervalSince1970 - 60*60*24))
+                
                 print("[EPGHELPER] starting new prefetch")
 
                 var start  = UInt64(Date().timeIntervalSince1970)

@@ -24,11 +24,19 @@ class BouquetCell: UITableViewCell {
         self.textLabel?.text = bouquet.sname;
 //        self.textLabel.setColor
         self.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        if let rowHeight = delegate?.tableView.estimatedRowHeight{
+        self.layer.cornerRadius = self.frame.size.height/2
+//        }
+        
+        
     }
     func configure(serv:Service){
         self.service = serv;
         self.textLabel?.text = serv.servicename;
         self.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
+//        if let rowHeight = delegate?.tableView.estimatedRowHeight{
+            self.layer.cornerRadius = self.frame.size.height/2
+//        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

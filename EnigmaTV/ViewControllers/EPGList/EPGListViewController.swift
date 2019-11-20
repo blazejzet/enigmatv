@@ -125,31 +125,58 @@ class EPGListViewController: UIViewController {
         // w sekundach.
         
         if let services = self.services{
-//            var row = 0
-//            for service in services{
-//                service.row = Int16(row)//Zapmiętuje w którym jest wierszu.
-//                //if(row < _visibleRows){
-//
-//                    self.organizeData(for: service, from: start, to: end, isInit: false)
-//                //}
-//            row += 1
-//            }
+            
+            
+            
+            /*
+            var row = 0
+            for service in services{
+                service.row = Int16(row)//Zapmiętuje w którym jest wierszu.
+                if(row >= firstVisibleRow && row <= lastVisibleRow){
+                    
+                    self.organizeData(for: service, from: start, to: end, isInit: false)
+                }else{
+                    var list:Array<EPGButton> = Array()
+                    if let listold =  self._epgActiveButtons[Int(service.row)] {
+                        list = listold
+                    }
+                    clearOutOfRangeRows(list: &list)
+                }
+            row += 1
+            }
+            */
+            
+            
             for index in firstVisibleRow...lastVisibleRow{
                 if index >= 0 && index < services.count{
                     services[index].row = Int16(index)
                     self.organizeData(for: services[index], from: start, to: end, isInit: isInit)
                 }
-
             }
+            
+            
+            
+            
         }
         
+    }
+    
+    func clearOutOfRangeRows(list: inout Array<EPGButton>){
+        if list.count != 0{
+            for item in list{
+                item.removeFromSuperview()
+            }
+            list = Array()
+        }
     }
     
     func clear(list: inout Array<EPGButton>, from start:UInt64, to end:UInt64, row: Int16){
         var list2:Array<EPGButton> = Array()
         for button in list {
             if let e = button.event{
+//                print("----------------deleting  row \(row) visibleTopRow \(visibleTopRow) title \(e.tilte)")
                 if (e.begin_timestamp > Int64(end) || e.end_timestamp < Int64(start) || row < visibleTopRow || row > visibleBottomRow){
+                    
                     button.removeFromSuperview()
                     //sleep(1)
                 }else{
@@ -206,12 +233,13 @@ class EPGListViewController: UIViewController {
                 }
             }
             
-            var tmpAdd = list.contains(where: { $0.event?.begin_timestamp == event.begin_timestamp && $0.event?.end_timestamp == event.end_timestamp})
+            var alredyExists = list.contains(where: { $0.event?.begin_timestamp == event.begin_timestamp && $0.event?.end_timestamp == event.end_timestamp})
             
-            
+//            var outOfRange = false
+//            if event.
                 
 //            }
-            if !tmpAdd{
+            if !alredyExists{
                 if (event.end_timestamp==0){
                     event.end_timestamp = event.begin_timestamp + event.dudation_sec
                 }
@@ -270,7 +298,7 @@ class EPGListViewController: UIViewController {
         
         visibleBeginTime = UInt64(EPGListViewController.offsetX*EPGListViewController.density)
         //\\\\\\
-        print("---------------- visibleTopRow = \(visibleTopRow) | visibleBottomRow = \(visibleBottomRow) | visibleBeginTime = \(visibleBeginTime)")
+//        print("---------------- visibleTopRow = \(visibleTopRow) | visibleBottomRow = \(visibleBottomRow) | visibleBeginTime = \(visibleBeginTime)")
         self.createEPG(from: visibleBeginTime-60*60*5, to: visibleBeginTime+60*60*5, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
         
         self.info?.setup(event)

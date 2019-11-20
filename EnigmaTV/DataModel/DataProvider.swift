@@ -105,6 +105,31 @@ class DataProvider: NSObject {
     //        }
     //    }
     
+    func removeOldEPG(olderThan date: Int64){
+        self.context.perform {
+            let frc = self.getFetchedResultsControllerEPG()
+            frc.fetchRequest.predicate = NSPredicate(format: "end_timestamp < %d", date)
+            self.context.perform {
+                do{
+                    try frc.performFetch()
+                        if let item = frc.fetchedObjects{
+                            
+                            for i in item{
+                                print("removeOldEPG - removed item \(i.tilte)")
+                                self.context.delete(i)
+                            }
+                        }
+
+                    try self.context.save()
+                }
+                catch{
+                    
+                }
+            }
+        }
+    }
+    
+    
     func getEpgForService(sref:String,begin:Int64,end:Int64,cb:@escaping ([EpgEventCacheProtocol])->Void){
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
         self.context.perform {
