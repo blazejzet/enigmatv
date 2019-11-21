@@ -128,31 +128,38 @@ class EPGListViewController: UIViewController {
             
             
             
-            /*
+            
             var row = 0
             for service in services{
                 service.row = Int16(row)//Zapmiętuje w którym jest wierszu.
-                if(row >= firstVisibleRow && row <= lastVisibleRow){
-                    
-                    self.organizeData(for: service, from: start, to: end, isInit: false)
-                }else{
-                    var list:Array<EPGButton> = Array()
-                    if let listold =  self._epgActiveButtons[Int(service.row)] {
-                        list = listold
-                    }
-                    clearOutOfRangeRows(list: &list)
+                
+                var list:Array<EPGButton> = Array()
+                if let listold =  self._epgActiveButtons[Int(service.row)] {
+                    list = listold
                 }
+                self.clear(list: &list, from: start, to: end, row: service.row)
+                if(row >= firstVisibleRow && row <= lastVisibleRow + 1){
+
+                    self.organizeData(for: service, from: start, to: end, isInit: false)
+                }
+//                else{
+//                    var list:Array<EPGButton> = Array()
+//                    if let listold =  self._epgActiveButtons[Int(service.row)] {
+//                        list = listold
+//                    }
+//                    clearOutOfRangeRows(list: &list)
+//                }
             row += 1
             }
-            */
+//
             
             
-            for index in firstVisibleRow...lastVisibleRow{
-                if index >= 0 && index < services.count{
-                    services[index].row = Int16(index)
-                    self.organizeData(for: services[index], from: start, to: end, isInit: isInit)
-                }
-            }
+//            for index in firstVisibleRow...lastVisibleRow{
+//                if index >= 0 && index < services.count{
+//                    services[index].row = Int16(index)
+//                    self.organizeData(for: services[index], from: start, to: end, isInit: isInit)
+//                }
+//            }
             
             
             
@@ -161,14 +168,17 @@ class EPGListViewController: UIViewController {
         
     }
     
-    func clearOutOfRangeRows(list: inout Array<EPGButton>){
-        if list.count != 0{
-            for item in list{
-                item.removeFromSuperview()
-            }
-            list = Array()
-        }
-    }
+//    func clearOutOfRangeRows(list: inout Array<EPGButton>){
+////        print("kkkkkkkkkkkkkk+++ \(list.count)")
+//        if list.count != 0{
+//            for item in list{
+//                item.removeFromSuperview()
+//                list.removeFirst()
+//            }
+////            print("kkkkkkkkkkkkkk \(list.count)")
+//            list = Array()
+//        }
+//    }
     
     func clear(list: inout Array<EPGButton>, from start:UInt64, to end:UInt64, row: Int16){
         var list2:Array<EPGButton> = Array()
@@ -188,6 +198,7 @@ class EPGListViewController: UIViewController {
         for button in list2{
             list.append(button)
         }
+        self._epgActiveButtons[Int(row)] = list
     }
     
     func organizeData(for service:EpgService, from start:UInt64, to end:UInt64, isInit:Bool){
@@ -198,7 +209,7 @@ class EPGListViewController: UIViewController {
                 if let listold =  self._epgActiveButtons[Int(service.row)] {
                     list = listold
                 }
-                self.clear(list: &list, from: start, to: end, row: service.row)
+//                self.clear(list: &list, from: start, to: end, row: service.row)
                 self.show( epgEvents, for:service, activeRow:1, onList: &list, atBeginning: false, isInit: isInit)
                 self._epgActiveButtons[Int(service.row)]=list
                 
@@ -262,7 +273,7 @@ class EPGListViewController: UIViewController {
     
     
     var prev :EpgEventCache?
-    func selected(_ event:EpgEventCacheProtocol, at point:CGPoint, inRow row:Int){
+    func selected(_ event:EpgEventCacheProtocol, at point:CGPoint, inRow row:Int, focused:Bool){
         
         print("Active row:\(row)")
         print("seleected event time= \(event.begin_timestamp)")
@@ -299,8 +310,10 @@ class EPGListViewController: UIViewController {
         visibleBeginTime = UInt64(EPGListViewController.offsetX*EPGListViewController.density)
         //\\\\\\
 //        print("---------------- visibleTopRow = \(visibleTopRow) | visibleBottomRow = \(visibleBottomRow) | visibleBeginTime = \(visibleBeginTime)")
-        self.createEPG(from: visibleBeginTime-60*60*5, to: visibleBeginTime+60*60*5, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
-        
+        if focused{
+            print("ar \(row) vtr \(visibleTopRow) vbr \(visibleBottomRow) ")
+            self.createEPG(from: visibleBeginTime-60*60*5, to: visibleBeginTime+60*60*5, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
+        }
         self.info?.setup(event)
         self.info?.position()
         

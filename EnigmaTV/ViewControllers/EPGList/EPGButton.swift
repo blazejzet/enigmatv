@@ -56,9 +56,9 @@ class EPGButton: UIButton {
         //EPGButton* b = (EPGButton*)context.nextFocusedItem;
         //[self.delegate selected:b At:b.frame.origin onRow:b.row];
         let b = context.nextFocusedItem as? EPGButton
-    
+        print("title \(event?.tilte) isfocused \(isFocused)")
         if let b = b{
-            self.delegate?.selected(b.event!, at: b.frame.origin, inRow:b.row!)
+            self.delegate?.selected(b.event!, at: b.frame.origin, inRow:b.row!, focused: isFocused)
             UIView.animate(withDuration: 0.1){
                 if (b==self){
                     
@@ -83,7 +83,7 @@ class EPGButton: UIButton {
                     self.background?.layer.cornerRadius = self.oframe!.size.height/2
                     self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2
                     
-                    self.delShadow()
+//                    self.delShadow()
                     
                     
                 }
@@ -98,7 +98,7 @@ class EPGButton: UIButton {
         
         
         b.background = UIImageView(frame: CGRect(origin: .zero, size: b.frame.size))
-        b.background?.alpha = 0.1
+        b.background?.alpha = 0.0
         
       
         
@@ -169,6 +169,9 @@ class EPGButton: UIButton {
         }
     }
     
+//    deinit {
+//        print("testtesttest")
+//    }
     
     
     /*

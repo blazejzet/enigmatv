@@ -207,7 +207,7 @@
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" white="0.0" alpha="0.33000000000000002" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <connections>
-                                                    <segue destination="l8F-hh-URJ" kind="showDetail" id="PzU-zV-icJ"/>
+                                                    <segue destination="l8F-hh-URJ" kind="presentation" modalPresentationStyle="blurOverFullScreen" id="PzU-zV-icJ"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
