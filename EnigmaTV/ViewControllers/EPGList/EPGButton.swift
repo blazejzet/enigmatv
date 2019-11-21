@@ -125,7 +125,7 @@ class EPGButton: UIButton {
         b.titleLabel?.font = UIFont.systemFont(ofSize: 32);
         
         if event is EpgEventCacheFake{
-            b.titleLabel?.textColor = .lightGray
+            b.setTitleColor(.lightGray, for: .normal)
         }
         b.bringSubview(toFront: b.titleLabel!)
         b.contentHorizontalAlignment = .left
