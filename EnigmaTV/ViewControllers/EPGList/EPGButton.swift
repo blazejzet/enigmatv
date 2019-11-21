@@ -32,7 +32,9 @@ extension UIView {
     func delShadow(){
         let view = self
         let shadowLayer = view.layer
-        shadowLayer.shadowRadius = 0
+        shadowLayer.shadowPath = nil
+         shadowLayer.shadowRadius = 0
+        shadowLayer.shadowOpacity = 0.0
     }
 }
 
@@ -67,23 +69,26 @@ class EPGButton: UIButton {
                       self.background?.frame = CGRect(x: (self.oframe?.origin.x)!-10, y: (self.oframe?.origin.y)!-10, width: (self.oframe?.size.width)!+20, height: (self.oframe?.size.height)!+20)
 
                     self.background?.layer.cornerRadius = self.oframe!.size.height/2+10
-                    self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2+10
-                    
-                    self.background?.image = #imageLiteral(resourceName: "blueEPGButton")
-                    self.background?.alpha = 1.0
+                    //self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2+10
+                    self.background?.backgroundColor = .white;
+                    //self.background?.image = #imageLiteral(resourceName: "blueEPGButton")
+                    self.background?.alpha = 0.2
                     self.superview?.bringSubview(toFront: self)
                     
                     self.dropShadow()
                     
                 }else{
+                    self.background?.backgroundColor = .black;
+                    self.background?.alpha = 0.1;
+                    
                     self.background?.frame =  self.oframe!
-                    self.background?.image = #imageLiteral(resourceName: "grayEPGButton")
-                    self.background?.alpha = 0.0
+                    //self.background?.image = #imageLiteral(resourceName: "grayEPGButton")
+                    //self.background?.alpha = 0.0
                     
                     self.background?.layer.cornerRadius = self.oframe!.size.height/2
-                    self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2
+                    //self.backgroundBlur?.layer.cornerRadius = self.oframe!.size.height/2
                     
-//                    self.delShadow()
+                   self.delShadow()
                     
                     
                 }
@@ -98,30 +103,40 @@ class EPGButton: UIButton {
         
         
         b.background = UIImageView(frame: CGRect(origin: .zero, size: b.frame.size))
-        b.background?.alpha = 0.0
+       //b.background?.alpha = 0.0
         
       
         
-        let blurEffect = UIBlurEffect(style: .dark)
-        let blurredEffectView = UIVisualEffectView(effect: blurEffect)
-        blurredEffectView.frame = b.bounds
-        b.backgroundBlur = blurredEffectView
+        //let blurEffect = UIBlurEffect(style: .dark)
+        //le/t blurredEffectView = UIVisualEffectView(effect: blurEffect)
+        //blurredEffectView.frame = b.bounds
+        //b.backgroundBlur = blurredEffectView
         
         
         
-        b.addSubview(b.backgroundBlur!)
+        //b.addSubview(b.backgroundBlur!)
         b.addSubview(b.background!)
         var r = ""
         if (event.timer != nil){r="🔴 ";}
         b.setTitle("\(r)\(event.tilte!.uppercased())", for: .normal)
+        
+        
+        
         b.titleLabel?.font = UIFont.systemFont(ofSize: 32);
+        
+        if event is EpgEventCacheFake{
+            b.titleLabel?.textColor = .lightGray
+        }
         b.bringSubview(toFront: b.titleLabel!)
         b.contentHorizontalAlignment = .left
         b.titleEdgeInsets = .init(top: 0, left: 10, bottom: 0, right: 0)
+        b.background?.backgroundColor = .black;
+        b.background?.alpha = 0.1;
         
-        b.background?.image = #imageLiteral(resourceName: "grayEPGButton");
+        //b.background?.image = #imageLiteral(resourceName: "grayEPGButton");
         b.background?.clipsToBounds=true
-        b.backgroundBlur?.clipsToBounds=true
+        //b.backgroundBlur?.clipsToBounds=true
+        
         
         b.addTarget(b, action: #selector(EPGButton.pressed), for: .primaryActionTriggered)
         return b
@@ -155,10 +170,10 @@ class EPGButton: UIButton {
             
             self.frame = CGRect(x: start, y: top, width: width, height: height)
             self.background?.frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
-            self.backgroundBlur?.frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
+            //self.backgroundBlur?.frame = CGRect(x: 0.0, y: 0.0, width: width, height: height)
             
             self.background?.layer.cornerRadius = height/2
-            self.backgroundBlur?.layer.cornerRadius = height/2
+            //self.backgroundBlur?.layer.cornerRadius = height/2
             
             
             if(start<0){
@@ -169,9 +184,9 @@ class EPGButton: UIButton {
         }
     }
     
-//    deinit {
-//        print("testtesttest")
-//    }
+    deinit {
+        print("Deleting button \(self.titleLabel?.text)")
+    }
     
     
     /*

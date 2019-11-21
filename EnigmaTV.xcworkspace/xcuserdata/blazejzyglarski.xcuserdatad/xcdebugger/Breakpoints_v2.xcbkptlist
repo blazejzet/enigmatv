@@ -1425,7 +1425,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "251"
             endingLineNumber = "251"
-            landmarkName = "getBouquetsSerial(cb:)"
+            landmarkName = "getLastEpgForServiceSerial(sref:cb:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1441,7 +1441,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "428"
             endingLineNumber = "428"
-            landmarkName = "getServiceSerial(bref:sref:cb:)"
+            landmarkName = "removeService(bref:sref:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
