@@ -54,6 +54,10 @@ class MoviesViewController: UIViewController, UITableViewDelegate,UITableViewDat
         return nil;
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var lim = 0
         if let timers = tlist?.timers{
@@ -139,13 +143,13 @@ class MoviesViewController: UIViewController, UITableViewDelegate,UITableViewDat
         // Do any additional setup after loading the view.
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //if let movies =  mlist?.movies{
         //    let movie = movies[indexPath.row]
         //    self.watch(movie!)
         //    self.dismiss()
         //}
-    }
+//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -103,7 +103,7 @@ class CommonTableViewCell: UITableViewCell {
                     
                 }else{
                     self.setInidicatorAlpha(alpha: 1.0)
-                    self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
+//                    self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
                     
                 }
             
@@ -111,7 +111,7 @@ class CommonTableViewCell: UITableViewCell {
             UIView.animate(withDuration: 0.3, animations: {
                 self.setInidicatorAlpha(alpha: 1.0)
                 self.setInidicatorFrame(x:0)
-                self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
+//                self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
             })
         }
         print(touches.first?.location(in: self))
@@ -135,7 +135,7 @@ class CommonTableViewCell: UITableViewCell {
             UIView.animate(withDuration: 0.3, animations: {
                 self.setInidicatorFrame(x:0)
                 self.setInidicatorAlpha(alpha: 1.0)
-                self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
+//                self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
             })
         }
         print(touches.first?.location(in: self))
@@ -147,7 +147,7 @@ class CommonTableViewCell: UITableViewCell {
         UIView.animate(withDuration: 0.3, animations: {
             self.setInidicatorFrame(x: 0.0)
             self.setInidicatorAlpha(alpha: 1.0)
-            self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
+//            self.lco.backgroundColor=#colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
         })
     }
     

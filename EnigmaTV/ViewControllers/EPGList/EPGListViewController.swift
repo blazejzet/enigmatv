@@ -91,7 +91,7 @@ class EPGListViewController: UIViewController {
                 
                 row += 1
             }
-            self.createEPG(from: EPGListViewController.startupTime-60*60*5, to:EPGListViewController.startupTime+60*60*5, firstVisibleRow: self.visibleTopRow, lastVisibleRow: self.visibleBottomRow, isInit: true)
+            self.createEPG(from: EPGListViewController.startupTime-60*60*2, to:EPGListViewController.startupTime+60*60*4, firstVisibleRow: self.visibleTopRow, lastVisibleRow: self.visibleBottomRow, isInit: true)
         }
         
         
@@ -193,6 +193,7 @@ class EPGListViewController: UIViewController {
                     list2.append(button)
                 }
             }
+//            if button.event
         }
          list = Array()
         for button in list2{
@@ -211,6 +212,7 @@ class EPGListViewController: UIViewController {
                 }
 //                self.clear(list: &list, from: start, to: end, row: service.row)
                 self.show( epgEvents, for:service, activeRow:1, onList: &list, atBeginning: false, isInit: isInit)
+                self.clear(list: &list, from: start, to: end, row: service.row)
                 self._epgActiveButtons[Int(service.row)]=list
                 
             }
@@ -312,7 +314,7 @@ class EPGListViewController: UIViewController {
 //        print("---------------- visibleTopRow = \(visibleTopRow) | visibleBottomRow = \(visibleBottomRow) | visibleBeginTime = \(visibleBeginTime)")
         if focused{
             print("ar \(row) vtr \(visibleTopRow) vbr \(visibleBottomRow) ")
-            self.createEPG(from: visibleBeginTime-60*60*5, to: visibleBeginTime+60*60*5, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
+            self.createEPG(from: visibleBeginTime-60*60*2, to: visibleBeginTime+60*60*4, firstVisibleRow: visibleTopRow, lastVisibleRow: visibleBottomRow, isInit: false)
         }
         self.info?.setup(event)
         self.info?.position()
