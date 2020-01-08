@@ -9,17 +9,17 @@
 import UIKit
 
 class EventDataProvider: InfoViewDataProviderDelegate {
-    var event:EpgEventCache?
-    var nextevent:EpgEventCache?
+    var event:EpgEventCacheProtocol?
+    var nextevent:EpgEventCacheProtocol?
     
     func getServiceName() -> String {
         return (event?.sname)!
     }
-    func getCurrentEvent() -> EpgEventCache? {
+    func getCurrentEvent() -> EpgEventCacheProtocol? {
         return event
     }
     
-    func getNextEvent() -> EpgEventCache? {
+    func getNextEvent() -> EpgEventCacheProtocol? {
         return nextevent
     }
     
@@ -32,7 +32,11 @@ class EventDataProvider: InfoViewDataProviderDelegate {
     }
     
     func getTimeshiftStartTime() -> UInt64 {
-        return UInt64(TimeShiftRecorder.common().timestart!)
+        if let x = TimeShiftRecorder.common().timestart{
+            return UInt64(x)
+        }else{
+            return UInt64(Date().timeIntervalSince1970)
+        }
     }
     
     func getTimeshiftStopTime() -> UInt64 {

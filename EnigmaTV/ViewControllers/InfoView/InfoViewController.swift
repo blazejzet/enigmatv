@@ -191,69 +191,65 @@ class InfoViewController: UIViewController {
         
     }
     func configure(){
-        
-        
-        
         DispatchQueue.main.async {
-        
             
-            
-            
-            
-        
-        if let pi = self.pvrInfo{
-        var ds = TimeShiftRecorder.common().conn2?.getDataSize()
-        if let ds = ds{
-            
-            //self.pvrInfo.text = "\(ds)"
-
-        }else{
-            //self.pvrInfo.text = "x"
-
-        }
-        if let _ = self.dateLabel{
-        if let event = self.edp?.getCurrentEvent(){
-            let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp))
-            let dateFormatter = DateFormatter()
-            dateFormatter.locale = Locale(identifier: "en_US")
-            self.dateLabel.text = dateFormatter.string(from: ds)
-            dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            let dsh =  dateFormatter.string(from: ds)
-            print("dsh: \(dsh)")
-            self.pvrInfo.text = "\(Int(event.dudation_sec/60)) min."
-            self.nowHourLabel.text = "\(dsh)"
-            //nowHourLabel.setTex
-            
-            self.nowNameLabel.text = event.tilte
-            self.serviceName.text = event.sname
-            self.piconSetup(name: event.sname!)
-            
-            
-            self.posistionBar()
+            if let pi = self.pvrInfo{
+                var ds = TimeShiftRecorder.common().conn2?.getDataSize()
+                if let ds = ds{
+                    
+                    //self.pvrInfo.text = "\(ds)"
+                    
+                }else{
+                    //self.pvrInfo.text = "x"
+                    
+                }
+                if let _ = self.dateLabel{
+                    
+                    if let event = self.edp?.getCurrentEvent(){
+                        print("rrrrrrrrrrrr")
+                        let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp))
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.locale = Locale(identifier: "en_US")
+                        self.dateLabel.text = dateFormatter.string(from: ds)
+                        dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
+                        let dsh =  dateFormatter.string(from: ds)
+                        print("dsh: \(dsh)")
+                        self.pvrInfo.text = "\(Int(event.dudation_sec/60)) min."
+                        self.nowHourLabel.text = "\(dsh)"
+                        //nowHourLabel.setTex
+                        
+                        
+                        print("nowNameLabel: \(event.tilte)")
+                        self.nowNameLabel.text = event.tilte
+                        self.serviceName.text = event.sname
+                        self.piconSetup(name: event.sname!)
+                        
+                        
+                        self.posistionBar()
+                    }
+                }
+                
+                if let event = self.edp?.getNextEvent(){
+                    let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp))
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
+                    self.nextHourLabel.text = dateFormatter.string(from: ds)
+                    self.nextNameLabel.text = event.tilte
+                }else{
+                    
+                    self.nextHourLabel.alpha = 0.0
+                    self.nextNameLabel.alpha = 0.0
+                }
+                self.serviceName.text = self.edp?.getServiceName()
+                if let edp = self.edp{
+                    self.min = self.timeToPoint(time: edp.getTimeshiftStartTime())
+                    self.max = self.timeToPoint(time:  edp.getTimeshiftStopTime())
+                    
+                    print("min:\(Date(timeIntervalSince1970: TimeInterval(self.min!))) max: \(Date(timeIntervalSince1970: TimeInterval(self.max!)))")
+                }
             }
-        }
-        
-        if let event = self.edp?.getNextEvent(){
-            let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp))
-            let dateFormatter = DateFormatter()
-            dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
-            self.nextHourLabel.text = dateFormatter.string(from: ds)
-            self.nextNameLabel.text = event.tilte
-        }else{
             
-            self.nextHourLabel.alpha = 0.0
-            self.nextNameLabel.alpha = 0.0
         }
-            self.serviceName.text = self.edp?.getServiceName()
-            if let edp = self.edp{
-        self.min = self.timeToPoint(time: edp.getTimeshiftStartTime())
-        self.max = self.timeToPoint(time:  edp.getTimeshiftStopTime())
-            
-                print("min:\(Date(timeIntervalSince1970: TimeInterval(self.min!))) max: \(Date(timeIntervalSince1970: TimeInterval(self.max!)))")
-        }
-        }
-        
-    }
     }
     
     var min:CGFloat?

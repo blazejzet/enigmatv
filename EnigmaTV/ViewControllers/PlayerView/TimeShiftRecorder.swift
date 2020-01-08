@@ -64,7 +64,7 @@ class TimeShiftRecorder: NSObject {
     var fileurl:URL?
     var service:EpgService?
     var bouquet:EpgBouquet?
-    var events:[EpgEventCache]?
+    var events:[EpgEventCacheProtocol]?
     public func startTimeShift(for url:URL,service:EpgService, inBouquet bouquet:EpgBouquet)-> URL{
         self.service = service;
         self.bouquet = bouquet;
@@ -73,9 +73,9 @@ class TimeShiftRecorder: NSObject {
             self.events = events
         })*/
         
-        DataProvider.def().getEpgForService(sref: service.sref!, begin: Int64(UInt64(Date().timeIntervalSince1970)), end: Int64(UInt64(Date().timeIntervalSince1970+60.0*60.0*5.0))){
+        DataProvider.def().getEpgForService(sref: service.sref!, sname: service.sname!, begin: Int64(UInt64(Date().timeIntervalSince1970)), end: Int64(UInt64(Date().timeIntervalSince1970+60.0*60.0*5.0))){
             events in
-            self.events = events as! [EpgEventCache]
+            self.events = events as! [EpgEventCacheProtocol]
         }
         
         

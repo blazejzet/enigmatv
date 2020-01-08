@@ -52,7 +52,7 @@ class STBAPI: NSObject {
     var username:String!
     var password:String!
     var apitype:String! = "api"
-
+    
     var timers:TimerList?
     var stbStreamURLBase:String {
         return "\(stbProt!)://\(stbAddress!):\(stbPort!)/"
@@ -62,10 +62,10 @@ class STBAPI: NSObject {
             if let stbAddress = stbAddress{
                 if let stbPort2 = stbPort2 {
                     return "\(stbProt)://\(stbAddress):\(stbPort2)"
-
+                    
                 }
                 return "\(stbProt)://\(stbAddress)"
-
+                
             }
         }
         return ""
@@ -77,7 +77,7 @@ class STBAPI: NSObject {
     }
     
     func getDelay() -> Double{
-    
+        
         if let s = UserDefaults.standard.string(forKey: "airplaydelay"){
             if let d  = Double(s){
                 return d
@@ -103,15 +103,15 @@ class STBAPI: NSObject {
         //let adddresses = NetworkHelper.getNetworkIPAddressesStupid2()
         
         if adddresses.count==0{
-         failure("No network found. Please restart Your device.")
+            failure("No network found. Please restart Your device.")
         }
         for address in adddresses {
             for apitype in ["api","web"]{
-            //let helper = DispatchQueue(label: "\(apitype)\(address)")
-            //DispatchQueue.main.async {
+                //let helper = DispatchQueue(label: "\(apitype)\(address)")
+                //DispatchQueue.main.async {
                 
-            DispatchQueue(label: "\(apitype)\(address)").async {
-                print("Checking \(address)")
+                DispatchQueue(label: "\(apitype)\(address)").async {
+                    print("Checking \(address)")
                     do{
                         //Reachability();
                         let url = URL(string: "http://\(address)/\(apitype)/about")!
@@ -124,18 +124,18 @@ class STBAPI: NSObject {
                                     }
                                     print("       \(apitype)::\(address) is ok")
                                     print(tinfo)
-                                    })
-                                }
+                                })
                             }
+                        }
                         
                     }catch{
                         
                     }
                 }
             }
-        
-        }
             
+        }
+        
         
     }
     
@@ -169,7 +169,7 @@ class STBAPI: NSObject {
         //    self.stbPort = uds.string(forKey: "stbTranscodingPort")
         ///    self.useTranscoding=true;
         //}else{
-            self.useTranscoding=false;
+        self.useTranscoding=false;
         //}
         
         self.stbAddress = uds.string(forKey: "stbAddress")
@@ -206,7 +206,7 @@ class STBAPI: NSObject {
                 failure()
             })
         }
-      
+        
     }
     
     override init() {
@@ -226,17 +226,17 @@ class STBAPI: NSObject {
     
     func getServices(cb:@escaping ((Servicelist)->Void), fail:@escaping (()->Void)){
         print("Getting ServiceList");
-//         EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+        //         EPGHelper.getInstance()?.serialPrefetchQueue?.async {
         DispatchQueue(label: "preloading").sync {
             
-        self.getContent(of: self.ca("/\(self.apitype!)/getservices")) { c in
+            self.getContent(of: self.ca("/\(self.apitype!)/getservices")) { c in
                 
                 do{
-                        let sl = try APIDecoder(self.apitype).decode(Servicelist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
-                        //DispatchQueue.main.sync {
-                            cb(sl)
-                        //}
-            
+                    let sl = try APIDecoder(self.apitype).decode(Servicelist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
+                    //DispatchQueue.main.sync {
+                    cb(sl)
+                    //}
+                    
                 }catch{
                     fail()
                 }
@@ -298,7 +298,7 @@ class STBAPI: NSObject {
             
             
             
-         }else{
+        }else{
             do {
                 let c = try String(contentsOf:  address)
                 cb(c);
@@ -327,7 +327,7 @@ class STBAPI: NSObject {
         DispatchQueue.global(qos: .background).async {
             print("Getting MoviesList");
             do{
-               
+                
                 let sl = try APIDecoder(apitype).decode(TunerInfoResponse.self, from: str.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
                 DispatchQueue.main.sync {
                     cb(sl.info!)
@@ -346,8 +346,8 @@ class STBAPI: NSObject {
                 do{
                     print(c)
                     let sl = try APIDecoder(self.apitype).decode(MoviesList.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
-                     DispatchQueue.main.sync {
-                    cb(sl)
+                    DispatchQueue.main.sync {
+                        cb(sl)
                         
                         
                     }
@@ -363,12 +363,12 @@ class STBAPI: NSObject {
     func getTimers(cb:@escaping ((TimerList)->Void)){
         DispatchQueue.global().async {
             
-        
-        print("Getting ServiceList");
+            
+            print("Getting ServiceList");
             self.getContent(of:  self.ca("/\(self.apitype!)/timerlist")) { c in
                 do{
                     
-                
+                    
                     let sl = try APIDecoder(self.apitype).decode(TimerList.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
                     var newtimers = [RecordingTimer]()
                     if let timers = sl.timers{
@@ -411,19 +411,19 @@ class STBAPI: NSObject {
         }
     }
     
-
+    
     
     
     func getServices(for bouquet:Service, cb:@escaping ((Servicelist)->Void),fail:@escaping (()->Void)){
         print("Getting ServiceList for \(bouquet)");
         DispatchQueue(label: "preloading").sync {
             
-        
-       
+            
+            
             let d = (bouquet.servicereference?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
             self.getContent(of:  self.ca("/\(self.apitype!)/getservices?sRef=\(d)")) { c in
                 print(c)
-                 do{
+                do{
                     let sl = try APIDecoder(self.apitype).decode(Servicelist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
                     sl.bouquet=bouquet
                     var row = 0
@@ -434,20 +434,20 @@ class STBAPI: NSObject {
                         }
                     }
                     //DispatchQueue.main.async {
-                        cb(sl)
+                    cb(sl)
                     //}
-                 }catch{
+                }catch{
                     print("Error");
                     fail()
                 }
             }
             
-   
             
-        
-        self.getTimers{ timers in
-            self.timers = timers
-        }
+            
+            
+            self.getTimers{ timers in
+                self.timers = timers
+            }
         }
     }
     
@@ -464,7 +464,7 @@ class STBAPI: NSObject {
                     STBAPI.common()?.getEPG(for:service, from:start, to:end){ (events:[EpgEvent],service:Service) in
                         
                         
-                       
+                        
                         
                         
                         for event in events{
@@ -479,34 +479,21 @@ class STBAPI: NSObject {
         
     }
     
-    func nowPlaying(at sref:String, cb:((EpgEventCache?,EpgEventCache?)->Void)?) {
+    func nowPlaying(at sref:String, sname:String, cb:((EpgEventCacheProtocol?,EpgEventCacheProtocol?)->Void)?) {
         let time = Date().timeIntervalSince1970
-        
-        DataProvider.def().getEpgForService(sref: sref, begin: Int64(time), end: Int64(time)+100){
-                events in
-                    if let nowPlaying = events.first {
-                        if events.count>1{
-                            let nextPlaying = events[1]
-                            if let  cb = cb{
-                                cb(nowPlaying as! EpgEventCache,nextPlaying as! EpgEventCache)
-                            }
-                        }else{
-                            if let  cb = cb{
-                                cb(nowPlaying as! EpgEventCache,nil)
-                            }
-                        }
-                    }
-
-        }
-
-//TODO: FIX TIMING
-        /*self.getEPG(for: service, from: UInt64(time), to: UInt64(time)+1){
-            events, service in
+        print("bbbbbbbbbbb func nowPlaying")
+        DataProvider.def().getEpgForService(sref: sref, sname: sname, begin: Int64(time), end: Int64(time)+10000){
+            events in
             if let nowPlaying = events.first {
+//                print("bbbbbbbb nowPlaying.title \(nowPlaying.tilte)")
+                for index in 0...events.count-1{
+                    print("bbbbbbb events no \(index) = \(events[index].tilte)")
+                }
                 if events.count>1{
                     let nextPlaying = events[1]
+//                     print("bbbbbbbb nextPlaying.title \(nextPlaying.tilte)")
                     if let  cb = cb{
-                        cb(nowPlaying,nextPlaying)
+                        cb(nowPlaying, nextPlaying)
                     }
                 }else{
                     if let  cb = cb{
@@ -515,8 +502,26 @@ class STBAPI: NSObject {
                 }
             }
             
-        }*/
- 
+        }
+        
+        //TODO: FIX TIMING
+        /*self.getEPG(for: service, from: UInt64(time), to: UInt64(time)+1){
+         events, service in
+         if let nowPlaying = events.first {
+         if events.count>1{
+         let nextPlaying = events[1]
+         if let  cb = cb{
+         cb(nowPlaying,nextPlaying)
+         }
+         }else{
+         if let  cb = cb{
+         cb(nowPlaying,nil)
+         }
+         }
+         }
+         
+         }*/
+        
     }
     
     func zap(for service:EpgService){
@@ -527,7 +532,7 @@ class STBAPI: NSObject {
         do{
             print(ad)
             self.getContent(of:  ad) { c in
-                    print (c)
+                print (c)
             }
         }catch{
             
@@ -554,7 +559,7 @@ class STBAPI: NSObject {
                 
             }
         }catch{
-        
+            
         }
     }
     func turnOff(){
@@ -594,9 +599,9 @@ class STBAPI: NSObject {
                 if let key = service.servicereference{
                     if let list = self.cache[key]{
                         //DispatchQueue.main.sync {
-                            if let list = list{
-                                cb(self.filter(events: list, from: start, to: end),service)
-                            }
+                        if let list = list{
+                            cb(self.filter(events: list, from: start, to: end),service)
+                        }
                         //}
                     }else{
                         self.getContent(of:  ad) { c in
@@ -605,9 +610,9 @@ class STBAPI: NSObject {
                                 let sl = try APIDecoder(self.apitype).decode(Eventlist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
                                 self.cache[key]=sl.events
                                 //DispatchQueue.main.sync {
-                                    if let list = sl.events{
-                                        cb(self.filter(events: list, from: start, to: end),service)
-                                    }
+                                if let list = sl.events{
+                                    cb(self.filter(events: list, from: start, to: end),service)
+                                }
                                 //}
                             }catch{
                                 print("Error \(service)");
@@ -623,7 +628,7 @@ class STBAPI: NSObject {
     }
     
     private func filter(events:[EpgEvent],from start:UInt64, to end:UInt64)->[EpgEvent]{
-    
+        
         let events:[EpgEvent] = events.filter({(e:EpgEvent)->Bool in
             var ok =  e.begin_timestamp!+e.duration_sec! >= start && e.begin_timestamp!<end
             if(ok){
@@ -648,102 +653,102 @@ class STBAPI: NSObject {
     
     
     func searchInfoWeb(title:String, duration:Int, eid:Int, cb:((UIImage?,UIImage?,Int,Bool)->Void)?){
-    DispatchQueue.global(qos: .background).async {
-        let b64 = title.toBase64()
-        let fm = FileManager.default
-        let furl = fm.temporaryDirectory.appendingPathComponent("\(b64)_fg")
-        let fbgurl = fm.temporaryDirectory.appendingPathComponent("\(b64)_bg")
-        print(furl.path)
-        var askWeb=true
-        if (fm.fileExists(atPath: furl.path)){
-            do {
-                let d = try Data(contentsOf:furl)
-                let img = UIImage(data:d)
-                var img2: UIImage?
-                do{
-                    let d2 = try Data(contentsOf:fbgurl)
-                    img2 = UIImage(data:d2)
+        DispatchQueue.global(qos: .background).async {
+            let b64 = title.toBase64()
+            let fm = FileManager.default
+            let furl = fm.temporaryDirectory.appendingPathComponent("\(b64)_fg")
+            let fbgurl = fm.temporaryDirectory.appendingPathComponent("\(b64)_bg")
+            print(furl.path)
+            var askWeb=true
+            if (fm.fileExists(atPath: furl.path)){
+                do {
+                    let d = try Data(contentsOf:furl)
+                    let img = UIImage(data:d)
+                    var img2: UIImage?
+                    do{
+                        let d2 = try Data(contentsOf:fbgurl)
+                        img2 = UIImage(data:d2)
+                    }catch{
+                        
+                    }
+                    
+                    print ("Z cache!")
+                    askWeb = false
+                    cb!(img,img2,eid,true)
                 }catch{
                     
                 }
-                
-                print ("Z cache!")
-                askWeb = false
-                cb!(img,img2,eid,true)
-            }catch{
-                
             }
-        }
-        
-        
-        if (askWeb){
-        var t = title.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
-        var query = "";
-        if (duration > 80){
-            query = "https://api.themoviedb.org/3/search/movie?api_key=\(self.tmdbApiKey!)&query=\(t!)"
-        }else{
-            query = "https://api.themoviedb.org/3/search/tv?api_key=\(self.tmdbApiKey!)&query=\(t!)"
-        }
-        
-        self.getContent(of:  URL(string: query)!) { s in
-            do{
-                    print(s);
-            print("TMDB>>>>");
-            var resp = try  JSONDecoder().decode(MovieInfoList.self, from: s.data(using: String.Encoding.utf8)!)
-            var img:UIImage?
-            var img2:UIImage?
-            var isdownloaded = false
-            if let  movies = resp.results{
-                if movies.count>0{
-                    let m = movies[0]
-                    //https://image.tmdb.org/t/p/original/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg
-                    if let addr = m.poster_path {
-                        let faddr = "https://image.tmdb.org/t/p/w300\(addr)"
-                        if let addr = URL(string:faddr) {
-                            let x = try Data(contentsOf:addr)
-                            do{
-                                try  x.write(to: furl)
-                            }catch{
-                                
+            
+            
+            if (askWeb){
+                var t = title.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+                var query = "";
+                if (duration > 80){
+                    query = "https://api.themoviedb.org/3/search/movie?api_key=\(self.tmdbApiKey!)&query=\(t!)"
+                }else{
+                    query = "https://api.themoviedb.org/3/search/tv?api_key=\(self.tmdbApiKey!)&query=\(t!)"
+                }
+                
+                self.getContent(of:  URL(string: query)!) { s in
+                    do{
+                        print(s);
+                        print("TMDB>>>>");
+                        var resp = try  JSONDecoder().decode(MovieInfoList.self, from: s.data(using: String.Encoding.utf8)!)
+                        var img:UIImage?
+                        var img2:UIImage?
+                        var isdownloaded = false
+                        if let  movies = resp.results{
+                            if movies.count>0{
+                                let m = movies[0]
+                                //https://image.tmdb.org/t/p/original/4iJfYYoQzZcONB9hNzg0J0wWyPH.jpg
+                                if let addr = m.poster_path {
+                                    let faddr = "https://image.tmdb.org/t/p/w300\(addr)"
+                                    if let addr = URL(string:faddr) {
+                                        let x = try Data(contentsOf:addr)
+                                        do{
+                                            try  x.write(to: furl)
+                                        }catch{
+                                            
+                                        }
+                                        img = UIImage(data:x)
+                                        isdownloaded=true
+                                    }
+                                }
+                                if let addr = m.backdrop_path {
+                                    let faddr = "https://image.tmdb.org/t/p/original\(addr)"
+                                    if let addr = URL(string:faddr) {
+                                        let x = try Data(contentsOf:addr)
+                                        do{
+                                            try  x.write(to: fbgurl)
+                                        }catch{
+                                            
+                                        }
+                                        img2 = UIImage(data:x)
+                                        
+                                    }
+                                }
                             }
-                            img = UIImage(data:x)
-                            isdownloaded=true
                         }
-                    }
-                    if let addr = m.backdrop_path {
-                        let faddr = "https://image.tmdb.org/t/p/original\(addr)"
-                        if let addr = URL(string:faddr) {
-                            let x = try Data(contentsOf:addr)
-                            do{
-                                try  x.write(to: fbgurl)
-                            }catch{
-                                
-                            }
-                            img2 = UIImage(data:x)
-                            
-                        }
+                        
+                        cb!(img,img2,eid,isdownloaded)
+                    }catch{
+                        cb!(nil,nil,eid,false)
                     }
                 }
             }
-            
-            cb!(img,img2,eid,isdownloaded)
-            }catch{
-                cb!(nil,nil,eid,false)
-            }
-        }
-        }
         }
     }
     
     
     ///\(self.apitype!)/getservices?sRef=
     /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
     
     
     
@@ -756,7 +761,7 @@ class STBAPI: NSObject {
         }
         return nil
     }
-
+    
 }
 
 

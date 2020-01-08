@@ -203,7 +203,8 @@ class EPGListViewController: UIViewController {
     }
     
     func organizeData(for service:EpgService, from start:UInt64, to end:UInt64, isInit:Bool){
-        DataProvider.def().getEpgForService(sref: service.sref!, begin: Int64(start), end: Int64(end)) { epgEvents in
+    
+        DataProvider.def().getEpgForService(sref: service.sref!,sname: service.sname!, begin: Int64(start), end: Int64(end)) { epgEvents in
             DispatchQueue.main.async {
             
                 var list:Array<EPGButton> = Array()

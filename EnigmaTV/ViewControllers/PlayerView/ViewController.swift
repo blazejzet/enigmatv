@@ -209,7 +209,7 @@ class ViewController: UIViewController {
                 
             }
         }
-        
+        print("bbbbbbb func prepare")
         self.dvc = segue.destination
         if let evc = segue.destination as? InfoViewController
         {//jeśli pokazujemy informacje...
@@ -221,7 +221,7 @@ class ViewController: UIViewController {
                 evc.delegate = self
                 evc.edp = dp
             }
-            if let service = self.watching as? Service{
+            if let service = self.watching as? EpgService{
                 // w przypadku programu live
                 if (sv?.timeshift)!{
                     //jeśli timeshift aktywny
@@ -229,15 +229,20 @@ class ViewController: UIViewController {
                     tsdp.mp = sv?.mp
                     tsdp.refresh()
                     evc.delegate=self
+                    print("edp1")
                     evc.edp = tsdp
                 }else{
                     //jeśli tmieshift nieaktywny
                     evc.delegate=self
-                    STBAPI.common()?.nowPlaying(at:service.servicereference!){
+                                        print("bbbbbbbb func prepare timeshift off config")
+                    STBAPI.common()?.nowPlaying(at:service.sref!, sname: service.sname!){
                         nowE, nextE in
+                        print("bbbbbbb nowE \(nowE)")
+                        print("bbbbbbb nextE \(nextE)")
                         let edp = EventDataProvider()
                         edp.event = nowE
                         edp.nextevent = nextE
+                        print("edp2")
                         evc.edp = edp
                     }
                 }

@@ -112,14 +112,14 @@ class DataProvider: NSObject {
             self.context.perform {
                 do{
                     try frc.performFetch()
-                        if let item = frc.fetchedObjects{
-                            
-                            for i in item{
-                                print("removeOldEPG - removed item \(i.tilte)")
-                                self.context.delete(i)
-                            }
+                    if let item = frc.fetchedObjects{
+                        
+                        for i in item{
+                            print("removeOldEPG - removed item \(i.tilte)")
+                            self.context.delete(i)
                         }
-
+                    }
+                    
                     try self.context.save()
                 }
                 catch{
@@ -130,70 +130,61 @@ class DataProvider: NSObject {
     }
     
     
-    func getEpgForService(sref:String,begin:Int64,end:Int64,cb:@escaping ([EpgEventCacheProtocol])->Void){
+    func getEpgForService(sref:String,sname:String,begin:Int64,end:Int64,cb:@escaping ([EpgEventCacheProtocol])->Void){
         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+        print("bbbbbbbbb func getEpgForService")
         self.context.perform {
             
+            
             let frc = self.getFetchedResultsControllerEPG()
-            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %d && end_timestamp < %d", sref,begin,end)
+            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && end_timestamp > %d && end_timestamp < %d", sref,begin,end)
             self.context.perform {
                 do{
                     try frc.performFetch()
                     if let obj = frc.fetchedObjects{
-                                    print("fetched \(frc.fetchedObjects?.count) objects")
+                        print("bbbbb fetched \(frc.fetchedObjects?.count) objects")
                         
                         
-                        var tmpList = [EpgEventCacheFake]()
+                        var tmpList = [EpgEventCacheProtocol]()
                         for item in obj{
                             tmpList.append(EpgEventCacheFake(item: item))
                         }
                         
-                        //Sprawdza czy są jakieś elementy w tablicy
-                        if tmpList.count == 0{
-                            var tmpBegin = begin - (begin % 1800)
-                            while tmpBegin < end{
-//                                if (end - tmpBegin > 1800){
-                                    tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref, id: 3), at: 0)
-                                    
-                                    tmpBegin += 1800
+//                        //Sprawdza czy są jakieś elementy w tablicy
+//                        if tmpList.count == 0{
+//                            var tmpBegin = begin - (begin % 1800)
+//                            while tmpBegin < end{
+//
+//                                tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref, name:sname, id: 3), at: 0)
+//
+//                                tmpBegin += 1800
+//
+//                            }
+//                            //Gdy są jakieś elementy to w tablicy
+//                        } else if( tmpList.count > 0 ){
+//                            //Gdy mamy puste pole przed pierwszym buttonem
+//                            if tmpList.first!.begin_timestamp > begin{
+//                                if tmpList.first!.begin_timestamp - begin > 1800{
+//                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref, name:sname, id: -1), at: 0)
 //                                }else{
-//                                    tmpList.append(EpgEventCacheFake(start: tmpBegin, end: end, ref: sref, id: 3))
-//                                    tmpBegin += end - tmpBegin
+//                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref, name:sname, id: -1), at: 0)
 //                                }
-                            }
-                        //Gdy są jakieś elementy to w tablicy
-                        } else if( tmpList.count > 0 ){
-                            //Gdy mamy puste pole przed pierwszym buttonem
-                            if tmpList.first!.begin_timestamp > begin{
-                                if tmpList.first!.begin_timestamp - begin > 1800{
-                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref, id: -1), at: 0)
-                                }else{
-                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref, id: -1), at: 0)
-                                }
-                            }
-                            //Sprawdzamy czy są puste pola za buttonami
-                            var counter = tmpList.count
-                            for index in 0...counter - 1{
-                                if index < counter - 1{
-                                    if tmpList[index].end_timestamp < tmpList[index + 1].begin_timestamp{
-//                                        if tmpList[index + 1].begin_timestamp - tmpList[index].end_timestamp > 1800{
-//                                            tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index].end_timestamp + 1800, ref: sref), at: index + 1)
-//                                            counter += 1
-//                                        }else if tmpList[index + 1].begin_timestamp - tmpList[index].end_timestamp > 0{
-//                                            tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref), at: index + 1)
-//                                            counter += 1
-//                                        }
-                                        
-                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref, id: 0), at: index + 1)
-                                        counter += 1
-                                    }
-                                }
-                            }
-                        }
+//                            }
+//                            //Sprawdzamy czy są puste pola za buttonami
+//                            var counter = tmpList.count
+//                            for index in 0...counter - 1{
+//                                if index < counter - 1{
+//                                    if tmpList[index].end_timestamp < tmpList[index + 1].begin_timestamp{
+//
+//
+//                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref, name:sname, id: 0), at: index + 1)
+//                                        counter += 1
+//                                    }
+//                                }
+//                            }
+//                        }
                         cb(tmpList)
-//                                   cb(obj)
-                                   
-                               }
+                    }
                 }catch{
                     
                 }
@@ -201,11 +192,11 @@ class DataProvider: NSObject {
             }
             
             
-           
+            
         }
         //}
     }
-
+    
     
     func getLastEpgForService(sref:String,cb:@escaping (Int64)->Void){
         self.context.perform {
@@ -270,29 +261,29 @@ class DataProvider: NSObject {
     
     
     
-//    func getEpgForService(sref:String,begin:Int64,end:Int64){
-//        //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-//        self.context.perform {
-//            
-//            let frc = self.getFetchedResultsControllerEPG()
-//            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
-//            self.context.perform {
-//                do{
-//                    try frc.performFetch()
-//                }catch{
-//                    
-//                }
-//                print("fetched \(frc.fetchedObjects?.count) objects")
-//                if let obj = frc.fetchedObjects{
-//                    for o in obj {
-//                        print(o.tilte)
-//                    }
-//                }
-//
-//            }
-//            //  }
-//        }
-//    }
+    //    func getEpgForService(sref:String,begin:Int64,end:Int64){
+    //        //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+    //        self.context.perform {
+    //
+    //            let frc = self.getFetchedResultsControllerEPG()
+    //            frc.fetchRequest.predicate = NSPredicate(format: "sref = %@ && begin_timestamp > %@ && end_timestamp < %@", sref,begin,end)
+    //            self.context.perform {
+    //                do{
+    //                    try frc.performFetch()
+    //                }catch{
+    //
+    //                }
+    //                print("fetched \(frc.fetchedObjects?.count) objects")
+    //                if let obj = frc.fetchedObjects{
+    //                    for o in obj {
+    //                        print(o.tilte)
+    //                    }
+    //                }
+    //
+    //            }
+    //            //  }
+    //        }
+    //    }
     
     
     func getBouquets( cb:@escaping ([EpgBouquet])->Void){
@@ -302,16 +293,16 @@ class DataProvider: NSObject {
             let frc = self.getFetchedResultsControllerBouquets()
             self.context.perform {
                 do{
-                     try frc.performFetch()
+                    try frc.performFetch()
                     self.fetchedResultsControllerBouquetsDelegate.cb={
+                        
+                        if let obj = frc.fetchedObjects{
+                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                            cb(obj)
+                            //}
+                        }
+                    }
                     
-                                           if let obj = frc.fetchedObjects{
-                                               //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                                               cb(obj)
-                                               //}
-                                           }
-                                       }
-                   
                 }catch{
                     
                 }
@@ -322,23 +313,23 @@ class DataProvider: NSObject {
     }
     
     func getBouquetsSerial( cb:@escaping ([EpgBouquet])->Void){
-       
+        
         self.context.perform{
             let frc = self.getFetchedResultsControllerBouquets()
-                do{
-                    try frc.performFetch()
-                    self.fetchedResultsControllerBouquetsDelegate.cb={
-                                           if let obj = frc.fetchedObjects{
-                                               //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                                               cb(obj)
-                                               //}
-                                           }
-                                       }
-                    
-                }catch{
-                    print ("Context error")
+            do{
+                try frc.performFetch()
+                self.fetchedResultsControllerBouquetsDelegate.cb={
+                    if let obj = frc.fetchedObjects{
+                        //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+                        cb(obj)
+                        //}
+                    }
                 }
-    }
+                
+            }catch{
+                print ("Context error")
+            }
+        }
     }
     
     func removeBouquet(bref:String){
@@ -348,7 +339,7 @@ class DataProvider: NSObject {
             frc.fetchRequest.predicate = NSPredicate(format: "sref = %@", bref)
             self.context.perform {
                 do{
-
+                    
                     try frc.performFetch()
                     self.fetchedResultsControllerBouquetsDelegate.cb={
                         if let obj = frc.fetchedObjects{
@@ -360,7 +351,7 @@ class DataProvider: NSObject {
                     try self.context.save()
                 }
                 catch{
-
+                    
                 }
             }
         }
@@ -436,7 +427,7 @@ class DataProvider: NSObject {
                     try self.context.save()
                 }
                 catch{
-
+                    
                 }
             }
         }
@@ -466,54 +457,54 @@ class DataProvider: NSObject {
         }
     }
     
-//    func getServicesWithSpecificRange(bref:String, start:Int, end:Int,  cb:@escaping (([EpgService])->Void)){
-//        self.context.perform {
-//            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-//            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
-//
-//            let frc = self.getFetchedResultsControllerServices()
-//            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && %d <= row && row <= %d", bref, start, end)
-//            self.context.perform {
-//                do{
-//                    try frc.performFetch()
-//                    self.fetchedResultsControllerServicesDelegate.cb = {
-//                        if let obj = frc.fetchedObjects{
-//                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-//                            cb(obj)
-//                            //}
-//                        }
-//                    }
-//                }catch{
-//
-//                }
-//            }
-//        }
-//    }
-//
-//
-//    func getServiceAt(bref:String, at row:Int,  cb:@escaping (([EpgService])->Void)){
-//        self.context.perform {
-//            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-//            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
-//
-//            let frc = self.getFetchedResultsControllerServices()
-//            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && row = %d", bref, row)
-//            self.context.perform {
-//                do{
-//                    try frc.performFetch()
-//                    self.fetchedResultsControllerServicesDelegate.cb = {
-//                        if let obj = frc.fetchedObjects{
-//                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-//                            cb(obj)
-//                            //}
-//                        }
-//                    }
-//                }catch{
-//
-//                }
-//            }
-//        }
-//    }
+    //    func getServicesWithSpecificRange(bref:String, start:Int, end:Int,  cb:@escaping (([EpgService])->Void)){
+    //        self.context.perform {
+    //            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+    //            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
+    //
+    //            let frc = self.getFetchedResultsControllerServices()
+    //            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && %d <= row && row <= %d", bref, start, end)
+    //            self.context.perform {
+    //                do{
+    //                    try frc.performFetch()
+    //                    self.fetchedResultsControllerServicesDelegate.cb = {
+    //                        if let obj = frc.fetchedObjects{
+    //                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+    //                            cb(obj)
+    //                            //}
+    //                        }
+    //                    }
+    //                }catch{
+    //
+    //                }
+    //            }
+    //        }
+    //    }
+    //
+    //
+    //    func getServiceAt(bref:String, at row:Int,  cb:@escaping (([EpgService])->Void)){
+    //        self.context.perform {
+    //            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+    //            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
+    //
+    //            let frc = self.getFetchedResultsControllerServices()
+    //            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && row = %d", bref, row)
+    //            self.context.perform {
+    //                do{
+    //                    try frc.performFetch()
+    //                    self.fetchedResultsControllerServicesDelegate.cb = {
+    //                        if let obj = frc.fetchedObjects{
+    //                            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+    //                            cb(obj)
+    //                            //}
+    //                        }
+    //                    }
+    //                }catch{
+    //
+    //                }
+    //            }
+    //        }
+    //    }
     
     func getService(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
         self.context.perform {
@@ -563,76 +554,76 @@ class DataProvider: NSObject {
         
     }
     
-   
+    
     
     /*
- */
+     */
     /*
-    func getServices(bref:String,  cb:@escaping (([EpgService])->Void)){
-        self.context.perform {
-            //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-            //        EPGHelper.getInstance()?.asyncDataQueue?.async {
-            
-            let frc = self.fetchedResultsControllerServices
-            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@", bref)
-            self.context.perform {
-                do{
-                    try frc.performFetch()
-                }catch{
-                    
-                }
-            }
-            if let obj = frc.fetchedObjects{
-                //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                cb(obj)
-                //}
-            }
-            
-        }
-        
-    }
-    
-     func getService(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
-         self.context.perform {
-             //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-             
-             let frc = self.fetchedResultsControllerServices
-             frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
-             
-                 do{
-                     try frc.performFetch()
-                 }catch{
-                     
-                 }
-             
-             if let obj = frc.fetchedObjects{
-                 //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-                 cb(obj.first)
-                 
-                 
-             }
-             
-             
-         }
+     func getServices(bref:String,  cb:@escaping (([EpgService])->Void)){
+     self.context.perform {
+     //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+     //        EPGHelper.getInstance()?.asyncDataQueue?.async {
+     
+     let frc = self.fetchedResultsControllerServices
+     frc.fetchRequest.predicate = NSPredicate(format: "bref = %@", bref)
+     self.context.perform {
+     do{
+     try frc.performFetch()
+     }catch{
+     
+     }
+     }
+     if let obj = frc.fetchedObjects{
+     //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+     cb(obj)
+     //}
      }
      
-    func getServiceSerial(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
-                   
-            let frc = self.fetchedResultsControllerServices
-            frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
-        
-                do{
-                    try frc.performFetch()
-                }catch{
-                    
-                }
-            if let obj = frc.fetchedObjects{
-        
-                cb(obj.first)
-        }
-    }
-    
-  */
+     }
+     
+     }
+     
+     func getService(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
+     self.context.perform {
+     //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+     
+     let frc = self.fetchedResultsControllerServices
+     frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
+     
+     do{
+     try frc.performFetch()
+     }catch{
+     
+     }
+     
+     if let obj = frc.fetchedObjects{
+     //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+     cb(obj.first)
+     
+     
+     }
+     
+     
+     }
+     }
+     
+     func getServiceSerial(bref:String,sref:String,  cb:@escaping ((EpgService?)->Void)){
+     
+     let frc = self.fetchedResultsControllerServices
+     frc.fetchRequest.predicate = NSPredicate(format: "bref = %@ && sref = %@", bref,sref)
+     
+     do{
+     try frc.performFetch()
+     }catch{
+     
+     }
+     if let obj = frc.fetchedObjects{
+     
+     cb(obj.first)
+     }
+     }
+     
+     */
     
     
     
@@ -662,15 +653,15 @@ class DataProvider: NSObject {
     private var _fetchedResultsControllerBouquets:NSFetchedResultsController<EpgBouquet>!
     public func getFetchedResultsControllerBouquets() -> NSFetchedResultsController<EpgBouquet>  {
         print("[DATA PROVIDER] New NSFetchedResultsController<EpgBouquet>")
-            let pc = self.persistentContainer.viewContext
+        let pc = self.persistentContainer.viewContext
         
-            let fetchRequest: NSFetchRequest<EpgBouquet> = EpgBouquet.fetchRequest()
-            
-            fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sname", ascending: true)]
-            let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: pc, sectionNameKeyPath: nil, cacheName: nil)
-            fetchedResultsController.delegate = self.fetchedResultsControllerBouquetsDelegate
-            _fetchedResultsControllerBouquets = fetchedResultsController
-            return _fetchedResultsControllerBouquets
+        let fetchRequest: NSFetchRequest<EpgBouquet> = EpgBouquet.fetchRequest()
+        
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key: "sname", ascending: true)]
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: pc, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultsController.delegate = self.fetchedResultsControllerBouquetsDelegate
+        _fetchedResultsControllerBouquets = fetchedResultsController
+        return _fetchedResultsControllerBouquets
     }
     
     
@@ -694,7 +685,7 @@ class DataProvider: NSObject {
     
     
     /*
-    */
+     */
     fileprivate lazy var fetchedResultsControllerServices: NSFetchedResultsController<EpgService> = {
         let pc = self.persistentContainer.viewContext
         do {
@@ -709,7 +700,7 @@ class DataProvider: NSObject {
         
     }()
     /*
-    */
+     */
     
     
     
@@ -732,7 +723,7 @@ class EpgBouquetDelegate : NSObject, NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("[DELEG] Changed EpgBouquetDelegate NSFetchedResultsController Query")
         
-    //cb?()
+        //cb?()
     }
     
     
@@ -751,7 +742,7 @@ class EpgServiceDelegate : NSObject, NSFetchedResultsControllerDelegate {
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         print("[DELEG - s] Changed EpgServiceDelegate NSFetchedResultsController Query")
         
-   // cb?()
+        // cb?()
     }
 }
 
@@ -834,7 +825,7 @@ class EpgEventCacheFake:EpgEventCacheProtocol{
         self.timer = item.timer
     }
     
-    init (start begin_timestamp:Int64, end end_timestamp:Int64, ref sref:String, id: Int){
+    init (start begin_timestamp:Int64, end end_timestamp:Int64, ref sref:String, name sname: String, id: Int){
         self.dudation_sec = (end_timestamp - begin_timestamp)
         self.begin_timestamp = begin_timestamp
         self.end_timestamp = end_timestamp
@@ -843,7 +834,7 @@ class EpgEventCacheFake:EpgEventCacheProtocol{
         self.remaining = 0
         self.shortdesc = "Brak danych"
         self.longdesc = "Brak danych"
-        self.sname = "Brak danych"
+        self.sname = sname
         self.sref = sref
         self.tilte = "Brak danych"
         self.timer = nil

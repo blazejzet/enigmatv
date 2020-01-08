@@ -14,8 +14,8 @@ class TimeshiftDataProvider: InfoViewDataProviderDelegate {
     weak var ts : TimeShiftRecorder?
     weak var mp : VLCMediaPlayer?
     var ct:UInt64?
-    var event:EpgEventCache?
-    var nextevent:EpgEventCache?
+    var event:EpgEventCacheProtocol?
+    var nextevent:EpgEventCacheProtocol?
     
     public func refresh(){
         ts = TimeShiftRecorder.common()
@@ -59,12 +59,12 @@ class TimeshiftDataProvider: InfoViewDataProviderDelegate {
         }
         return ""
     }
-    func getCurrentEvent() -> EpgEventCache? {
+    func getCurrentEvent() -> EpgEventCacheProtocol? {
         //self.refresh()
         return event
     }
     
-    func getNextEvent() -> EpgEventCache? {
+    func getNextEvent() -> EpgEventCacheProtocol? {
         //self.refresh()
         return nextevent
     }

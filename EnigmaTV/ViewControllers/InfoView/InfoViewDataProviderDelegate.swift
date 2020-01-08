@@ -10,8 +10,8 @@ import UIKit
 
 protocol InfoViewDataProviderDelegate {
 
-    func getCurrentEvent()->EpgEventCache?
-    func getNextEvent()->EpgEventCache?
+    func getCurrentEvent()->EpgEventCacheProtocol?
+    func getNextEvent()->EpgEventCacheProtocol?
     func getCurrentTime()->UInt64
     func getRealTime()->UInt64
     func getTimeshiftStartTime()->UInt64
