@@ -72,16 +72,30 @@ class AudioTrackViewController: UIViewController, UITableViewDelegate, UITableVi
 
         if tableView == self.audioTracksTable {
             cell = tableView.dequeueReusableCell(withIdentifier: "audioTracksCell", for: indexPath)
-            let title = sv?.mp?.audioTrackNames[indexPath.row] as! String
+            if let index = sv?.mp?.audioTrackIndexes[indexPath.row], index as! Int32 == sv?.mp?.currentAudioTrackIndex{
+                
+                let title = sv?.mp?.audioTrackNames[indexPath.row] as! String
+                cell!.textLabel!.text = "✔️ \(title)"
+            }else{
+                let title = sv?.mp?.audioTrackNames[indexPath.row] as! String
+                cell!.textLabel!.text = title
+            }
             
-            cell!.textLabel!.text = title
         }
         
         if tableView == self.subtitlesTable {
             cell = tableView.dequeueReusableCell(withIdentifier: "subtitlesCell", for: indexPath)
-            let title = sv?.mp?.videoSubTitlesNames[indexPath.row] as! String
-           
-            cell!.textLabel!.text = title
+            
+            if let index = sv?.mp?.videoSubTitlesIndexes[indexPath.row], index as! Int32 == sv?.mp?.currentVideoSubTitleIndex{
+                    
+                    let title = sv?.mp?.videoSubTitlesNames[indexPath.row] as! String
+                   
+                    cell!.textLabel!.text = "✔️ \(title)"
+            }else{
+                                   let title = sv?.mp?.videoSubTitlesNames[indexPath.row] as! String
+                                  
+                                   cell!.textLabel!.text = title
+            }
         }
         return cell!
     }
@@ -94,18 +108,26 @@ class AudioTrackViewController: UIViewController, UITableViewDelegate, UITableVi
         case audioTracksTable:
             print("AudioTrackVC - audio row clicked = \(indexPath.row)")
             print("AudioTrackVC - audio row index = \(sv?.mp?.audioTrackIndexes[indexPath.row])")
-//            if let index = sv?.mp?.audioTrackIndexes[indexPath.row]{
-//            sv?.mp?.audioChannel = index as! Int32
-//            }
+            if let index = sv?.mp?.audioTrackIndexes[indexPath.row]{
+                sv?.mp?.audioChannel = index as! Int32
+                sv?.mp?.currentAudioTrackIndex  = index as! Int32
+                //sv?.mp?.
+            }
+            
         case subtitlesTable:
             print("AudioTrackVC - subtitles row clicked = \(indexPath.row)")
             print("AudioTrackVC - audio row index = \(sv?.mp?.videoSubTitlesIndexes[indexPath.row])")
-//            sv?.mp?.subt
+            if let index = sv?.mp?.videoSubTitlesIndexes[indexPath.row]{
+                sv?.mp?.currentVideoSubTitleIndex = index as! Int32
+                //sv?.mp?.
+            }
+            
         default:
             break
         }
         
         tableView.deselectRow(at: indexPath, animated: true)
+        tableView.reloadData()
     }
     /*
     // MARK: - Navigation
