@@ -25,7 +25,7 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
     func mediaPlayerStateChanged(_ aNotification: Notification!) {
         print(mp?.media?.metaDictionary)
         print("------------ !!!! META CHANGED")
-                      
+        
         //print(aNotification)
         //print(mp?.state.rawValue)
         if(mp?.state == VLCMediaPlayerState.buffering){

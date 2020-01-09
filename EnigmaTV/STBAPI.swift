@@ -488,6 +488,7 @@ class STBAPI: NSObject {
 //                print("bbbbbbbb nowPlaying.title \(nowPlaying.tilte)")
                 for index in 0...events.count-1{
                     print("bbbbbbb events no \(index) = \(events[index].tilte)")
+                    print("bbbbbbb events no \(index) = \(events[index].begin_timestamp)")
                 }
                 if events.count>1{
                     let nextPlaying = events[1]

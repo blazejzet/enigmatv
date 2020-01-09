@@ -24,14 +24,16 @@ class DataProvider: NSObject {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "EPGData")
+        
         //        DispatchQueue.main.sync {
         container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         })
         //        }
-        
+        container.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy;
         return container
     }()
     
@@ -150,39 +152,41 @@ class DataProvider: NSObject {
                             tmpList.append(EpgEventCacheFake(item: item))
                         }
                         
-//                        //Sprawdza czy są jakieś elementy w tablicy
-//                        if tmpList.count == 0{
-//                            var tmpBegin = begin - (begin % 1800)
-//                            while tmpBegin < end{
-//
-//                                tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref, name:sname, id: 3), at: 0)
-//
-//                                tmpBegin += 1800
-//
-//                            }
-//                            //Gdy są jakieś elementy to w tablicy
-//                        } else if( tmpList.count > 0 ){
-//                            //Gdy mamy puste pole przed pierwszym buttonem
-//                            if tmpList.first!.begin_timestamp > begin{
-//                                if tmpList.first!.begin_timestamp - begin > 1800{
-//                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref, name:sname, id: -1), at: 0)
-//                                }else{
-//                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref, name:sname, id: -1), at: 0)
-//                                }
-//                            }
-//                            //Sprawdzamy czy są puste pola za buttonami
-//                            var counter = tmpList.count
-//                            for index in 0...counter - 1{
-//                                if index < counter - 1{
-//                                    if tmpList[index].end_timestamp < tmpList[index + 1].begin_timestamp{
-//
-//
-//                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref, name:sname, id: 0), at: index + 1)
-//                                        counter += 1
-//                                    }
-//                                }
-//                            }
-//                        }
+                        //Sprawdza czy są jakieś elementy w tablicy
+                        if tmpList.count == 0{
+                            var tmpBegin = begin - (begin % 1800)
+                            while tmpBegin < end{
+
+                                tmpList.insert(EpgEventCacheFake(start: tmpBegin, end: tmpBegin + 1800, ref: sref, name:sname, id: 3), at: 0)
+
+                                tmpBegin += 1800
+                                
+
+                            }
+                            tmpList.reverse()
+                            //Gdy są jakieś elementy to w tablicy
+                        } else if( tmpList.count > 0 ){
+                            //Gdy mamy puste pole przed pierwszym buttonem
+                            if tmpList.first!.begin_timestamp > begin{
+                                if tmpList.first!.begin_timestamp - begin > 1800{
+                                    tmpList.insert(EpgEventCacheFake(start: begin, end: begin + 1800, ref: sref, name:sname, id: -1), at: 0)
+                                }else{
+                                    tmpList.insert(EpgEventCacheFake(start: begin, end: tmpList.first!.begin_timestamp - begin, ref: sref, name:sname, id: -1), at: 0)
+                                }
+                            }
+                            //Sprawdzamy czy są puste pola za buttonami
+                            var counter = tmpList.count
+                            for index in 0...counter - 1{
+                                if index < counter - 1{
+                                    if tmpList[index].end_timestamp < tmpList[index + 1].begin_timestamp{
+
+
+                                        tmpList.insert(EpgEventCacheFake(start: tmpList[index].end_timestamp, end: tmpList[index + 1].begin_timestamp, ref: sref, name:sname, id: 0), at: index + 1)
+                                        counter += 1
+                                    }
+                                }
+                            }
+                        }
                         cb(tmpList)
                     }
                 }catch{

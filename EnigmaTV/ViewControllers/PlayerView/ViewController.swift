@@ -211,6 +211,13 @@ class ViewController: UIViewController {
         }
         print("bbbbbbb func prepare")
         self.dvc = segue.destination
+        
+        if let evc = segue.destination as? AudioTrackViewController{
+            //tutja przekazanie
+            evc.sv = self.sv
+        }
+        
+        
         if let evc = segue.destination as? InfoViewController
         {//jeśli pokazujemy informacje...
             if let movie = self.watching as? Movie{
@@ -237,8 +244,10 @@ class ViewController: UIViewController {
                                         print("bbbbbbbb func prepare timeshift off config")
                     STBAPI.common()?.nowPlaying(at:service.sref!, sname: service.sname!){
                         nowE, nextE in
-                        print("bbbbbbb nowE \(nowE)")
-                        print("bbbbbbb nextE \(nextE)")
+                        print("bbbbbbb nowE \(nowE?.tilte)")
+                        print("bbbbbbb nowE \(nowE?.begin_timestamp)")
+                        print("bbbbbbb nextE \(nextE?.tilte)")
+                        print("bbbbbbb nextE \(nextE?.begin_timestamp)")
                         let edp = EventDataProvider()
                         edp.event = nowE
                         edp.nextevent = nextE

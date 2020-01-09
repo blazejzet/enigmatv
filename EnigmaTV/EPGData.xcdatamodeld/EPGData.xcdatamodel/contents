@@ -1,37 +1,42 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.99" systemVersion="18D109" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="EpgBouquet" representedClassName="EpgBouquet" syncable="YES" codeGenerationType="class">
-        <attribute name="sname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sref" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="sname" optional="YES" attributeType="String"/>
+        <attribute name="sref" optional="YES" attributeType="String"/>
     </entity>
     <entity name="EPGDataFetchInfo" representedClassName="EPGDataFetchInfo" syncable="YES" codeGenerationType="class">
-        <attribute name="lasttimestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="serviceid" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lasttimestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="serviceid" optional="YES" attributeType="String"/>
     </entity>
     <entity name="EpgEventCache" representedClassName="EpgEventCache" syncable="YES" codeGenerationType="class">
-        <attribute name="begin_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="dudation_sec" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="end_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="longdesc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="now_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="remaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="shortdesc" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sref" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="tilte" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timer" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="begin_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="dudation_sec" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="end_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="longdesc" optional="YES" attributeType="String"/>
+        <attribute name="now_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="remaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="shortdesc" optional="YES" attributeType="String"/>
+        <attribute name="sname" optional="YES" attributeType="String"/>
+        <attribute name="sref" optional="YES" attributeType="String"/>
+        <attribute name="tilte" optional="YES" attributeType="String"/>
+        <attribute name="timer" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <entity name="EpgService" representedClassName="EpgService" syncable="YES" codeGenerationType="class">
-        <attribute name="bref" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="row" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="sname" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="sref" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bref" optional="YES" attributeType="String"/>
+        <attribute name="row" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sname" optional="YES" attributeType="String"/>
+        <attribute name="sref" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="EPGDataFetchInfo" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="EpgEventCache" positionX="-63" positionY="0" width="128" height="225"/>
-        <element name="EpgService" positionX="-63" positionY="63" width="128" height="105"/>
         <element name="EpgBouquet" positionX="-54" positionY="72" width="128" height="75"/>
+        <element name="EPGDataFetchInfo" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="EpgEventCache" positionX="-63" positionY="0" width="128" height="223"/>
+        <element name="EpgService" positionX="-63" positionY="63" width="128" height="105"/>
     </elements>
 </model>

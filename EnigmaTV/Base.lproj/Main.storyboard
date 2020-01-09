@@ -1241,10 +1241,10 @@
             </objects>
             <point key="canvasLocation" x="6602" y="-4233"/>
         </scene>
-        <!--View Controller-->
+        <!--Audio Track View Controller-->
         <scene sceneID="vhi-gL-x6N">
             <objects>
-                <viewController id="rZ5-zc-tQz" sceneMemberID="viewController">
+                <viewController id="rZ5-zc-tQz" customClass="AudioTrackViewController" customModule="EnigmaTV" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="TuV-J3-HHg"/>
                         <viewControllerLayoutGuide type="bottom" id="hik-Jz-k1J"/>
@@ -1320,6 +1320,14 @@
                                             <rect key="frame" x="556" y="134" width="440" height="342"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <prototypes>
+                                                <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="6Dj-6d-3dQ">
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6Dj-6d-3dQ" id="TDj-fx-SWW">
+                                                        <autoresizingMask key="autoresizingMask"/>
+                                                    </tableViewCellContentView>
+                                                </tableViewCell>
+                                            </prototypes>
                                         </tableView>
                                         <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="vMe-Es-i1C">
                                             <rect key="frame" x="1038" y="134" width="440" height="342"/>
@@ -1333,6 +1341,10 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ttw-ed-OVj"/>
                     </view>
+                    <connections>
+                        <outlet property="audioTracksTable" destination="t0a-Ta-fSr" id="qq4-8b-MbZ"/>
+                        <outlet property="subtitlesTable" destination="lpv-TE-aUx" id="gMT-f9-gDb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0es-cu-yPD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
