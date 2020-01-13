@@ -42,10 +42,14 @@ class MovieInfoViewController: UIViewController {
     @IBAction func PlayPressed(_ sender: Any) {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "moviePlayed"), object: movie)
+        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//        self.dismissAllVC()
     }
     @IBAction func ContinuePressed(_ sender: Any) {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "movieContinue"), object: movie)
+           self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+//         self.dismissAllVC()
     }
     
     
