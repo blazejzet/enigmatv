@@ -26,6 +26,9 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var tvView: UIView!
     
+    @IBOutlet weak var channelArrowLeft: UIButton!
+    @IBOutlet weak var channelArrowRight: UIButton!
+    
     var dvc : UIViewController?
     
     @objc func dismissVC(notification:NSNotification){
@@ -102,6 +105,7 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismissVCCont(notification:)), name: NSNotification.Name(rawValue: "movieContinue"), object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPlayed(notification:)), name: NSNotification.Name(rawValue: "bouquetPlayed"), object: nil);
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.watch_alternative(_:)), name: NSNotification.Name(rawValue: "setMainPlayer"), object: nil)
         
         
         
@@ -212,6 +216,20 @@ class ViewController: UIViewController {
         print("bbbbbbb func prepare")
         self.dvc = segue.destination
         
+        if let evc = segue.destination as? ChannelSwipeViewController{
+            switch segue.identifier {
+            case "channelSwipeLeft":
+                evc.initialDirection = .Left
+            case "channelSwipeRight":
+                evc.initialDirection = .Right
+            default:
+                break
+            }
+            evc.service = self.watching as? EpgService
+            evc.bouquet = self.bouquet
+            
+        }
+        
         if let evc = segue.destination as? AudioTrackViewController{
             //tutja przekazanie
             evc.sv = self.sv
@@ -236,22 +254,16 @@ class ViewController: UIViewController {
                     tsdp.mp = sv?.mp
                     tsdp.refresh()
                     evc.delegate=self
-                    print("edp1")
                     evc.edp = tsdp
                 }else{
                     //jeśli tmieshift nieaktywny
                     evc.delegate=self
-                                        print("bbbbbbbb func prepare timeshift off config")
                     STBAPI.common()?.nowPlaying(at:service.sref!, sname: service.sname!){
                         nowE, nextE in
-                        print("bbbbbbb nowE \(nowE?.tilte)")
-                        print("bbbbbbb nowE \(nowE?.begin_timestamp)")
-                        print("bbbbbbb nextE \(nextE?.tilte)")
-                        print("bbbbbbb nextE \(nextE?.begin_timestamp)")
+                        
                         let edp = EventDataProvider()
                         edp.event = nowE
                         edp.nextevent = nextE
-                        print("edp2")
                         evc.edp = edp
                     }
                 }
@@ -277,6 +289,32 @@ class ViewController: UIViewController {
     var bouquet:EpgBouquet?
     var services:[EpgService]?
    // var subservices:Servicelist?
+    
+    
+    @objc func watch_alternative(_ notification: Notification){
+//        _ service:EpgService, inBouquet bouquet:EpgBouquet, direction:Int = 0
+        let service = notification.userInfo?["service"] as! EpgService
+        let bouquet = notification.userInfo?["bouquet"] as! EpgBouquet
+        let direction = notification.userInfo?["direction"] as! Int
+        var dir:Direction
+        
+        switch direction {
+        case (-100)...(-1):
+            dir = .Left
+        case 1...100:
+            dir = .Right
+        default:
+            dir = .Center
+        }
+        
+        self.switchChannel(dir)
+         self.bouquet = bouquet
+         self.watching = service
+       
+             sv?.play(service, inBouquet:bouquet)
+             self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
+      
+    }
     
     func watch(_ service:EpgService, inBouquet bouquet:EpgBouquet, dir:Direction = .Center){
         self.switchChannel(dir)
@@ -349,40 +387,65 @@ class ViewController: UIViewController {
        }
        
     
-    @IBAction func tapRight(_ sender: Any) {
-        if let service = watching as? Service{
-            if var row =  service.row{
-                if let list = services{
-                    row = row + 1
-                    if (row>=list.count){
-                        row=0
-                    }
-                    let newservice = list[row]
-                    print("switching to \(row)")
-                    
-                    self.watch(newservice, inBouquet: self.bouquet!, dir: .Left)
-                }
-            }
+    
+    @IBAction func swipeRight(_ sender: Any){
+        print("gesture: swipe right")
+        if let _ = self.watching as? EpgService{
+            performSegue(withIdentifier: "channelSwipeRight", sender: nil)
         }
-        print("tap right")
+//        performSegue(withIdentifier: "swipeChannel", sender: nil)
+        
+    }
+    
+    @IBAction func swipeLeft(_ sender: Any){
+        print("gesture: swipe left")
+        if let _ = self.watching as? EpgService{
+            performSegue(withIdentifier: "channelSwipeLeft", sender: nil)
+        }
+    }
+    
+    @IBAction func tapRight(_ sender: Any) {
+        print("gesture: tap right")
+        if let _ = self.watching as? EpgService{
+            performSegue(withIdentifier: "channelSwipeRight", sender: nil)
+        }
+//        if let service = watching as? EpgService{
+//            var row =  service.row
+//            print("tapRight \(services?.count)")
+//                if let list = services{
+//                    row = row + 1
+//                    if (row>=list.count){
+//                        row=0
+//                    }
+//                    let newservice = list[Int(row)]
+//                    print("switching to \(row)")
+//
+//                    self.watch(newservice, inBouquet: self.bouquet!, dir: .Left)
+//                }
+//
+//        }
+//        print("gesture: tap right")
         
     }
     @IBAction func tapLeft(_ sender: Any) {
-        print("tap left")
-        if let service = watching as? Service{
-            if var row =  service.row{
-                if let list = services{
-                    row = row - 1
-                    if (row<0){
-                        row=list.count-1
-                    }
-                    print("switching to \(row)")
-                    let newservice = list[row]
-                    
-                    self.watch(newservice, inBouquet: self.bouquet!, dir: .Right)
-                }
-            }
+        print("gesture: tap left")
+        if let _ = self.watching as? EpgService{
+            performSegue(withIdentifier: "channelSwipeLeft", sender: nil)
         }
+//        if let service = watching as? Service{
+//            if var row =  service.row{
+//                if let list = services{
+//                    row = row - 1
+//                    if (row<0){
+//                        row=list.count-1
+//                    }
+//                    print("switching to \(row)")
+//                    let newservice = list[row]
+//
+//                    self.watch(newservice, inBouquet: self.bouquet!, dir: .Right)
+//                }
+//            }
+//        }
     }
     
     func switchChannel(_ dir:Direction){

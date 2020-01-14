@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A9873347A57ED07C7D67C3DE /* Pods_EnigmaTV.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 040B6BFBE3152560E86EDE67 /* Pods_EnigmaTV.framework */; };
 		AF0B1FD123C760EA00D46075 /* AudioTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0B1FD023C760EA00D46075 /* AudioTrackViewController.swift */; };
+		AF1394B123CCBBCA006709F8 /* ChannelSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1394B023CCBBCA006709F8 /* ChannelSwipeViewController.swift */; };
 		E00C213020B21E0400CF37E7 /* MVCProt.swift in Sources */ = {isa = PBXBuildFile; fileRef = E00C212F20B21E0400CF37E7 /* MVCProt.swift */; };
 		E01874CF208A7E7D00D3A0CA /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01874CE208A7E7D00D3A0CA /* CloudKit.framework */; };
 		E01D93F9200D1F1E00A962E6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01D93F8200D1F1E00A962E6 /* AppDelegate.swift */; };
@@ -2681,6 +2682,7 @@
 		653751C7FE608A03F1C392E4 /* Pods-EnigmaTV.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnigmaTV.release.xcconfig"; path = "Pods/Target Support Files/Pods-EnigmaTV/Pods-EnigmaTV.release.xcconfig"; sourceTree = "<group>"; };
 		AB45BAC20788FAD51005DD3F /* Pods-EnigmaTV.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-EnigmaTV.debug.xcconfig"; path = "Pods/Target Support Files/Pods-EnigmaTV/Pods-EnigmaTV.debug.xcconfig"; sourceTree = "<group>"; };
 		AF0B1FD023C760EA00D46075 /* AudioTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioTrackViewController.swift; sourceTree = "<group>"; };
+		AF1394B023CCBBCA006709F8 /* ChannelSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelSwipeViewController.swift; sourceTree = "<group>"; };
 		E00C212F20B21E0400CF37E7 /* MVCProt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCProt.swift; sourceTree = "<group>"; };
 		E01874CD208A7E6F00D3A0CA /* EnigmaTV.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EnigmaTV.entitlements; sourceTree = "<group>"; };
 		E01874CE208A7E7D00D3A0CA /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -8100,6 +8102,7 @@
 				E08B4A7C201760C80087C81E /* Connection.swift */,
 				E06D9D41207F8C0E00C4E824 /* NetworkHelper.swift */,
 				AF0B1FD023C760EA00D46075 /* AudioTrackViewController.swift */,
+				AF1394B023CCBBCA006709F8 /* ChannelSwipeViewController.swift */,
 			);
 			path = PlayerView;
 			sourceTree = "<group>";
@@ -10933,6 +10936,7 @@
 				E0A8082C2284C8320035A374 /* EPGHelper.swift in Sources */,
 				E06D9D42207F8C0E00C4E824 /* NetworkHelper.swift in Sources */,
 				E01D9411200D21C300A962E6 /* Servicelist.swift in Sources */,
+				AF1394B123CCBBCA006709F8 /* ChannelSwipeViewController.swift in Sources */,
 				E01D93FB200D1F1E00A962E6 /* ViewController.swift in Sources */,
 				E03918E7209068E20056A7A8 /* TimerCell.swift in Sources */,
 				AF0B1FD123C760EA00D46075 /* AudioTrackViewController.swift in Sources */,

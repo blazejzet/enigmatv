@@ -77,6 +77,8 @@
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="Zwv-IR-xIG" appends="YES" id="DSV-JW-aB4"/>
                                     <outletCollection property="gestureRecognizers" destination="oPo-zn-ls4" appends="YES" id="zyD-a5-iWS"/>
+                                    <outletCollection property="gestureRecognizers" destination="Pp5-aH-zjV" appends="YES" id="WYM-ol-eEV"/>
+                                    <outletCollection property="gestureRecognizers" destination="K0v-q4-TM9" appends="YES" id="I7N-jA-3kB"/>
                                 </connections>
                             </view>
                         </subviews>
@@ -99,6 +101,8 @@
                         <segue destination="hly-5H-1sV" kind="presentation" identifier="showsettings" modalPresentationStyle="overFullScreen" id="CMo-bO-teS"/>
                         <segue destination="n8S-Ta-ntZ" kind="presentation" identifier="epg" modalPresentationStyle="blurOverFullScreen" modalTransitionStyle="crossDissolve" id="RAV-x1-rAN"/>
                         <segue destination="rZ5-zc-tQz" kind="presentation" identifier="chooser" modalPresentationStyle="overFullScreen" id="7gs-YO-dIW"/>
+                        <segue destination="Ljw-1a-cq5" kind="presentation" identifier="channelSwipeLeft" modalPresentationStyle="overFullScreen" id="8uk-QU-pZH"/>
+                        <segue destination="Ljw-1a-cq5" kind="presentation" identifier="channelSwipeRight" modalPresentationStyle="overFullScreen" id="4JE-gy-mgf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -142,6 +146,16 @@
                         <action selector="playPausePressed:" destination="BYZ-38-t0r" id="XHX-MZ-xsg"/>
                     </connections>
                 </tapGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="Pp5-aH-zjV">
+                    <connections>
+                        <action selector="swipeRight:" destination="BYZ-38-t0r" id="I5g-LO-y9M"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="K0v-q4-TM9">
+                    <connections>
+                        <action selector="swipeLeft:" destination="BYZ-38-t0r" id="BoK-jB-0JJ"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="91" y="925"/>
         </scene>
@@ -409,6 +423,78 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pv6-5g-fTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3626" y="1323"/>
+        </scene>
+        <!--Channel Swipe View Controller-->
+        <scene sceneID="tmE-LI-flI">
+            <objects>
+                <viewController storyboardIdentifier="channelSwipeVC" modalPresentationStyle="overFullScreen" id="Ljw-1a-cq5" customClass="ChannelSwipeViewController" customModule="EnigmaTV" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dgK-Bx-GF7"/>
+                        <viewControllerLayoutGuide type="bottom" id="enk-hZ-Pns"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7aw-mT-3IW">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Amt-n5-g4G">
+                                <rect key="frame" x="1710" y="488" width="104" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="&gt;"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="rightArrowClicked:" destination="Ljw-1a-cq5" eventType="primaryActionTriggered" id="olg-XJ-jAD"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FuF-7P-Nic">
+                                <rect key="frame" x="1442" y="476" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N8c-oa-4KY">
+                                <rect key="frame" x="238" y="476" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="54F-Z1-nr9">
+                                <rect key="frame" x="106" y="488" width="104" height="104"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="&lt;"/>
+                                <connections>
+                                    <action selector="leftArrowClicked:" destination="Ljw-1a-cq5" eventType="primaryActionTriggered" id="zWl-4p-vRW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <gestureRecognizers/>
+                        <viewLayoutGuide key="safeArea" id="Utj-Yk-elH"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="t5m-8E-tUZ" appends="YES" id="SW5-2V-5aV"/>
+                            <outletCollection property="gestureRecognizers" destination="teb-Cl-yOg" appends="YES" id="e6O-4c-mFk"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="arrowLeft" destination="54F-Z1-nr9" id="cpp-UT-G0C"/>
+                        <outlet property="arrowRight" destination="Amt-n5-g4G" id="CWh-Ba-xRW"/>
+                        <outlet property="piconLeft" destination="N8c-oa-4KY" id="3rm-C2-GF2"/>
+                        <outlet property="piconRight" destination="FuF-7P-Nic" id="FSy-q2-eVY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pOq-M1-S4y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="t5m-8E-tUZ" userLabel="Right Swipe Gesture Recognizer">
+                    <connections>
+                        <action selector="swipeRight:" destination="Ljw-1a-cq5" id="C0Y-tv-B3w"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="left" id="teb-Cl-yOg" userLabel="Left Swipe Gesture Recognizer">
+                    <connections>
+                        <action selector="swipeLeft:" destination="Ljw-1a-cq5" id="odI-cQ-nyq"/>
+                    </connections>
+                </swipeGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="2387" y="3166"/>
         </scene>
         <!--Help View Controller-->
         <scene sceneID="5Mq-0V-kzU">
@@ -1570,8 +1656,9 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="VSb-OZ-QAv"/>
-        <segue reference="7gs-YO-dIW"/>
+        <segue reference="nTV-3V-fGn"/>
         <segue reference="AFH-Y7-mGJ"/>
+        <segue reference="4JE-gy-mgf"/>
         <segue reference="CMo-bO-teS"/>
     </inferredMetricsTieBreakers>
 </document>
