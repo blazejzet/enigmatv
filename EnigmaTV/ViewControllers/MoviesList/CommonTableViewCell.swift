@@ -12,6 +12,7 @@ class CommonTableViewCell: UITableViewCell {
 
     
     var backdrop:UIImage?
+    var poster:UIImage?
     var picon:UIImage?
     
     
@@ -52,6 +53,10 @@ class CommonTableViewCell: UITableViewCell {
     }
     
     func conf(){
+        self.backdrop = UIImage(named:"poster_placeholder");
+        self.poster = UIImage(named:"poster_placeholder");
+        //self.backdrop = UIImage(named:"poster_placeholder");
+        
      self.lco.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
      self.setInidicatorAlpha(alpha: 1.0)
         self.lco.layer.cornerRadius = self.frame.size.height/2
@@ -71,8 +76,10 @@ class CommonTableViewCell: UITableViewCell {
                 pv.lco.backgroundColor = #colorLiteral(red: 0.01176470588, green: 0.6392156863, blue: 1, alpha: 1)
                 self.set(color: UIColor.white, inView: pv)
                 if let bck = pv.backdrop{
-                    self.f?(bck,picon)
+                    self.f?(bck,picon,pv.poster)
                     
+                }else{
+                    self.f?(UIImage(named:"poster_placeholder"),picon,nil)
                 }
             }
         }
@@ -153,8 +160,8 @@ class CommonTableViewCell: UITableViewCell {
     
     
     
-    var f:((UIImage?,UIImage?)->Void)?
-    func backdropcb(f:@escaping ((UIImage?,UIImage?)->Void)){
+    var f:((UIImage?,UIImage?,UIImage?)->Void)?
+    func backdropcb(f:@escaping ((UIImage?,UIImage?,UIImage?)->Void)){
         self.f=f
     }
     //var deletingAvailable = true
@@ -166,10 +173,10 @@ class CommonTableViewCell: UITableViewCell {
             DispatchQueue.main.sync {
                 if (ok ){
                     
-                    //self.bg.image = image
+                    self.poster = image
                     self.backdrop = backdrop
                     if self.isSelected{
-                        self.f!(self.backdrop,self.picon)
+                        self.f!(self.backdrop,self.picon,self.poster)
                     }
                     //self.posterSmall.image=image
                     UIView.animate(withDuration: 0.3){

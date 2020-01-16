@@ -14,6 +14,7 @@ class MoviesViewController: UIViewController, UITableViewDelegate,UITableViewDat
     @IBOutlet weak var service: UIImageView!
     
     @IBOutlet weak var backdrop: UIImageView!
+    @IBOutlet weak var POSTER: UIImageView!
     
     
     var delegate:EPGViewController?
@@ -66,14 +67,19 @@ class MoviesViewController: UIViewController, UITableViewDelegate,UITableViewDat
         
         if indexPath.row >= lim{
             let tc = tableView.dequeueReusableCell(withIdentifier: "mcell") as? MovieCell
+            tc?.poster = UIImage(named: "poster_placeholder")
+            tc?.backdrop = UIImage(named: "poster_placeholder")
+            tc?.del = self
             if let movies =  mlist?.movies{
                 let movie = movies[indexPath.row-lim]
                 tc?.configure(serv: movie!,ck:self.findCK(movie:movie!))
-                tc?.del = self
+                //tc?.del = self
             }
-            tc?.f = { bck,log in
+            tc?.f = { bck,log,poster in
                 self.backdrop.image = bck
                 self.service.image = log
+                self.POSTER.image = poster
+                
             }
             return tc!
         }else{
@@ -83,9 +89,10 @@ class MoviesViewController: UIViewController, UITableViewDelegate,UITableViewDat
                 tc?.configure(serv: timer)
                 tc?.del = self
             }
-            tc?.f = { bck,log in
+            tc?.f = { bck,log,poster in
                 self.backdrop.image = bck
                 self.service.image = log
+                self.POSTER.image = poster
             }
             return tc!
         }

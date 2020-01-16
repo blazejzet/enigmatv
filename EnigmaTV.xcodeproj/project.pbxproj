@@ -2656,6 +2656,7 @@
 		E08B4A7D201760C80087C81E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B4A7C201760C80087C81E /* Connection.swift */; };
 		E08B4A7F2017EF550087C81E /* URLConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B4A7E2017EF550087C81E /* URLConnection.swift */; };
 		E09128182090A8560042D63C /* CommonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E09128172090A8560042D63C /* CommonTableViewCell.swift */; };
+		E096BBCA23D10B0500B8C263 /* UIButtonRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = E096BBC923D10B0500B8C263 /* UIButtonRounded.swift */; };
 		E0A7ED6E20127BA8005CE24B /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A7ED6D20127BA8005CE24B /* InfoView.swift */; };
 		E0A7ED70201283D6005CE24B /* TimeLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A7ED6F201283D6005CE24B /* TimeLabel.swift */; };
 		E0A7ED732012A303005CE24B /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A7ED722012A303005CE24B /* MovieInfo.swift */; };
@@ -5333,6 +5334,7 @@
 		E08B4A7C201760C80087C81E /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		E08B4A7E2017EF550087C81E /* URLConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConnection.swift; sourceTree = "<group>"; };
 		E09128172090A8560042D63C /* CommonTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonTableViewCell.swift; sourceTree = "<group>"; };
+		E096BBC923D10B0500B8C263 /* UIButtonRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonRounded.swift; sourceTree = "<group>"; };
 		E0A7ED6D20127BA8005CE24B /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		E0A7ED6F201283D6005CE24B /* TimeLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLabel.swift; sourceTree = "<group>"; };
 		E0A7ED722012A303005CE24B /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
@@ -5413,6 +5415,7 @@
 				E01D9419200D6AFC00A962E6 /* TVVLCKit-Bridging-Header.h */,
 				E0A8082F2284CEDB0035A374 /* EPGData.xcdatamodeld */,
 				E0B890FB23834F23008722B6 /* UIVisualEffectExtension.swift */,
+				E096BBC923D10B0500B8C263 /* UIButtonRounded.swift */,
 			);
 			path = EnigmaTV;
 			sourceTree = "<group>";
@@ -10938,6 +10941,7 @@
 				E01D9411200D21C300A962E6 /* Servicelist.swift in Sources */,
 				AF1394B123CCBBCA006709F8 /* ChannelSwipeViewController.swift in Sources */,
 				E01D93FB200D1F1E00A962E6 /* ViewController.swift in Sources */,
+				E096BBCA23D10B0500B8C263 /* UIButtonRounded.swift in Sources */,
 				E03918E7209068E20056A7A8 /* TimerCell.swift in Sources */,
 				AF0B1FD123C760EA00D46075 /* AudioTrackViewController.swift in Sources */,
 				E0B890FC23834F23008722B6 /* UIVisualEffectExtension.swift in Sources */,

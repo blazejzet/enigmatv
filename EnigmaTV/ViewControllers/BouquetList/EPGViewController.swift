@@ -85,8 +85,8 @@ UICollectionViewDelegate, UICollectionViewDataSource{
             }
         }
         
-        let AirPlayButton = AVRoutePickerView(frame: CGRect(x: 757, y: 933, width: 79, height: 79))
-        view.addSubview(AirPlayButton)
+        //let AirPlayButton = AVRoutePickerView(frame: CGRect(x: 757, y: 933, width: 79, height: 79))
+        //view.addSubview(AirPlayButton)
         
         // Do any additional setup after loading the view.
     }

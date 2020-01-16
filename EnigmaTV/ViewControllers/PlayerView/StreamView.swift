@@ -30,8 +30,9 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
         //print(mp?.state.rawValue)
         if(mp?.state == VLCMediaPlayerState.buffering){
             
-            self.perform(#selector(StreamView.showMe), with: nil, afterDelay: 1.5)
+            self.perform(#selector(StreamView.showMe), with: nil, afterDelay: 2.0)
         }
+        
      }
     
     @objc func showMe(){

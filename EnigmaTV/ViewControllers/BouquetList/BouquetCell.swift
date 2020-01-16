@@ -21,7 +21,7 @@ class BouquetCell: UITableViewCell {
    
     func configure(bouquet:EpgBouquet){
         self.bouquet = bouquet
-        self.textLabel?.text = bouquet.sname;
+        self.textLabel?.text = bouquet.sname?.uppercased();
 //        self.textLabel.setColor
         self.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
 //        if let rowHeight = delegate?.tableView.estimatedRowHeight{
