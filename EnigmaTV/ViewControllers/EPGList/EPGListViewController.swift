@@ -224,7 +224,7 @@ class EPGListViewController: UIViewController {
     func show(_ events:[EpgEventCacheProtocol], for service:EpgService, activeRow arow:Int, onList list: inout Array<EPGButton>, atBeginning begin:Bool, isInit:Bool){
         for event in events{
             
-            var tmpList2 = list.filter( { $0.event?.tilte == "Brak danych" } )
+            var tmpList2 = list.filter( { $0.event?.tilte == "NO DATA" } )
             
             tmpList2 = tmpList2.filter( {  ( UInt64(visibleBeginTime + 9000) < ($0.event?.begin_timestamp)! ||
                                                 UInt64(visibleBeginTime - 9000) > ($0.event?.begin_timestamp)! )} )
@@ -237,7 +237,7 @@ class EPGListViewController: UIViewController {
                 }
             }
             
-            var tmpList1 = list.filter( { (event.tilte != "Brak danych" && $0.event?.tilte == "Brak danych") && ( event.begin_timestamp == $0.event?.begin_timestamp ||  event.end_timestamp == $0.event?.end_timestamp) } )
+            var tmpList1 = list.filter( { (event.tilte != "NO DATA" && $0.event?.tilte == "NO DATA") && ( event.begin_timestamp == $0.event?.begin_timestamp ||  event.end_timestamp == $0.event?.end_timestamp) } )
             
             
             for item in tmpList1{

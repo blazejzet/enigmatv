@@ -836,11 +836,11 @@ class EpgEventCacheFake:EpgEventCacheProtocol{
         self.id = 0
         self.now_timestamp = begin_timestamp
         self.remaining = 0
-        self.shortdesc = "Brak danych"
-        self.longdesc = "Brak danych"
+        self.shortdesc = "NO DATA"
+        self.longdesc = "NO DATA"
         self.sname = sname
         self.sref = sref
-        self.tilte = "Brak danych"
+        self.tilte = "NO DATA"
         self.timer = nil
     }
     
