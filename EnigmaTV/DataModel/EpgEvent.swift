@@ -49,7 +49,12 @@ class EpgEvent:NSObject ,Translateable{
     
     
     func getProgress()->Float{
-        return Float (Double( now_timestamp! - begin_timestamp!) / Double (duration_sec!))
+        print (self)
+        if let n = now_timestamp, let b = begin_timestamp, let d = duration_sec, d > 0{
+            return  Float( n - b ) / Float (d)
+        }else{
+            return 0
+        }
     }
     
     

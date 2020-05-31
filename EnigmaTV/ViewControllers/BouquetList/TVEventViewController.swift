@@ -10,8 +10,31 @@ import UIKit
 
 class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        
+        if let events = events{
+            return 2 + events.count
+        }
+        return 1
     }
+    
+    
+    var bouquet:Service?
+    var service:Service?
+    var event:EpgEvent?
+    
+    @IBOutlet weak var servicename: UILabel!
+    
+    @IBOutlet weak var hour: UILabel!
+    
+    @IBOutlet weak var eventposter: UIImageView!
+    
+    @IBOutlet weak var eventtitle: UILabel!
+    
+    @IBOutlet weak var backdrop: UIImageView!
+    @IBOutlet weak var servicelogo: UIImageView!
+    
+    @IBOutlet weak var eventdescription: UILabel!
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
@@ -26,11 +49,118 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         
         
-        var d = tableView.dequeueReusableCell(withIdentifier: "nextcell")
-        return d!;
+        var d = tableView.dequeueReusableCell(withIdentifier: "nextcell") as! NextTableViewCell
+      
+        if let event = self.events?[indexPath.row - 2] {
+            d.setup(e: event)
+        }
+        return d;
 
         
     }
+    
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        context.nextFocusedItem
+    }
+    
+    var events:[EpgEvent]?
+    var pindexPath = IndexPath(row: -1, section: 0);
+    func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        guard let indexPath = context.nextFocusedIndexPath else {return}
+        if pindexPath.row == indexPath.row {return}
+        pindexPath.row = indexPath.row
+        self.backdrop.image=nil
+        self.eventtitle.text = ""
+       self.eventdescription.text = ""
+       self.hour.text = ""
+        self.eventposter.image = nil
+   
+        var event:EpgEvent?
+        if let row = tableView.cellForRow(at: indexPath) as? NowTableViewCell{
+            event = row.event
+        }
+        if let row = tableView.cellForRow(at: indexPath) as? NextTableViewCell{
+            event = row.event
+        }
+        if let event = event{
+            self.event = event
+            self.eventtitle.text = event.title
+            self.eventdescription.text = event.longdesc
+            self.hour.text = event.getBeginTimeString()
+            
+            
+            STBAPI.common()?.searchInfoWeb(title: event.title!, duration: Int(event.duration_sec!/60), eid: Int(event.begin_timestamp!) ) {
+                image, backdrop, eid, ok in
+                if eid != Int(self.event!.begin_timestamp!) {return}
+                DispatchQueue.main.sync {
+                    if (ok ){
+                        if (backdrop != nil){
+                            self.backdrop.image = backdrop//image
+                            
+                        
+                            if (image != nil){
+                                self.eventposter.image = image//image
+                                
+                            }
+                        
+                        }
+                    }
+                
+                }
+            }
+            
+            
+            
+           
+            
+        }
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //guard let indexPath = context.nextFocusedIndexPath else {return}
+        var event_:EpgEvent?
+        var showWatchnow=false;
+        var showRecord=false;
+        if let row = tableView.cellForRow(at: indexPath) as? NowTableViewCell{
+            showWatchnow = true
+            event_ = row.event
+        }
+        if let row = tableView.cellForRow(at: indexPath) as? NextTableViewCell{
+            event_ = row.event
+            showRecord = true
+        }
+        guard let event = event_ else {return}
+        
+        let alert = UIAlertController(title: event.title!, message: event.shortdesc, preferredStyle: .actionSheet)
+                if showWatchnow{
+                    alert.addAction(UIAlertAction(title: "Watch Channel Now", style: .default){ a in
+                       alert.dismiss(animated: true, completion: nil)
+                       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPlayed"), object: ["service":self.service,"bouquet":self.bouquet!])
+                    })
+                    alert.addAction(UIAlertAction(title: "Watch Channel as Picture in Picture", style: .default){ a in
+                       alert.dismiss(animated: true, completion: nil)
+                       NotificationCenter.default.post(name: NSNotification.Name(rawValue: "dismiss"), object: ["service":self.service,"bouquet":self.bouquet!])
+                    })
+                }
+            if showRecord{
+             alert.addAction(UIAlertAction(title: "Schedule recording", style: .default){ a in
+                 STBAPI.common()?.setTimer(sref: event.sref!, eid: Int(event.id!)){x in
+                 }
+             })
+            alert.addAction(UIAlertAction(title: "Schedule notificatoin", style: .default){ a in
+                //STBAPI.common()?.setTimer(sref: event.sref!, eid: Int(event.id!)){x in
+                //}
+            })
+            }
+             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel){ a in
+                 
+             })
+             self .present(alert, animated: true, completion: {})
+    }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0 {
@@ -40,9 +170,6 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
         return 66
     }
     
-    var bouquet:Service?
-    var service:Service?
-     var event:EpgEvent?
  
     
     @IBOutlet weak var tv: UITableView!
@@ -52,9 +179,8 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPlayed"), object: ["service":service!, "bouquet":bouquet!], userInfo: ["direction":0])
     }
     
-    @IBAction func record(_ sender: Any) {
-        
-    }
+    
+    
     @IBAction func watchpip(_ sender: Any) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "pipPlayed"), object: ["service":service!, "bouquet":bouquet!], userInfo: ["direction":0])
     }
@@ -68,12 +194,24 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func setup(){
+        if let s = self.servicename{
+            s.text = self.service?.servicename ?? ""
+            if let logo = service?.getLogoURL(){
+                self.servicelogo.sd_setImage(with: logo, completed: nil)
+            }
+        }
         
     }
     func configure(s:Service,b:Service,e:EpgEvent){
         self.bouquet = b
         self.service = s
         self.event = e
+        STBAPI.common()?.getFullEPG(for: self.service!, from: e.end_timestamp! , to: e.end_timestamp!+100000){events, service in
+                       DispatchQueue.main.async {
+                           self.events = events
+                           self.tv.reloadData()
+                       }
+                   }
         setup()
     }
 

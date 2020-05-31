@@ -591,42 +591,80 @@ class STBAPI: NSObject {
     
     var cache = [String:[EpgEvent]?]();
     func getEPG(for service:Service, from start:UInt64, to end:UInt64, cb:@escaping (([EpgEvent],Service)->Void)){
-        
-            do{
-                let d = (service.servicereference?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
-                let ad  = self.ca("/\(self.apitype!)/epgservicenow?sRef=\(d)") //&time=\(start)&timeEnd=\(end) //&time=\(start)&timeEnd=\(end)
-                print(ad)
-                if let key = service.servicereference{
-//                    if let list = self.cache[key]{
-//                        //DispatchQueue.main.sync {
-//                        if let list = list{
-//                            cb(self.filter(events: list, from: start, to: end),service)
-//                        }
-//                        //}
-//                    }else{
-                        self.getContent(of:  ad) { c in
-                            print(c)
-                            do{
-                                let sl = try APIDecoder(self.apitype).decode(Eventlist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
-                                cb(sl.events!,service)
-//                                self.cache[key]=sl.events
-                                //DispatchQueue.main.sync {
-//                                if let list = sl.events{
-//                                    cb(self.filter(events: list, from: start, to: end),service)
-//                                }
-                                //}
-                            }catch{
-                                print("Error \(service)");
-                            }
-                        }
-//                    }
-                }
-            }catch{
-                print("Error \(service)");
-            }
             
-        
-    }
+                do{
+                    let d = (service.servicereference?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+                    let ad  = self.ca("/\(self.apitype!)/epgservicenow?sRef=\(d)") //&time=\(start)&timeEnd=\(end) //&time=\(start)&timeEnd=\(end)
+                    print(ad)
+                    if let key = service.servicereference{
+    //                    if let list = self.cache[key]{
+    //                        //DispatchQueue.main.sync {
+    //                        if let list = list{
+    //                            cb(self.filter(events: list, from: start, to: end),service)
+    //                        }
+    //                        //}
+    //                    }else{
+                            self.getContent(of:  ad) { c in
+                                print(c)
+                                do{
+                                    let sl = try APIDecoder(self.apitype).decode(Eventlist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
+                                    cb(sl.events!,service)
+    //                                self.cache[key]=sl.events
+                                    //DispatchQueue.main.sync {
+    //                                if let list = sl.events{
+    //                                    cb(self.filter(events: list, from: start, to: end),service)
+    //                                }
+                                    //}
+                                }catch{
+                                    print("Error \(service)");
+                                }
+                            }
+    //                    }
+                    }
+                }catch{
+                    print("Error \(service)");
+                }
+                
+            
+        }
+    
+     func getFullEPG(for service:Service, from start:UInt64, to end:UInt64, cb:@escaping (([EpgEvent],Service)->Void)){
+            
+                do{
+                    let d = (service.servicereference?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+                    let ad  = self.ca("/\(self.apitype!)/epgservice?sRef=\(d)&time=\(start)&timeEnd=\(end)") //&time=\(start)&timeEnd=\(end)
+                    print(ad)
+                    if let key = service.servicereference{
+    //                    if let list = self.cache[key]{
+    //                        //DispatchQueue.main.sync {
+    //                        if let list = list{
+    //                            cb(self.filter(events: list, from: start, to: end),service)
+    //                        }
+    //                        //}
+    //                    }else{
+                            self.getContent(of:  ad) { c in
+                                print(c)
+                                do{
+                                    let sl = try APIDecoder(self.apitype).decode(Eventlist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
+                                    cb(sl.events!,service)
+    //                                self.cache[key]=sl.events
+                                    //DispatchQueue.main.sync {
+    //                                if let list = sl.events{
+    //                                    cb(self.filter(events: list, from: start, to: end),service)
+    //                                }
+                                    //}
+                                }catch{
+                                    print("Error \(service)");
+                                }
+                            }
+    //                    }
+                    }
+                }catch{
+                    print("Error \(service)");
+                }
+                
+            
+        }
     
     private func filter(events:[EpgEvent],from start:UInt64, to end:UInt64)->[EpgEvent]{
         

@@ -37,6 +37,7 @@ class NowTableViewCell: UITableViewCell {
         self.event = e;
         self.titlelabel.text = e.title;
         self.hour.text = e.getBeginTimeString()
+        self.duration.text = "\( e.duration_sec!/60 ) min."
         self.progress.progress = e.getProgress()
     }
 

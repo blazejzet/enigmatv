@@ -59,6 +59,14 @@ class ViewController: UIViewController {
         }
         
     }
+    @objc func dismiss(notification:NSNotification){
+    print("play stream");
+    if let dvc = self.dvc{
+        dvc.dismiss(animated: true){
+            dvc.dismiss(animated: true, completion: nil)
+        }
+        }}
+    
     @objc func bouquetPlayed(notification:NSNotification){
            print("play stream");
            if let dvc = self.dvc{
@@ -129,6 +137,8 @@ class ViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismissVCCont(notification:)), name: NSNotification.Name(rawValue: "movieContinue"), object: nil);
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPlayed(notification:)), name: NSNotification.Name(rawValue: "bouquetPlayed"), object: nil);
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismiss(notification:)), name: NSNotification.Name(rawValue: "dismiss"), object: nil);
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPrepared(notification:)), name: NSNotification.Name(rawValue: "bouquetPrepared"), object: nil);
                   

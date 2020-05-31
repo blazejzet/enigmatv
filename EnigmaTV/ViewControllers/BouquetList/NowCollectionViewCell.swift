@@ -46,7 +46,7 @@ class NowCollectionViewCell: UICollectionViewCell {
         progress.alpha=1.0
         time.alpha = 1.0
         duration.alpha = 1.0
-        var name_ = "\(servicename!.lowercased().replacingOccurrences(of: " ", with: ""))"
+        
         self.poster.contentMode = .scaleAspectFill
         self.poster.backgroundColor = .clear
         if (e.title == "N/A"){
@@ -59,9 +59,11 @@ class NowCollectionViewCell: UICollectionViewCell {
             //self.channnel.image = nil
         }
             
-            self.channnel.sd_setImage(with: URL(string: "https://asuri.pl/y/picons/\(name_).png"), completed: nil)
+        
+        self.channnel.sd_setImage(with: service.getLogoURL(), completed: nil)
             
         
+       
         
         STBAPI.common()?.searchInfoWeb(title: e.title!, duration: Int(e.duration_sec!/60), eid: Int(e.begin_timestamp!) ) {
             image, backdrop, eid, ok in
@@ -77,7 +79,7 @@ class NowCollectionViewCell: UICollectionViewCell {
                             
                         }else{
                            
-                            self.poster.sd_setImage(with: URL(string: "https://asuri.pl/y/picons/\(name_).png"), completed: nil)
+                            self.poster.sd_setImage(with: service.getLogoURL(), completed: nil)
                         }
                     }
                     

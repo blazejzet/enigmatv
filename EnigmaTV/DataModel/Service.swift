@@ -20,7 +20,10 @@ class Service:NSObject,  Translateable {
     
     static var translation: [String : String] = [:]
     
-    
+    func getLogoURL()->URL{
+        var name_ = "\(servicename!.lowercased().replacingOccurrences(of: " ", with: ""))"
+        return URL(string: "https://asuri.pl/y/picons/\(name_).png")!
+    }
     required override init(){
         
     }
