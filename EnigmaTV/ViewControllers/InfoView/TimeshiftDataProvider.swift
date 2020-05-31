@@ -14,8 +14,8 @@ class TimeshiftDataProvider: InfoViewDataProviderDelegate {
     weak var ts : TimeShiftRecorder?
     weak var mp : VLCMediaPlayer?
     var ct:UInt64?
-    var event:EpgEventCacheProtocol?
-    var nextevent:EpgEventCacheProtocol?
+    var event:EpgEvent?
+    var nextevent:EpgEvent?
     
     public func refresh(){
         ts = TimeShiftRecorder.common()
@@ -24,13 +24,13 @@ class TimeshiftDataProvider: InfoViewDataProviderDelegate {
         // position zmienia się?... zostaje stałe przy pauzie, mimo, że zmienia się czas nagrania... aha... to trzeba obejść jakoś...
         var mptime =  UInt64(Float((mp?.position)!) * Float(Date().timeIntervalSince1970 - (ts?.timestart)!))
         
-        print("mp:\(mp), time :\(mptime)")
+       // print("mp:\(mp!), time :\(mptime)")
         ct = UInt64((ts?.timestart)!) + mptime
-        print("ct:\(ct)")
+       // print("ct:\(ct!)")
         if let events = ts?.events{
             var i = 0;
             for e in events{
-                if (e.begin_timestamp <= ct! && e.begin_timestamp + e.dudation_sec >= ct!){
+                if (e.begin_timestamp! <= ct! && e.begin_timestamp! + e.duration_sec! >= ct!){
                     if (self.event == nil) {
                         self.event = e
                     i=1;
@@ -39,7 +39,7 @@ class TimeshiftDataProvider: InfoViewDataProviderDelegate {
 
                     
                 }
-                    if (e.begin_timestamp >= ct! ){
+                if (e.begin_timestamp! >= ct! ){
                         if (self.nextevent == nil) {
                            
                             self.nextevent = e
@@ -59,12 +59,12 @@ class TimeshiftDataProvider: InfoViewDataProviderDelegate {
         }
         return ""
     }
-    func getCurrentEvent() -> EpgEventCacheProtocol? {
+    func getCurrentEvent() -> EpgEvent? {
         //self.refresh()
         return event
     }
     
-    func getNextEvent() -> EpgEventCacheProtocol? {
+    func getNextEvent() -> EpgEvent? {
         //self.refresh()
         return nextevent
     }

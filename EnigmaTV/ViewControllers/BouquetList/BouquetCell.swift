@@ -10,7 +10,7 @@ import UIKit
 
 class BouquetCell: UITableViewCell {
     var service:Service?
-    var bouquet:EpgBouquet?
+    var bouquet:Service?
     var delegate:EPGViewController?
     
     override func awakeFromNib() {
@@ -19,9 +19,9 @@ class BouquetCell: UITableViewCell {
     }
     
    
-    func configure(bouquet:EpgBouquet){
+    func configure(bouquet:Service){
         self.bouquet = bouquet
-        self.textLabel?.text = bouquet.sname?.uppercased();
+        self.textLabel?.text = bouquet.servicename?.uppercased();
 //        self.textLabel.setColor
         self.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.5)
 //        if let rowHeight = delegate?.tableView.estimatedRowHeight{

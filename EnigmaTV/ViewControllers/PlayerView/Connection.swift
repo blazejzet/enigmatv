@@ -58,13 +58,12 @@ class Connection: NSObject, StreamDelegate {
         var data  = Data(capacity: bufferSize)
             while (true){
              // let  err =   CFReadStreamGetError(self.readStream?.takeRetainedValue())
-            //print(err)
               //  print ("available \(self.inputStream.hasBytesAvailable)")
-              //  if self.inputStream.hasBytesAvailable {
-            let read = self.inputStream.read(data: &data)
-            let write =  os?.write(data: data)
-            //print ("r: \(read) w:\(write)")
-               // }
+                if self.inputStream.hasBytesAvailable {
+                    let read = self.inputStream.read(data: &data)
+                    let write =  os?.write(data: data)
+                    print("[WR] Did write (\(write))")
+                }
             }
             
         //}

@@ -40,7 +40,7 @@ extension UIView {
 
 
 class EPGButton: UIButton {
-    var event:EpgEventCacheProtocol?
+    var event:EpgEvent?
     var type: UIButtonType = UIButtonType.system
     var row:Int?
     var oframe :CGRect?
@@ -95,7 +95,7 @@ class EPGButton: UIButton {
             }
         }
     }
-    class func newButton(with event:EpgEventCacheProtocol, andService service:EpgService) -> EPGButton {
+    class func newButton(with event:EpgEvent, andService service:Service) -> EPGButton {
         let b =  EPGButton()
         b.event = event
         b.row = Int(service.row)
@@ -124,7 +124,7 @@ class EPGButton: UIButton {
         
         b.titleLabel?.font = UIFont.systemFont(ofSize: 32);
         
-        if event is EpgEventCacheFake{
+        if event is EpgEventFake{
             b.setTitleColor(.lightGray, for: .normal)
         }
         b.bringSubview(toFront: b.titleLabel!)

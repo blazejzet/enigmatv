@@ -17,9 +17,9 @@ class MoviesViewController: UIViewController, UITableViewDelegate,UITableViewDat
     @IBOutlet weak var POSTER: UIImageView!
     
     
-    var delegate:EPGViewController?
+    //var delegate:EPGViewController?
     func watch(_ event:Movie){
-        delegate?.watchMovie(event)
+        //delegate?.watchMovie(event)
         
     }
     func dismiss(){

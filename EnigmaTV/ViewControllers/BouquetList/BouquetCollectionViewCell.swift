@@ -44,10 +44,10 @@ class BouquetCollectionViewCell: CommonCollectionViewCell {
     
     
     //var service:Service?
-    var bouquet:EpgBouquet?
+    var bouquet:Service?
     
     
-    func configure(bouquet:EpgBouquet){
+    func configure(bouquet:Service){
         self.bouquet = bouquet;
         self.recordingLabel?.text = bouquet.sname;
         self.deletingAvailable=false

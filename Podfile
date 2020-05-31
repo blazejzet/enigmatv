@@ -10,4 +10,5 @@ pod 'ReachabilitySwift'
   # Pods for EnigmaTV
 pod 'SWXMLHash', '~> 4.0.0'
 pod 'AERecord'
+pod 'SwiftyStoreKit'
 end

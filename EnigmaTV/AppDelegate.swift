@@ -9,7 +9,7 @@
 import UIKit
 import AERecord
 import CoreData
-
+import SwiftyStoreKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,7 +18,68 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-         EPGHelper.getInstance()?.preload()
+        //EPGHelper.preloadingEPG()
+        /*SwiftyStoreKit.completeTransactions(){
+            p in
+            print("[S] Completed purchases")
+            print(p)
+            for p in p {
+                
+                if(p.transaction.transactionState == .purchased || p.transaction.transactionState == .restored){
+                    UserDefaults.standard.set(true, forKey:  p.productId)
+                }else{
+                    UserDefaults.standard.set(false, forKey:  p.productId)
+                }
+               
+            }
+        }
+        let appleValidator = AppleReceiptValidator(service: .production, sharedSecret: "your-shared-secret")
+        SwiftyStoreKit.verifyReceipt(using: appleValidator) { result in
+            switch result {
+            case .success(let receipt):
+                var productId = "pl.asuri.enigma.monthly"
+                // Verify the purchase of a Subscription
+                var purchaseResult = SwiftyStoreKit.verifySubscription(
+                    ofType: .autoRenewable, // or .nonRenewing (see below)
+                    productId: productId,
+                    inReceipt: receipt)
+                    
+                switch purchaseResult {
+                case .purchased(let expiryDate, let items):
+                    print("\(productId) is valid until \(expiryDate)\n\(items)\n")
+                    UserDefaults.standard.set(true, forKey: productId)
+                case .expired(let expiryDate, let items):
+                    print("\(productId) is expired since \(expiryDate)\n\(items)\n")
+                    UserDefaults.standard.set(false, forKey: productId)
+                case .notPurchased:
+                    print("The user has never purchased \(productId)")
+                    UserDefaults.standard.set(false, forKey: productId)
+                }
+                
+                productId = "pl.asuri.enigmatv.monthlypromo"
+                // Verify the purchase of a Subscription
+                 purchaseResult = SwiftyStoreKit.verifySubscription(
+                    ofType: .autoRenewable, // or .nonRenewing (see below)
+                    productId: productId,
+                    inReceipt: receipt)
+                    
+                switch purchaseResult {
+                case .purchased(let expiryDate, let items):
+                    print("\(productId) is valid until \(expiryDate)\n\(items)\n")
+                    UserDefaults.standard.set(true, forKey: productId)
+                case .expired(let expiryDate, let items):
+                    print("\(productId) is expired since \(expiryDate)\n\(items)\n")
+                    UserDefaults.standard.set(false, forKey: productId)
+                case .notPurchased:
+                    print("The user has never purchased \(productId)")
+                    UserDefaults.standard.set(false, forKey: productId)
+                }
+
+            case .error(let error):
+                print("Receipt verification failed: \(error)")
+            }
+        }
+        */
         return true
     }
 
@@ -43,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         l?.perform(#selector(ViewController.checkSettings), with: nil, afterDelay: 1.0)
         
         
-//        EPGHelper.getInstance()?.preload()
+//        //EPGHelper.getInstance()?.preload()
         
         //let l = self.window?.rootViewController as? ViewController
         //l?.start()// Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
@@ -51,7 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        //EPGHelper.preloadingEPG()
+        ////EPGHelper.preloadingEPG()
        
     }
 

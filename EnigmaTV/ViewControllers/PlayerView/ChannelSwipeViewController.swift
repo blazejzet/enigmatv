@@ -19,9 +19,9 @@ class ChannelSwipeViewController: UIViewController{
     
     
     var initialDirection: Direction?
-    var service: EpgService?
-    var bouquet: EpgBouquet?
-    var services = [EpgService]()
+    var service: Service?
+    var bouquet: Service?
+    var services = [Service]()
     
     
     override func viewDidLoad() {
@@ -46,7 +46,7 @@ class ChannelSwipeViewController: UIViewController{
             
         }
         
-        if let name = bouquet?.sref, let service = service{
+        if let name = bouquet?.servicereference, let service = service{
             DataProvider.def().getServices(bref: name){
                 list in
                 //                if let list = list{
@@ -64,9 +64,9 @@ class ChannelSwipeViewController: UIViewController{
     }
     
     
-    func setIcons(list: [EpgService]?, currentService service: EpgService?){
+    func setIcons(list: [Service]?, currentService service: Service?){
         if let list = list, let service = service{
-            let row = Int(service.row)
+            let row = Int(service.row!)
             let tmpLeftIndex = (row - 1) % list.count
             let rowLeftIndex = tmpLeftIndex >= 0 ? tmpLeftIndex : tmpLeftIndex + list.count
             let tmpRightIndex = (row + 1) % list.count
@@ -104,9 +104,9 @@ class ChannelSwipeViewController: UIViewController{
         }
     }
     
-    func setLeftService(service: EpgService){
+    func setLeftService(service: Service){
         
-        if let name = service.sname{
+        if let name = service.servicename{
             if let p = STBAPI.common()?.getPicon(name: name){
                 piconLeft.image = p
             }else{
@@ -117,9 +117,9 @@ class ChannelSwipeViewController: UIViewController{
         
     }
     
-    func setRightService(service: EpgService){
+    func setRightService(service: Service){
         
-        if let name = service.sname{
+        if let name = service.servicename{
             if let p = STBAPI.common()?.getPicon(name: name){
                 piconRight.image = p
             }else{

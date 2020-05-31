@@ -10,7 +10,7 @@ import UIKit
 
 class EPGListViewController: UIViewController {
     //var service:Service?
-    var bouquet:EpgBouquet?
+    var bouquet:Service?
     static var height:CGFloat = 60.0;
     
     static var spacing:CGFloat = 10.0;
@@ -38,7 +38,7 @@ class EPGListViewController: UIViewController {
     
     
     //var subservices:Servicelist?
-    var services: [EpgService]?
+    var services: [Service]?
     var delegate:EPGViewController?
     var _epgActiveButtons:Array<Array<EPGButton>?> = Array()
     
@@ -202,7 +202,7 @@ class EPGListViewController: UIViewController {
         self._epgActiveButtons[Int(row)] = list
     }
     
-    func organizeData(for service:EpgService, from start:UInt64, to end:UInt64, isInit:Bool){
+    func organizeData(for service:Service, from start:UInt64, to end:UInt64, isInit:Bool){
     
         DataProvider.def().getEpgForService(sref: service.sref!,sname: service.sname!, begin: Int64(start), end: Int64(end)) { epgEvents in
             DispatchQueue.main.async {
@@ -221,7 +221,7 @@ class EPGListViewController: UIViewController {
         }
     }
     
-    func show(_ events:[EpgEventCacheProtocol], for service:EpgService, activeRow arow:Int, onList list: inout Array<EPGButton>, atBeginning begin:Bool, isInit:Bool){
+    func show(_ events:[EpgEvent], for service:Service, activeRow arow:Int, onList list: inout Array<EPGButton>, atBeginning begin:Bool, isInit:Bool){
         for event in events{
             
             var tmpList2 = list.filter( { $0.event?.tilte == "NO DATA" } )
@@ -275,8 +275,8 @@ class EPGListViewController: UIViewController {
     
     
     
-    var prev :EpgEventCache?
-    func selected(_ event:EpgEventCacheProtocol, at point:CGPoint, inRow row:Int, focused:Bool){
+    var prev :EpgEvent?
+    func selected(_ event:EpgEvent, at point:CGPoint, inRow row:Int, focused:Bool){
         
         print("Active row:\(row)")
         print("seleected event time= \(event.begin_timestamp)")
@@ -432,7 +432,7 @@ class EPGListViewController: UIViewController {
         
     }
     
-    func pressed(_ event:EpgEventCacheProtocol, atButton button:EPGButton){
+    func pressed(_ event:EpgEvent, atButton button:EPGButton){
         let alert = UIAlertController(title: event.tilte, message: event.shortdesc, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Watch Channel Now", style: .default){ a in
             let service = self.services![button.row!]

@@ -34,19 +34,12 @@ class MovieDataProvider: InfoViewDataProviderDelegate {
         return 0
         
     }
-    func getCurrentEvent() -> EpgEventCacheProtocol? {
-        let x = EpgEventCache(context: DataProvider.def().context)
-        x.begin_timestamp = 0
-        
-        x.dudation_sec =  Int64(UInt64(getRecordingTimeX(movie: movie!)))
-        x.sname = movie?.servicename
-        x.tilte = movie?.eventname
-        
-        //self.refresh()
-        return x//movie.getEvent()
+    func getCurrentEvent() -> EpgEvent? {
+       
+        return nil// movie.getEvent()
     }
     
-    func getNextEvent() -> EpgEventCacheProtocol? {
+    func getNextEvent() -> EpgEvent? {
         //self.refresh()
         return nil
     }

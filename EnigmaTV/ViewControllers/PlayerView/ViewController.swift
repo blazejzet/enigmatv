@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import StoreKit
 
 
 extension UIViewController{
@@ -59,20 +60,38 @@ class ViewController: UIViewController {
         
     }
     @objc func bouquetPlayed(notification:NSNotification){
-        print("play stream");
-        let dvc = self.dvc;
-        dvc?.dismiss(animated: true, completion: {
-            dvc?.dismiss(animated: true, completion: nil)
-        });
-        if let dict = notification.object as? [String:Any]{
-           if let bouquet = dict["bouquet"] as? EpgBouquet, let service = dict["service"] as? EpgService{
-            print(dict)
-                self.watch(service, inBouquet: bouquet)
-            }
-            
-        }
-        
-    }
+           print("play stream");
+           if let dvc = self.dvc{
+               dvc.dismiss(animated: true){
+                   dvc.dismiss(animated: true, completion: nil)
+               }
+           }
+           if let dict = notification.object as? [String:Any]{
+               print(dict)
+              if let bouquet = dict["bouquet"] as? Service, let service = dict["service"] as? Service{
+               
+                   self.watch(service, inBouquet: bouquet)
+               }
+               
+           }
+           
+       }
+    
+    
+    
+    @objc func bouquetPrepared(notification:NSNotification){
+           print("prepare stream");
+          
+           if let dict = notification.object as? [String:Any]{
+               print(dict)
+              if let bouquet = dict["bouquet"] as? Service, let service = dict["service"] as? Service{
+               
+                   self.prepare(service, inBouquet: bouquet)
+               }
+               
+           }
+           
+       }
     
     
     
@@ -94,18 +113,27 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //EPGHelper.showAll(text: "VC")
+        ////EPGHelper.showAll(text: "VC")
         
-        //EPGHelper.preloadingEPG()
-        EPGHelper.getInstance()?.displayall(text: "VC");
+        ////EPGHelper.preloadingEPG()
+       // //EPGHelper.getInstance()?.displayall(text: "VC");
+        
+        //pl.asuri.enigmatv.monthly
+        //pl.asuri.enigmatv.monthlypromo
+        
+        
         
         self.perform(#selector(ViewController.rfinfo), with: nil, afterDelay: 5.0)
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismissVC(notification:)), name: NSNotification.Name(rawValue: "moviePlayed"), object: nil);
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismissVCCont(notification:)), name: NSNotification.Name(rawValue: "movieContinue"), object: nil);
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPlayed(notification:)), name: NSNotification.Name(rawValue: "bouquetPlayed"), object: nil);
         
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPrepared(notification:)), name: NSNotification.Name(rawValue: "bouquetPrepared"), object: nil);
+                  
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.watch_alternative(_:)), name: NSNotification.Name(rawValue: "setMainPlayer"), object: nil)
+       
         
         
         
@@ -130,20 +158,47 @@ class ViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
        print("V APPEARED");
-        
-        
+        /*IAPHelper.sharedInstance.requestProducts() { alreadyused, purchased, product in
+            print("[S] alreadyused \(alreadyused); purchased \(purchased); product  \(product.localizedTitle) \(product.localizedPrice)")
+            if (purchased){
+                
+                self.restartPlayer();
+            }else{
+                if (alreadyused){
+                    self.performSegue(withIdentifier: "pay_olduser", sender: product)
+                }else{
+                    self.performSegue(withIdentifier: "pay_newuser", sender: product)
+                }
+
+            }
+        }*/
         self.restartPlayer();
+        
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "tuner.setupready"), object: nil, queue: nil, using: {_ in
-            print("SETUP DONE")
-            self.dismissAllVC()
-            self.restartPlayer();
-        })
+                   print("SETUP DONE")
+                   self.dismissAllVC()
+                   self.restartPlayer();
+               })
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "exit"), object: nil, queue: nil, using: {_ in
+        print("[S] Leaving app, due to not paying")
+                  exit(EXIT_SUCCESS)
+               })
+        
+        NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "payd"), object: nil, queue: nil, using: {_ in
+                   print("SETUP DONE")
+                   self.dismissAllVC()
+                   self.restartPlayer();
+               })
         
         NotificationCenter.default.addObserver(forName: NSNotification.Name(rawValue: "tuner.manualsetup"), object: nil, queue: nil, using: {_ in
             print("SETUP MANUALLY")
             self.dismissAllVC()
             self.refreshonload=true;
         })
+        
+        
+
     }
     var refreshonload = false;
     
@@ -216,6 +271,11 @@ class ViewController: UIViewController {
         print("bbbbbbb func prepare")
         self.dvc = segue.destination
         
+         if let evc = segue.destination as? PayViewController{
+            evc.product = sender as! SKProduct
+            
+        }
+        
         if let evc = segue.destination as? ChannelSwipeViewController{
             switch segue.identifier {
             case "channelSwipeLeft":
@@ -225,7 +285,7 @@ class ViewController: UIViewController {
             default:
                 break
             }
-            evc.service = self.watching as? EpgService
+            evc.service = self.watching as? Service
             evc.bouquet = self.bouquet
             
         }
@@ -246,7 +306,7 @@ class ViewController: UIViewController {
                 evc.delegate = self
                 evc.edp = dp
             }
-            if let service = self.watching as? EpgService{
+            if let service = self.watching as? Service{
                 // w przypadku programu live
                 if (sv?.timeshift)!{
                     //jeśli timeshift aktywny
@@ -258,14 +318,17 @@ class ViewController: UIViewController {
                 }else{
                     //jeśli tmieshift nieaktywny
                     evc.delegate=self
-                    STBAPI.common()?.nowPlaying(at:service.sref!, sname: service.sname!){
-                        nowE, nextE in
-                        
-                        let edp = EventDataProvider()
-                        edp.event = nowE
-                        edp.nextevent = nextE
-                        evc.edp = edp
+                    if let sref = service.servicereference{
+                        STBAPI.common()?.nowPlaying(at: service.servicereference!, sname: service.servicename!){
+                            nowE, nextE in
+                            
+                            let edp = EventDataProvider()
+                            edp.event = nowE
+                            edp.nextevent = nextE
+                            evc.edp = edp
+                        }
                     }
+
                 }
             }
         }
@@ -275,9 +338,9 @@ class ViewController: UIViewController {
         
         
         
-        if let evc = segue.destination as? EPGViewController{
-            evc.delegate = self
-        }
+//        if let evc = segue.destination as? EPGViewController{
+//            evc.delegate = self
+//        }
         
     }
         
@@ -286,65 +349,59 @@ class ViewController: UIViewController {
     
     
     var watching:Any?
-    var bouquet:EpgBouquet?
-    var services:[EpgService]?
+    var bouquet:Service?
+    var services:[Service]?
    // var subservices:Servicelist?
     
-    
-    @objc func watch_alternative(_ notification: Notification){
-//        _ service:EpgService, inBouquet bouquet:EpgBouquet, direction:Int = 0
-        let service = notification.userInfo?["service"] as! EpgService
-        let bouquet = notification.userInfo?["bouquet"] as! EpgBouquet
-        let direction = notification.userInfo?["direction"] as! Int
-        var dir:Direction
         
-        switch direction {
-        case (-100)...(-1):
-            dir = .Left
-        case 1...100:
-            dir = .Right
-        default:
-            dir = .Center
+        @objc func watch_alternative(_ notification: Notification){
+    //        _ service:Service, inBouquet bouquet:Service, direction:Int = 0
+            let service = notification.userInfo?["service"] as! Service
+            let bouquet = notification.userInfo?["bouquet"] as! Service
+            let direction = notification.userInfo?["direction"] as! Int
+            self.watch(service, inBouquet: bouquet)
+          
         }
-        
-        self.switchChannel(dir)
-         self.bouquet = bouquet
-         self.watching = service
-       
-             sv?.play(service, inBouquet:bouquet)
-             self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
-      
-    }
     
-    func watch(_ service:EpgService, inBouquet bouquet:EpgBouquet, dir:Direction = .Center){
+    func prepare(_ service:Service, inBouquet bouquet:Service, dir:Direction = .Center){
+        sv?.prepare(service, inBouquet:bouquet)
+    }
+        
+    
+    func watch(_ service:Service, inBouquet bouquet:Service, dir:Direction = .Center){
+        print("watching \(service.servicename) in \(bouquet.servicename)")
+        //self.sv?.alpha = 0.2
+        
         self.switchChannel(dir)
         self.bouquet = bouquet
         self.watching = service
-       // if ((bouquet.sname) == (self.bouquet?.sname)){
+       
+        if ((bouquet.servicename) == (self.bouquet?.servicename)){
                 //existing service
             sv?.play(service, inBouquet:bouquet)
-            self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
-        /*}else{
+            //self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
+        }else{
             self.bouquet = bouquet
-            /*STBAPI.common()?.getServices(for: bouquet,cb:{
+            STBAPI.common()?.getServices(for: bouquet,cb:{
                 list in
-                self.subservices = list
+                self.services = list.services
                 self.sv?.play(service, inBouquet:bouquet)
-                self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
+                //self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
             },fail:{
                 self.finfo.text="Error"
                 self.sfinfo()
-            })*/
-            DataProvider.def().getServices(bref: bouquet.sref!){
-                services in
-                self.services = services
-                self.sv?.play(service, inBouquet:bouquet)
-                self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
-            }
-            */
+            })
+//            DataProvider.def().getServices(bref: bouquet.servicereference!){
+//                services in
+//                self.services = services
+//                self.sv?.play(service, inBouquet:bouquet)
+//                self.perform(#selector(ViewController.showInfoService), with: nil, afterDelay: 1.0)
+//            }
+        }
         
         
     }
+        
     func watchMovie(_ movie:Movie){
         self.watching = movie
         self.bouquet=nil
@@ -390,7 +447,7 @@ class ViewController: UIViewController {
     
     @IBAction func swipeRight(_ sender: Any){
         print("gesture: swipe right")
-        if let _ = self.watching as? EpgService{
+        if let _ = self.watching as? Service{
             performSegue(withIdentifier: "channelSwipeRight", sender: nil)
         }
 //        performSegue(withIdentifier: "swipeChannel", sender: nil)
@@ -399,17 +456,17 @@ class ViewController: UIViewController {
     
     @IBAction func swipeLeft(_ sender: Any){
         print("gesture: swipe left")
-        if let _ = self.watching as? EpgService{
+        if let _ = self.watching as? Service{
             performSegue(withIdentifier: "channelSwipeLeft", sender: nil)
         }
     }
     
     @IBAction func tapRight(_ sender: Any) {
         print("gesture: tap right")
-        if let _ = self.watching as? EpgService{
+        if let _ = self.watching as? Service{
             performSegue(withIdentifier: "channelSwipeRight", sender: nil)
         }
-//        if let service = watching as? EpgService{
+//        if let service = watching as? Service{
 //            var row =  service.row
 //            print("tapRight \(services?.count)")
 //                if let list = services{
@@ -429,7 +486,7 @@ class ViewController: UIViewController {
     }
     @IBAction func tapLeft(_ sender: Any) {
         print("gesture: tap left")
-        if let _ = self.watching as? EpgService{
+        if let _ = self.watching as? Service{
             performSegue(withIdentifier: "channelSwipeLeft", sender: nil)
         }
 //        if let service = watching as? Service{
@@ -451,16 +508,11 @@ class ViewController: UIViewController {
     func switchChannel(_ dir:Direction){
         DispatchQueue.main.async{
         UIView.animate(withDuration: 0.3, animations: {
-            if dir == Direction.Left{
-                self.sv?.center=CGPoint(x:0,y:540)
-            }
-            if dir == Direction.Right{
-                self.sv?.center=CGPoint(x:1920,y:540)
-            }
+            
             if dir == Direction.Center{
                 self.sv?.center=CGPoint(x:1920.0/2.0,y:540.0)
             }
-            self.sv?.alpha=0.0
+            //self.sv?.alpha=0.0
         }, completion: {_ in
             self.sv?.center=CGPoint(x:1920.0/2.0,y:540)
         })

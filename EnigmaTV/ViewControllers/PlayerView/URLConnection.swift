@@ -15,7 +15,7 @@ class URLConnection: OperationQueue, URLSessionDataDelegate{
     var receivedFirstData = false
     var delegate:TimeShiftRecorder?
     func connect(url:URL, to:URL){
-        
+        overallcount=0
         os = OutputStream(url: to, append: false)
         os?.open()
         
@@ -42,7 +42,7 @@ class URLConnection: OperationQueue, URLSessionDataDelegate{
             }
         }
         
-        let session = URLSession(configuration: conf, delegate: self, delegateQueue: self)
+        let session = URLSession(configuration: conf, delegate: self, delegateQueue: OperationQueue.current)
         //var request = URLRequest(url: url)
         
         
@@ -51,11 +51,14 @@ class URLConnection: OperationQueue, URLSessionDataDelegate{
         dataTask = session.dataTask(with: url)
         dataTask?.resume()
         
-        self.perform(#selector(startDelayed), with: nil, afterDelay: 1.2)
+        //self.perform(#selector(startDelayed), with: nil, afterDelay: 0.5)
     }
-    
+    var isstarted = false;
     @objc func startDelayed(){
-        delegate?.receivedFirstData()
+        if !isstarted {
+            isstarted=true;
+            delegate?.receivedFirstData()
+        }
     }
     func stop(){
         if let dataTask = dataTask{
@@ -73,6 +76,11 @@ class URLConnection: OperationQueue, URLSessionDataDelegate{
         var count = os?.write(data: data)
         if let c  = count{
             overallcount += count!
+           // print("[C] \(overallcount)");///
+            if (overallcount)>17400{
+                self.startDelayed()
+            }
+            
         }       
         
     }

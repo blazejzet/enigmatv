@@ -31,6 +31,9 @@ class InfoView: UIView {
         descriptionLabel = UILabel(frame: .zero)
         super.init(frame: CGRect(x: 0.0, y: 0.0, width: 1600.0, height: EPGListViewController.height*3.0))
         
+        
+        
+        
         self.dropShadow()
         self.clipsToBounds = false;
         //backgroundImageView.frame = self.frame
@@ -71,7 +74,7 @@ class InfoView: UIView {
         
     }
     var eid:Int=0
-    func setup(_ event:EpgEventCacheProtocol){
+    func setup(_ event:EpgEvent){
         self.dropShadow()
         
         self.eid = Int(event.id)

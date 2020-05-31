@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class InfoViewController: UIViewController {
 
@@ -99,7 +100,12 @@ class InfoViewController: UIViewController {
         self.configure()
         
         self.perform(#selector(InfoViewController.hide), with: nil, afterDelay: 5.0)
-        
+        if let labels = textslabels{
+            for label in labels{
+                label.textColor = .white
+                label.tintColor = .white
+            }
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")
         dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
@@ -118,7 +124,7 @@ class InfoViewController: UIViewController {
         let event = edp?.getCurrentEvent()
         let cb = self.currentBar
         let cbf = cb?.frame
-        if let event_wholetime =  event?.dudation_sec {
+        if let event_wholetime =  event?.duration_sec {
             let jedn = (cbf?.size.width)!/CGFloat(event_wholetime)
             let ts = Int32(time) - Int32((event?.begin_timestamp)!)
             return (cbf?.origin.x)! + CGFloat(ts)*jedn
@@ -130,7 +136,7 @@ class InfoViewController: UIViewController {
         let event = edp?.getCurrentEvent()
         let cb = self.currentBar
         let cbf = cb?.frame
-        let event_wholetime =  (event?.dudation_sec)!
+        let event_wholetime =  (event?.duration_sec)!
         let jedn = (cbf?.size.width)!/CGFloat(event_wholetime)
         //let ts =
         return UInt64((point + (CGFloat((event?.begin_timestamp)!))*jedn - (cbf?.origin.x)!)/jedn)
@@ -182,15 +188,13 @@ class InfoViewController: UIViewController {
     
     
     func piconSetup(name:String){
+        var name_ = "\(name.lowercased().replacingOccurrences(of: " ", with: ""))"
+        picon.sd_setImage(with: URL(string: "https://asuri.pl/y/picons/\(name_).png"), completed: nil)
         
-        
-       if let p = STBAPI.common()?.getPicon(name: name)
-         {
-            picon.image = p
-        }
         
     }
     func configure(){
+        
         DispatchQueue.main.async {
             
             if let pi = self.pvrInfo{
@@ -207,20 +211,14 @@ class InfoViewController: UIViewController {
                     
                     if let event = self.edp?.getCurrentEvent(){
                         print("rrrrrrrrrrrr")
-                        let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp))
-                        let dateFormatter = DateFormatter()
-                        dateFormatter.locale = Locale(identifier: "en_US")
-                        self.dateLabel.text = dateFormatter.string(from: ds)
-                        dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
-                        let dsh =  dateFormatter.string(from: ds)
-                        print("dsh: \(dsh)")
-                        self.pvrInfo.text = "\(Int(event.dudation_sec/60)) min."
-                        self.nowHourLabel.text = "\(dsh)"
+                        
+                        self.pvrInfo.text = "\(Int(event.duration_sec!/60)) min."
+                        self.nowHourLabel.text = event.getBeginTimeString()
                         //nowHourLabel.setTex
                         
                         
-                        print("nowNameLabel: \(event.tilte)")
-                        self.nowNameLabel.text = event.tilte
+                        print("nowNameLabel: \(event.title)")
+                        self.nowNameLabel.text = event.title
                         self.serviceName.text = event.sname
                         self.piconSetup(name: event.sname!)
                         
@@ -230,11 +228,11 @@ class InfoViewController: UIViewController {
                 }
                 
                 if let event = self.edp?.getNextEvent(){
-                    let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp))
+                    let ds = Date(timeIntervalSince1970: TimeInterval(event.begin_timestamp!))
                     let dateFormatter = DateFormatter()
                     dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
                     self.nextHourLabel.text = dateFormatter.string(from: ds)
-                    self.nextNameLabel.text = event.tilte
+                    self.nextNameLabel.text = event.title
                 }else{
                     
                     self.nextHourLabel.alpha = 0.0
@@ -300,6 +298,7 @@ class InfoViewController: UIViewController {
         }
     }
     
+    @IBOutlet var textslabels: [UILabel]!
     
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {

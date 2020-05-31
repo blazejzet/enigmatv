@@ -12,7 +12,7 @@ import CloudKit
 
 
 class Movies2ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource,MVCProt {
-var delegate:EPGViewController?
+    //var delegate:EPGViewController?
     @IBOutlet weak var collectionView: UICollectionView!
     
     

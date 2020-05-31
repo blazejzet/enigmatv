@@ -166,6 +166,7 @@ class CommonTableViewCell: UITableViewCell {
     }
     //var deletingAvailable = true
     func requestImage(name:String,tinm:Int,servicename:String){
+        if name == "NO DATA" {return;}
         print("Requesting \(name) \(tinm)")
         self.piconSetup(name: servicename)
         STBAPI.common()?.searchInfoWeb(title: name, duration: tinm, eid: 0) {

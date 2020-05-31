@@ -46,6 +46,7 @@ class STBAPI: NSObject {
     var stbPort2:String!
     var stbProt:String!
     var tmdbApiKey:String!
+    var tmdb2apikey = "f40747d2a2888d38f5efff7d12f764b5"
     var timeshift:Bool!
     var zap:Bool!
     var useTranscoding:Bool!
@@ -226,8 +227,8 @@ class STBAPI: NSObject {
     
     func getServices(cb:@escaping ((Servicelist)->Void), fail:@escaping (()->Void)){
         print("Getting ServiceList");
-        //         EPGHelper.getInstance()?.serialPrefetchQueue?.async {
-        DispatchQueue(label: "preloading").sync {
+        //         //EPGHelper.getInstance()?.serialPrefetchQueue?.async {
+        DispatchQueue(label: "preloading").async {
             
             self.getContent(of: self.ca("/\(self.apitype!)/getservices")) { c in
                 
@@ -479,15 +480,15 @@ class STBAPI: NSObject {
         
     }
     
-    func nowPlaying(at sref:String, sname:String, cb:((EpgEventCacheProtocol?,EpgEventCacheProtocol?)->Void)?) {
+    func nowPlaying(at sref:String, sname:String, cb:((EpgEvent?,EpgEvent?)->Void)?) {
         let time = Date().timeIntervalSince1970
         print("bbbbbbbbbbb func nowPlaying")
-        DataProvider.def().getEpgForService(sref: sref, sname: sname, begin: Int64(time), end: Int64(time)+10000){
+        DataProvider.def().getEpgForService(sref: sref, begin: Int64(time), end: Int64(time)+10000){
             events in
             if let nowPlaying = events.first {
 //                print("bbbbbbbb nowPlaying.title \(nowPlaying.tilte)")
                 for index in 0...events.count-1{
-                    print("bbbbbbb events no \(index) = \(events[index].tilte)")
+                    print("bbbbbbb events no \(index) = \(events[index].title)")
                     print("bbbbbbb events no \(index) = \(events[index].begin_timestamp)")
                 }
                 if events.count>1{
@@ -525,9 +526,9 @@ class STBAPI: NSObject {
         
     }
     
-    func zap(for service:EpgService){
-        let d = (service.sref?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
-        let n = (service.sname?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+    func zap(for service:Service){
+        let d = (service.servicereference?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
+        let n = (service.servicename?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
         
         let ad  = self.ca("/\(self.apitype!)/zap?sRef=\(d)&title=\(n)")
         do{
@@ -590,42 +591,41 @@ class STBAPI: NSObject {
     
     var cache = [String:[EpgEvent]?]();
     func getEPG(for service:Service, from start:UInt64, to end:UInt64, cb:@escaping (([EpgEvent],Service)->Void)){
-        DispatchQueue(label: "preloading").sync  {
-            print("This is run on the background queue")
-            print("Getting Events for \(service)");
+        
             do{
                 let d = (service.servicereference?.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))!
-                let ad  = self.ca("/\(self.apitype!)/epgservice?sRef=\(d)&time=\(start)&timeEnd=\(end)") //&time=\(start)&timeEnd=\(end)
+                let ad  = self.ca("/\(self.apitype!)/epgservicenow?sRef=\(d)") //&time=\(start)&timeEnd=\(end) //&time=\(start)&timeEnd=\(end)
                 print(ad)
                 if let key = service.servicereference{
-                    if let list = self.cache[key]{
-                        //DispatchQueue.main.sync {
-                        if let list = list{
-                            cb(self.filter(events: list, from: start, to: end),service)
-                        }
-                        //}
-                    }else{
+//                    if let list = self.cache[key]{
+//                        //DispatchQueue.main.sync {
+//                        if let list = list{
+//                            cb(self.filter(events: list, from: start, to: end),service)
+//                        }
+//                        //}
+//                    }else{
                         self.getContent(of:  ad) { c in
-                            
+                            print(c)
                             do{
                                 let sl = try APIDecoder(self.apitype).decode(Eventlist.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
-                                self.cache[key]=sl.events
+                                cb(sl.events!,service)
+//                                self.cache[key]=sl.events
                                 //DispatchQueue.main.sync {
-                                if let list = sl.events{
-                                    cb(self.filter(events: list, from: start, to: end),service)
-                                }
+//                                if let list = sl.events{
+//                                    cb(self.filter(events: list, from: start, to: end),service)
+//                                }
                                 //}
                             }catch{
                                 print("Error \(service)");
                             }
                         }
-                    }
+//                    }
                 }
             }catch{
                 print("Error \(service)");
             }
             
-        }
+        
     }
     
     private func filter(events:[EpgEvent],from start:UInt64, to end:UInt64)->[EpgEvent]{
@@ -654,6 +654,10 @@ class STBAPI: NSObject {
     
     
     func searchInfoWeb(title:String, duration:Int, eid:Int, cb:((UIImage?,UIImage?,Int,Bool)->Void)?){
+        print("searching for \(title) \(duration)")
+        if title == "NO DATA" {return;}
+        
+        if title == "N/A" {return;}
         DispatchQueue.global(qos: .background).async {
             let b64 = title.toBase64()
             let fm = FileManager.default
@@ -682,19 +686,25 @@ class STBAPI: NSObject {
             }
             
             
-            if (askWeb){
-                var t = title.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
-                var query = "";
-                if (duration > 80){
-                    query = "https://api.themoviedb.org/3/search/movie?api_key=\(self.tmdbApiKey!)&query=\(t!)"
-                }else{
-                    query = "https://api.themoviedb.org/3/search/tv?api_key=\(self.tmdbApiKey!)&query=\(t!)"
+            if (askWeb && title != "N/A"){
+                var t = title.split(separator: "-")[0]
+                if (t.contains("s.")){
+                     t = t.split(separator: ".")[0]
                 }
                 
+                var xt = t.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
+
+                var query = "";
+               // if (duration > 70){
+                    query = "https://api.themoviedb.org/3/search/multi?api_key=\(self.tmdbApiKey!)&query=\(xt!)"
+//                }else{
+//                    query = "https://api.themoviedb.org/3/search/tv?api_key=\(self.tmdbApiKey!)&query=\(t!)&external_source=imdb_id"
+//                }
+                print(query)
                 self.getContent(of:  URL(string: query)!) { s in
                     do{
-                        print(s);
-                        print("TMDB>>>>");
+                        //print(s);
+                        //print("TMDB>>>>");
                         var resp = try  JSONDecoder().decode(MovieInfoList.self, from: s.data(using: String.Encoding.utf8)!)
                         var img:UIImage?
                         var img2:UIImage?

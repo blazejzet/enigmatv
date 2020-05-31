@@ -9,17 +9,17 @@
 import UIKit
 
 class EventDataProvider: InfoViewDataProviderDelegate {
-    var event:EpgEventCacheProtocol?
-    var nextevent:EpgEventCacheProtocol?
+    var event:EpgEvent?
+    var nextevent:EpgEvent?
     
     func getServiceName() -> String {
         return (event?.sname)!
     }
-    func getCurrentEvent() -> EpgEventCacheProtocol? {
+    func getCurrentEvent() -> EpgEvent? {
         return event
     }
     
-    func getNextEvent() -> EpgEventCacheProtocol? {
+    func getNextEvent() -> EpgEvent? {
         return nextevent
     }
     

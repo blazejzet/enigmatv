@@ -28,15 +28,16 @@ class Movie:NSObject,  Translateable {
     
     required init(xml:XMLIndexer){
         do{
-            var len = xml["e2length"].element!.text
+            var len = xml["e2length"].element?.text ?? "0"
 
-            self.recordingtime = Int64(Int(len.split(separator: ":")[0])!*60+Int(len.split(separator: ":")[1])!)
+            self.recordingtime = Int64( (Int(len.split(separator: ":")[0]) ?? 0)  * 60 + (Int(len.split(separator: ":")[1]) ?? 0) )
+            
         }catch{}
         do{
-            self.filename_stripped = xml["e2filename"].element!.text
+            self.filename_stripped = xml["e2filename"].element?.text ?? "--"
         }catch{}
         do{
-            self.eventname = xml["e2title"].element!.text
+            self.eventname = xml["e2title"].element?.text ?? "--"
         }catch{}
         do{
             self.descriptionExtended = xml["e2description"].element!.text

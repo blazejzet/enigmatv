@@ -116,7 +116,18 @@ class SettingsViewController: UIViewController, UITableViewDelegate,UITableViewD
             STBAPI.common()?.set(api:"api")
         }
         STBAPI.common()?.saveSettings()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tuner.setupready"), object: nil)
+        
+        
+        let alert = UIAlertController(title: "Settings for \(tc.ip!) ready", message: "You have selected new automatic settings. Fetching first data can take up to 5 minutes. Please be patient.", preferredStyle: .actionSheet)
+             alert.addAction(UIAlertAction(title: "I understand", style: .default){ a in
+                      ////EPGHelper.preloadingEPG();
+                      NotificationCenter.default.post(name: NSNotification.Name(rawValue: "tuner.setupready"), object: nil)
+             })
+            
+             self .present(alert, animated: true, completion: {})
+        
+        
+      
     }
 
     

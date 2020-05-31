@@ -74,7 +74,7 @@ class AudioTrackViewController: UIViewController, UITableViewDelegate, UITableVi
         }
         
         
-        return count!
+        return count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -21,8 +21,20 @@ class EpgEvent:NSObject ,Translateable{
       var longdesc:String?
       var sref:String?       //HAHA!
       var sname:String?
+        var end_timestamp:UInt64?{
+            (begin_timestamp ?? 0) + (duration_sec ?? 0)
+        }
     
     var timer:RecordingTimer? //MOJE
+    func getBeginTimeString()->String{
+        let ds = Date(timeIntervalSince1970: TimeInterval(self.begin_timestamp!))
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US")
+        //self.dateLabel.text = dateFormatter.string(from: ds)
+        dateFormatter.setLocalizedDateFormatFromTemplate("HH:mm")
+        let dsh =  dateFormatter.string(from: ds)
+        return dsh
+    }
     
     static var translation: [String : String] = [:]
     
@@ -30,9 +42,16 @@ class EpgEvent:NSObject ,Translateable{
         
     }
     
-    init(e:EpgEventCache){
+    init(e:EpgEvent){
         //FROM DM 
     }
+    
+    
+    
+    func getProgress()->Float{
+        return Float (Double( now_timestamp! - begin_timestamp!) / Double (duration_sec!))
+    }
+    
     
     required init(xml:XMLIndexer){
         do{

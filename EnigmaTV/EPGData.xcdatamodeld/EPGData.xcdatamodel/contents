@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15508" systemVersion="19B88" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="EpgBouquet" representedClassName="EpgBouquet" syncable="YES" codeGenerationType="class">
         <attribute name="sname" optional="YES" attributeType="String"/>
         <attribute name="sref" optional="YES" attributeType="String"/>
@@ -8,11 +8,12 @@
         <attribute name="lasttimestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="serviceid" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="EpgEventCache" representedClassName="EpgEventCache" syncable="YES" codeGenerationType="class">
+    <entity name="EpgEvent" representedClassName="EpgEvent" syncable="YES" codeGenerationType="class">
         <attribute name="begin_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="dudation_sec" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="end_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="idx" optional="YES" attributeType="String"/>
         <attribute name="longdesc" optional="YES" attributeType="String"/>
         <attribute name="now_timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="remaining" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -23,7 +24,7 @@
         <attribute name="timer" optional="YES" attributeType="String"/>
         <uniquenessConstraints>
             <uniquenessConstraint>
-                <constraint value="id"/>
+                <constraint value="idx"/>
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
@@ -34,9 +35,9 @@
         <attribute name="sref" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="EpgBouquet" positionX="-54" positionY="72" width="128" height="75"/>
-        <element name="EPGDataFetchInfo" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="EpgEventCache" positionX="-63" positionY="0" width="128" height="223"/>
-        <element name="EpgService" positionX="-63" positionY="63" width="128" height="105"/>
+        <element name="EpgBouquet" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EPGDataFetchInfo" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EpgEvent" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="EpgService" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

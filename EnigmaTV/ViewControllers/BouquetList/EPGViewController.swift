@@ -12,7 +12,7 @@ import AVKit
 class EPGViewController: UIViewController, UITableViewDelegate, UITableViewDataSource,
 UICollectionViewDelegate, UICollectionViewDataSource{
     //var sl: Servicelist?
-    var bouquets: [EpgBouquet]?
+    var bouquets: [Service]?
     var delegate:ViewController?
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -26,43 +26,44 @@ UICollectionViewDelegate, UICollectionViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if  let bouquets = self.bouquets{
-            return bouquets.count
+            if bouquets.count>0 {
+                return bouquets.count
+            }else{
+                return 1
+            }
         }
-        return 0
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let bcell = tableView.dequeueReusableCell(withIdentifier: "bcell") as? BouquetCell
-        if  let bouquets = bouquets{
-           bcell?.configure(bouquet: bouquets[indexPath.row])
-            bcell?.delegate = self
+        var bcell = tableView.dequeueReusableCell(withIdentifier: "bcell") as? BouquetCell
+        if  let bouquets = bouquets {
+            if bouquets.count>0 {
+                    bcell?.configure(bouquet: bouquets[indexPath.row])
+                    bcell?.delegate = self
+            }else{
+                    bcell = tableView.dequeueReusableCell(withIdentifier: "bcellempty") as? BouquetCell
+                    
+            }
+            
+        }else{
+             bcell = tableView.dequeueReusableCell(withIdentifier: "bcellempty") as? BouquetCell
             
         }
         return bcell!;
     }
+    
+    
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @IBAction func clearTest(){
-        EPGHelper.getInstance()?.testClear()
+        //EPGHelper.getInstance()?.testClear()
     }
     
-    @IBAction func reloadBouquetsList(){
-        //EPGHelper.showAll(text: "EPGVC - reload")
-       EPGHelper.getInstance()?.displayall(text: "EPGVC - reload")
     
-        
-//        EPGHelper.getBouquets { bouquets in
-//            self.bouquets = bouquets
-//            //            sleep(20)
-//
-//            DispatchQueue.main.async {
-//                self.tableView.reloadData()
-//            }
-//        }
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,17 +75,29 @@ UICollectionViewDelegate, UICollectionViewDataSource{
         //}){
             
         //}
-        EPGHelper.preloadingEPG()
-        EPGHelper.showAll(text: "EPGVC")
         
-        EPGHelper.getBouquets { bouquets in
-            self.bouquets = bouquets
-//            sleep(20)
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+        
+        
+      
+          
+       
+
+         DispatchQueue.global().async {
+            STBAPI.common()?.getServices(cb: {list in
+                //list.bouquet
+                
+            }, fail: {
+                
+            })
+            //EPGHelper.getBouquets { bouquets in
+                self.bouquets = bouquets
+    //            sleep(20)
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
             }
+            
         }
-        
         //let AirPlayButton = AVRoutePickerView(frame: CGRect(x: 757, y: 933, width: 79, height: 79))
         //view.addSubview(AirPlayButton)
         
@@ -111,7 +124,7 @@ UICollectionViewDelegate, UICollectionViewDataSource{
                 return services.count
             
         }
-        return 0
+        return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -120,6 +133,7 @@ UICollectionViewDelegate, UICollectionViewDataSource{
         
         
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "zz", for: indexPath)
+            
             if let cell = cell as? BouquetCollectionViewCell{
                 cell.clv = collectionView
                
@@ -127,8 +141,8 @@ UICollectionViewDelegate, UICollectionViewDataSource{
                          let i = bouquets[indexPath.row]
                             cell.configure(bouquet: i)
                        
-                    
                 }
+                
             }
             return cell
         
@@ -177,7 +191,7 @@ UICollectionViewDelegate, UICollectionViewDataSource{
         
     }
  
-    func watch(_ service:EpgService, inBouquet bouquet:EpgBouquet){
+    func watch(_ service:Service, inBouquet bouquet:Service){
         delegate?.watch(service, inBouquet: bouquet)
     }
     
