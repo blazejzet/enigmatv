@@ -25,7 +25,6 @@
 		E01D9411200D21C300A962E6 /* Servicelist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01D9410200D21C300A962E6 /* Servicelist.swift */; };
 		E01D9413200D275B00A962E6 /* EpgEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01D9412200D275B00A962E6 /* EpgEvent.swift */; };
 		E01D9415200D5F9600A962E6 /* StreamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01D9414200D5F9600A962E6 /* StreamView.swift */; };
-		E01D9418200D6A1B00A962E6 /* TVVLCKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E01D9417200D6A1B00A962E6 /* TVVLCKit.framework */; };
 		E01D9427200D96F400A962E6 /* Eventlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = E01D9426200D96F400A962E6 /* Eventlist.swift */; };
 		E02C8EE1246F414C00AFD25A /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = E02C8EE0246F414C00AFD25A /* SDWebImage */; };
 		E02C8EE3246F465200AFD25A /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02C8EE2246F465200AFD25A /* DataProvider.swift */; };
@@ -93,7 +92,6 @@
 		E01D9410200D21C300A962E6 /* Servicelist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Servicelist.swift; sourceTree = "<group>"; };
 		E01D9412200D275B00A962E6 /* EpgEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpgEvent.swift; sourceTree = "<group>"; };
 		E01D9414200D5F9600A962E6 /* StreamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamView.swift; sourceTree = "<group>"; };
-		E01D9417200D6A1B00A962E6 /* TVVLCKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TVVLCKit.framework; path = "Pods/TVVLCKit-unstable/TVVLCKit-binary/TVVLCKit.framework"; sourceTree = "<group>"; };
 		E01D9419200D6AFC00A962E6 /* TVVLCKit-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TVVLCKit-Bridging-Header.h"; sourceTree = "<group>"; };
 		E01D9426200D96F400A962E6 /* Eventlist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eventlist.swift; sourceTree = "<group>"; };
 		E02C8EE2246F465200AFD25A /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
@@ -146,7 +144,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E01874CF208A7E7D00D3A0CA /* CloudKit.framework in Frameworks */,
-				E01D9418200D6A1B00A962E6 /* TVVLCKit.framework in Frameworks */,
 				E0034C51243E6F45003AC065 /* StoreKit.framework in Frameworks */,
 				E02C8EE1246F414C00AFD25A /* SDWebImage in Frameworks */,
 				68269E8E101D94604115548C /* Pods_EnigmaTV.framework in Frameworks */,
@@ -208,7 +205,6 @@
 			children = (
 				E0034C50243E6F45003AC065 /* StoreKit.framework */,
 				E01874CE208A7E7D00D3A0CA /* CloudKit.framework */,
-				E01D9417200D6A1B00A962E6 /* TVVLCKit.framework */,
 				E6473E0A0B9DABA215C76A0F /* Pods_EnigmaTV.framework */,
 			);
 			name = Frameworks;
@@ -444,12 +440,21 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EnigmaTV/Pods-EnigmaTV-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-EnigmaTV/Pods-EnigmaTV-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AERecord/AERecord.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SWXMLHash/SWXMLHash.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyStoreKit/SwiftyStoreKit.framework",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/TVVLCKit/TVVLCKit.framework/TVVLCKit",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-EnigmaTV/Pods-EnigmaTV-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AERecord.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SWXMLHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyStoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TVVLCKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -669,7 +674,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "EnigmaTV/TVVLCKit-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.3;
+				TVOS_DEPLOYMENT_TARGET = 16.2;
 			};
 			name = Debug;
 		};
@@ -699,7 +704,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "EnigmaTV/TVVLCKit-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
-				TVOS_DEPLOYMENT_TARGET = 13.3;
+				TVOS_DEPLOYMENT_TARGET = 16.2;
 			};
 			name = Release;
 		};

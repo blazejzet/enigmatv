@@ -283,7 +283,7 @@ class InfoViewController: UIViewController {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (edp?.shouldDisplayTimeshiftInfo())!{
+        if let x = edp?.shouldDisplayTimeshiftInfo() {
             if let t = touches.first{
                 let touch_move = t.location(in: self.view).x
                 let change = (touch_move - touch_start!)/10

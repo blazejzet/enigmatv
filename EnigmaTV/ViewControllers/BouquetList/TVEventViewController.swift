@@ -21,6 +21,7 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
     var bouquet:Service?
     var service:Service?
     var event:EpgEvent?
+    var now:EpgEvent?
     
     @IBOutlet weak var servicename: UILabel!
     
@@ -39,7 +40,7 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 0{
             var d = tableView.dequeueReusableCell(withIdentifier: "nowcell") as! NowTableViewCell
-            d.setup(e: self.event!)
+            d.setup(e: self.now ?? EpgEvent())
             return d;
         }
         
@@ -63,6 +64,14 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
         context.nextFocusedItem
     }
     
+    @IBAction func backPressed(_ sender: Any) {
+         NotificationCenter.default.post(name:
+            NSNotification.Name(rawValue: "hidePip"), object: [String:Any](), userInfo: ["direction":0])
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     var events:[EpgEvent]?
     var pindexPath = IndexPath(row: -1, section: 0);
     func tableView(_ tableView: UITableView, didUpdateFocusIn context: UITableViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
@@ -77,10 +86,10 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
    
         var event:EpgEvent?
         if let row = tableView.cellForRow(at: indexPath) as? NowTableViewCell{
-            event = row.event
+            event = self.now
         }
         if let row = tableView.cellForRow(at: indexPath) as? NextTableViewCell{
-            event = row.event
+            event = self.events?[indexPath.row-2]
         }
         if let event = event{
             self.event = event
@@ -96,14 +105,14 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
                     if (ok ){
                         if (backdrop != nil){
                             self.backdrop.image = backdrop//image
-                            
+                        }
                         
                             if (image != nil){
                                 self.eventposter.image = image//image
                                 
                             }
                         
-                        }
+                        
                     }
                 
                 }
@@ -206,6 +215,7 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.bouquet = b
         self.service = s
         self.event = e
+        self.now = e
         STBAPI.common()?.getFullEPG(for: self.service!, from: e.end_timestamp! , to: e.end_timestamp!+100000){events, service in
                        DispatchQueue.main.async {
                            self.events = events
@@ -215,14 +225,7 @@ class TVEventViewController: UIViewController, UITableViewDelegate, UITableViewD
         setup()
     }
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
 
 }

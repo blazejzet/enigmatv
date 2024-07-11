@@ -59,6 +59,12 @@ class ViewController: UIViewController {
         }
         
     }
+    
+    @objc func hidePip(notification:NSNotification){
+        print("hiding pip");
+        self.sv?.hidePip()
+    }
+    
     @objc func dismiss(notification:NSNotification){
     print("play stream");
     if let dvc = self.dvc{
@@ -94,7 +100,14 @@ class ViewController: UIViewController {
                print(dict)
               if let bouquet = dict["bouquet"] as? Service, let service = dict["service"] as? Service{
                
-                   self.prepare(service, inBouquet: bouquet)
+                if let cser = self.watching as? Service {
+                    if service.servicereference != cser.servicereference{
+                        self.prepare(service, inBouquet: bouquet)
+                     }
+                }else{
+                    self.prepare(service, inBouquet: bouquet)
+                }
+                
                }
                
            }
@@ -138,7 +151,10 @@ class ViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPlayed(notification:)), name: NSNotification.Name(rawValue: "bouquetPlayed"), object: nil);
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismiss(notification:)), name: NSNotification.Name(rawValue: "dismiss"), object: nil);
+               NotificationCenter.default.addObserver(self, selector: #selector(ViewController.dismiss(notification:)), name: NSNotification.Name(rawValue: "dismiss"), object: nil);
+               
+                      NotificationCenter.default.addObserver(self, selector: #selector(ViewController.hidePip(notification:)), name: NSNotification.Name(rawValue: "hidePip"), object: nil);
+                      
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.bouquetPrepared(notification:)), name: NSNotification.Name(rawValue: "bouquetPrepared"), object: nil);
                   

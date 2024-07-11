@@ -68,7 +68,7 @@ class NowCollectionViewCell: UICollectionViewCell {
         STBAPI.common()?.searchInfoWeb(title: e.title!, duration: Int(e.duration_sec!/60), eid: Int(e.begin_timestamp!) ) {
             image, backdrop, eid, ok in
             if eid != Int(e.begin_timestamp!) {return}
-            DispatchQueue.main.sync {
+            DispatchQueue.main.async {
                 if (ok ){
                     if (backdrop != nil){
                         self.poster.image = backdrop//image

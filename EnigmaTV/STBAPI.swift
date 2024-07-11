@@ -300,13 +300,22 @@ class STBAPI: NSObject {
             
             
         }else{
-            do {
-                let c = try String(contentsOf:  address)
-                cb(c);
-            }
-            catch{
-                cb("")
-            }
+            
+                DispatchQueue.global().async {
+                    do {
+                    let c = try String(contentsOf:  address)
+                    DispatchQueue.main.async {
+                        cb(c);
+
+                    }
+                    }
+                    catch{
+                        DispatchQueue.main.async {
+                            cb("")
+                        }
+                    }
+                }
+            
         }
         
     }
@@ -331,7 +340,9 @@ class STBAPI: NSObject {
                 
                 let sl = try APIDecoder(apitype).decode(TunerInfoResponse.self, from: str.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
                 DispatchQueue.main.sync {
-                    cb(sl.info!)
+                    if let x = sl.info {
+                        cb(x)
+                    }
                     
                 }
             }catch{
@@ -347,7 +358,7 @@ class STBAPI: NSObject {
                 do{
                     print(c)
                     let sl = try APIDecoder(self.apitype).decode(MoviesList.self, from: c.data(using: String.Encoding.utf8, allowLossyConversion: true)!)
-                    DispatchQueue.main.sync {
+                    DispatchQueue.main.async {
                         cb(sl)
                         
                         
@@ -729,6 +740,13 @@ class STBAPI: NSObject {
                 if (t.contains("s.")){
                      t = t.split(separator: ".")[0]
                 }
+                //var t = title.split(separator: "-")[0]
+                if (t.contains("odc.")){
+                                    t = t.split(separator: ".")[0]
+                               }
+                if (t.contains(":")){
+                            t = t.split(separator: ":")[0]
+                       }
                 
                 var xt = t.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed)
 

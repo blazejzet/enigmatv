@@ -96,6 +96,7 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
         first = (v1!,mp!)
         second = (v2!,mp2!)
         
+        
        // timerVA = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true){_ in
            // print("VA: \( self.first.1.media?.metadata(forKey: "title") )")
            // print("VA: \( self.first.1.media?.metaDictionary )")
@@ -211,11 +212,12 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
     func playLiveStream(){
         timeshift = false;
         var nurl = VLCMedia(url: url!)
-        if (second.1.media.url == nurl.url ){
+        if (second.1.media?.url == nurl.url ){
             (first,second)=(second,first)
             first.1.delegate = self
             second.1.delegate = nil
-            
+            first.1.audio!.volume = 100
+            second.1.audio!.volume = 0
             
             UIView.animate(withDuration: 0.3){
                 self.first.0.frame = self.frame
@@ -344,8 +346,10 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
     func prepareLiveStream(){
        // timeshift = false;
         second.1.media = VLCMedia(url:  nexturl!)
-    
+        
         second.1.play();
+        print( second.1.audio!.volume)
+        second.1.audio! .volume = 0
        //
        }
     
@@ -365,6 +369,12 @@ class StreamView: UIView, VLCMediaPlayerDelegate {
         
     }
     
+    
+    func hidePip(){
+        second.1.stop();
+        second.1.media = nil
+        second.0.frame = .zero
+    }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder);

@@ -151,8 +151,8 @@
             timestampString = "579562671.8389111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "547"
-            endingLineNumber = "547"
+            startingLineNumber = "558"
+            endingLineNumber = "558"
             landmarkName = "movieDelete(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -168,8 +168,8 @@
             timestampString = "579562671.838966"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "565"
-            endingLineNumber = "565"
+            startingLineNumber = "576"
+            endingLineNumber = "576"
             landmarkName = "timerDelete(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -185,13 +185,13 @@
             timestampString = "579562671.839013"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "586"
-            endingLineNumber = "586"
+            startingLineNumber = "597"
+            endingLineNumber = "597"
             landmarkName = "reboot()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "ADF57767-153A-4C4B-81AA-79A426566116 - fddbba1b0945cbf2"
+                  uuid = "ADF57767-153A-4C4B-81AA-79A426566116 - 2977cc4f41746544"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -207,7 +207,7 @@
                   offsetFromSymbolStart = "40">
                </Location>
                <Location
-                  uuid = "ADF57767-153A-4C4B-81AA-79A426566116 - ec8793269dcee83d"
+                  uuid = "ADF57767-153A-4C4B-81AA-79A426566116 - 382be572d5ff46e8"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -236,8 +236,8 @@
             timestampString = "579562671.839156"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
             landmarkName = "startTimeshift(url:service:inBouquet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -253,8 +253,8 @@
             timestampString = "579562671.83929"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +270,8 @@
             timestampString = "580077295.048705"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "417"
+            endingLineNumber = "417"
             landmarkName = "watch(_:inBouquet:dir:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -287,8 +287,8 @@
             timestampString = "580077295.048746"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "400"
-            endingLineNumber = "400"
+            startingLineNumber = "416"
+            endingLineNumber = "416"
             landmarkName = "watch(_:inBouquet:dir:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -304,8 +304,8 @@
             timestampString = "580077295.048784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -321,8 +321,8 @@
             timestampString = "580077295.048821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "321"
-            endingLineNumber = "321"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -338,8 +338,8 @@
             timestampString = "579562671.8395669"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
+            startingLineNumber = "286"
+            endingLineNumber = "286"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -355,8 +355,8 @@
             timestampString = "579562671.83961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
             landmarkName = "stop()"
             landmarkType = "7">
          </BreakpointContent>
@@ -372,8 +372,8 @@
             timestampString = "580077295.048883"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "319"
-            endingLineNumber = "319"
+            startingLineNumber = "335"
+            endingLineNumber = "335"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -457,8 +457,8 @@
             timestampString = "579562671.839861"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "303"
+            endingLineNumber = "303"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -474,8 +474,8 @@
             timestampString = "580077295.048986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -497,7 +497,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562 - 9710de5d17467f6a"
+                  uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562 - a2aecf4a48ec9125"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -513,7 +513,7 @@
                   offsetFromSymbolStart = "1524">
                </Location>
                <Location
-                  uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562 - 9710de5d17467f6a"
+                  uuid = "ACB7AB54-207F-4F0A-84F3-BC38CBFB8562 - a2aecf4a48ec9125"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -576,8 +576,8 @@
             timestampString = "579562671.840127"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
+            startingLineNumber = "198"
+            endingLineNumber = "198"
             landmarkName = "stTogglePause()"
             landmarkType = "7">
          </BreakpointContent>
@@ -593,8 +593,8 @@
             timestampString = "579562671.840169"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "256"
-            endingLineNumber = "256"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "play(_:inBouquet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -610,8 +610,8 @@
             timestampString = "579562671.840211"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -627,8 +627,8 @@
             timestampString = "579562671.840252"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "163"
-            endingLineNumber = "163"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "StreamView"
             landmarkType = "3">
          </BreakpointContent>
@@ -644,8 +644,8 @@
             timestampString = "580077295.049137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "471"
+            endingLineNumber = "471"
             landmarkName = "ViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -780,8 +780,8 @@
             timestampString = "579562671.840665"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "212"
-            endingLineNumber = "212"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
             landmarkName = "playLiveStream()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1018,8 +1018,8 @@
             timestampString = "580077295.049719"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "146"
+            endingLineNumber = "146"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1143,7 +1143,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50 - 8094acc05db499d7"
+                  uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50 - 6ef4324e98242173"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1159,7 +1159,7 @@
                   offsetFromSymbolStart = "216">
                </Location>
                <Location
-                  uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50 - 8feedd7c3d15de5"
+                  uuid = "2EF7E488-43BB-4B7A-81FD-A00627492B50 - e69e73590641e503"
                   shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1332,8 +1332,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
             landmarkName = "checkSettings()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1348,8 +1348,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "play(_:inBouquet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1370,7 +1370,7 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - c85ed6617c89f0e"
+                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 1c67aa8df1e084f9"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1385,7 +1385,7 @@
                   offsetFromSymbolStart = "144">
                </Location>
                <Location
-                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - a6cf1cdd2900c102"
+                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - b62d5b36cf28daf5"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1400,7 +1400,7 @@
                   offsetFromSymbolStart = "196">
                </Location>
                <Location
-                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 7e8f474c4ca34471"
+                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 6e6d00a7aa8b5971"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1415,7 +1415,7 @@
                   offsetFromSymbolStart = "20">
                </Location>
                <Location
-                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 15f00fa134313c7b"
+                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 512484ad219278c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1430,7 +1430,7 @@
                   offsetFromSymbolStart = "16">
                </Location>
                <Location
-                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 91312812c0cb2244"
+                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 81d36ff926e339b3"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1445,7 +1445,7 @@
                   offsetFromSymbolStart = "236">
                </Location>
                <Location
-                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 7660f64b88c6b165"
+                  uuid = "8DFDCD14-D6FE-4627-A1AF-4E719AB1553B - 6682b1a06eeeaa92"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1552,8 +1552,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "272"
-            endingLineNumber = "272"
+            startingLineNumber = "274"
+            endingLineNumber = "274"
             landmarkName = "receivedFirstData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1568,8 +1568,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "318"
-            endingLineNumber = "318"
+            startingLineNumber = "320"
+            endingLineNumber = "320"
             landmarkName = "play(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1622,7 +1622,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "4627A5A9-638E-4247-A844-E1148E7F679C - 81043ee8003a45c0"
+                  uuid = "4627A5A9-638E-4247-A844-E1148E7F679C - d3825e42025a838d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1637,7 +1637,7 @@
                   offsetFromSymbolStart = "156">
                </Location>
                <Location
-                  uuid = "4627A5A9-638E-4247-A844-E1148E7F679C - 30b237414a0e9f2f"
+                  uuid = "4627A5A9-638E-4247-A844-E1148E7F679C - 623457eb486e5920"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -1680,8 +1680,8 @@
             filePath = "EnigmaTV/ViewControllers/BouquetList/BouquetsGalleryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1696,8 +1696,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
+            startingLineNumber = "388"
+            endingLineNumber = "388"
             landmarkName = "watch_alternative(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1712,8 +1712,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "play(_:inBouquet:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1728,8 +1728,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "receivedFirstData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1744,8 +1744,8 @@
             filePath = "EnigmaTV/ViewControllers/BouquetList/BouquetsGalleryViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "BouquetsGalleryViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -1760,8 +1760,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "71"
-            endingLineNumber = "71"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "bouquetPlayed(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1776,8 +1776,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "bouquetPlayed(notification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1792,8 +1792,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "346"
-            endingLineNumber = "346"
+            startingLineNumber = "348"
+            endingLineNumber = "348"
             landmarkName = "prepareLiveStream()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1808,9 +1808,9 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "372"
-            endingLineNumber = "372"
-            landmarkName = "init(coder:)"
+            startingLineNumber = "382"
+            endingLineNumber = "382"
+            landmarkName = "init?(coder:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1824,8 +1824,8 @@
             filePath = "EnigmaTV/ViewControllers/PlayerView/StreamView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "224"
+            endingLineNumber = "224"
             landmarkName = "playLiveStream()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1840,8 +1840,8 @@
             filePath = "EnigmaTV/ViewControllers/BouquetList/TVEventViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "78"
-            endingLineNumber = "78"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "tableView(_:didUpdateFocusIn:with:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1850,6 +1850,54 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "ECDBFF25-5551-4F0B-918D-8CDCD386C6A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/TVEventViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "tableView(_:didUpdateFocusIn:with:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6B06F3E3-2817-4C92-843A-49B7BDFF4F38"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/DataModel/EpgEvent.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "getProgress()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DFCBC9A8-7BED-494A-A8B4-561A3F44BD40"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/TVEventViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C4624B8-3D17-4CC4-B53F-D81452FCB4B3"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -1865,48 +1913,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "6B06F3E3-2817-4C92-843A-49B7BDFF4F38"
+            uuid = "520C852E-C6F8-49E7-B1F5-9BAD643EE4F5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EnigmaTV/DataModel/EpgEvent.swift"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "getProgress()"
+            startingLineNumber = "159"
+            endingLineNumber = "159"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DFCBC9A8-7BED-494A-A8B4-561A3F44BD40"
+            uuid = "9EC6CDC1-9563-4F9E-9607-58564E3949E5"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "EnigmaTV/ViewControllers/BouquetList/TVEventViewController.swift"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "bouquetPrepared(notification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "3C4624B8-3D17-4CC4-B53F-D81452FCB4B3"
+            uuid = "CB4718C7-C176-41E0-B515-AB7985D5B240"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "EnigmaTV/ViewControllers/BouquetList/TVEventViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "tableView(_:didUpdateFocusIn:with:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "backPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9787ECEE-0F71-47DB-BAC8-B1E87D6F1F99"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/BouquetList/TVEventViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "backPressed(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5EA9C2A-B6CE-4F26-A32B-A2C5772F44EB"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "EnigmaTV/ViewControllers/PlayerView/ViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "bouquetPrepared(notification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

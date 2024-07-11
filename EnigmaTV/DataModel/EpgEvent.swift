@@ -27,7 +27,8 @@ class EpgEvent:NSObject ,Translateable{
     
     var timer:RecordingTimer? //MOJE
     func getBeginTimeString()->String{
-        let ds = Date(timeIntervalSince1970: TimeInterval(self.begin_timestamp!))
+        guard let ts = self.begin_timestamp else {return "?"}
+        let  ds = Date(timeIntervalSince1970: TimeInterval(ts))
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US")
         //self.dateLabel.text = dateFormatter.string(from: ds)

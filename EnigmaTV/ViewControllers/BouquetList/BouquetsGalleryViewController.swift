@@ -46,7 +46,7 @@ class BouquetsGalleryViewController: UIViewController, UICollectionViewDataSourc
         if let indexPath = context.nextFocusedIndexPath{
             var c = collectionView.cellForItem(at: indexPath) as? NowCollectionViewCell
             if let s = c?.service, let b = c?.bouquet{
-             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPrepared"), object: ["service":s, "bouquet": b], userInfo: ["direction":0])
+            // NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPrepared"), object: ["service":s, "bouquet": b], userInfo: ["direction":0])
             }
         }
     }
@@ -59,6 +59,7 @@ class BouquetsGalleryViewController: UIViewController, UICollectionViewDataSourc
         if let ds = segue.destination as? TVEventViewController{
             if let s = c?.service, let b = c?.bouquet, let e = c?.event{
              //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPlayed"), object: ["service":s, "bouquet": b], userInfo: ["direction":0])
+                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "bouquetPrepared"), object: ["service":s, "bouquet": b], userInfo: ["direction":0])
                 ds.configure(s: s, b: b,e: e)
             }
         }

@@ -1,23 +1,20 @@
 PODS:
   - AERecord (4.1.2)
-  - FontAwesome.swift (1.9.0)
   - ReachabilitySwift (5.0.0)
-  - SwiftyStoreKit (0.15.0)
+  - SwiftyStoreKit (0.16.1)
   - SWXMLHash (4.0.0)
-  - TVVLCKit (3.3.11)
+  - TVVLCKit (3.5.1)
 
 DEPENDENCIES:
   - AERecord
-  - FontAwesome.swift
   - ReachabilitySwift
   - SwiftyStoreKit
   - SWXMLHash (~> 4.0.0)
   - TVVLCKit (>= 3.1.4)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - AERecord
-    - FontAwesome.swift
     - ReachabilitySwift
     - SwiftyStoreKit
     - SWXMLHash
@@ -25,12 +22,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AERecord: ee8e773baa650731f06e89546a8f97e28fe00c32
-  FontAwesome.swift: a403b88cec950511745ba8f2decd1b6a07346d13
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
-  SwiftyStoreKit: 033d06b6f87955405d3f844a18a7687c2438592a
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
   SWXMLHash: 6bbc0bf72975a18ceda469fb7d6a886a26d81694
-  TVVLCKit: 56f8ea4eaf17c2f46902590f758bf9083ac230c9
+  TVVLCKit: a9ab3e8d62ad2d02b7c89101d214f36ad874d45a
 
-PODFILE CHECKSUM: a85d027c69560c3972369759b8b9e78fa7ca59fa
+PODFILE CHECKSUM: d19e2959a7755d33513bbeaa54f0dfaadf8fb7a9
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.11.3
